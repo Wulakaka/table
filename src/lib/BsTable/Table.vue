@@ -1,28 +1,50 @@
 <template>
-  <Table
-    v-bind="$attrs"
-    v-on="$listeners"
-    height="400"
-    :row-class-name="setRowClass"
-    header-row-class-name="transparent"
-    header-cell-class-name="transparent head-row"
-    :row-style="rowStyle"
-    :cell-style="cellStyle"
-  >
-    <slot />
-  </Table>
+  <div class="bs-table">
+    <Table
+      v-bind="$attrs"
+      v-on="$listeners"
+      height="400"
+      :row-class-name="setRowClass"
+      header-row-class-name="transparent"
+      header-cell-class-name="transparent head-row"
+      :row-style="rowStyle"
+      :cell-style="cellStyle"
+    >
+      <slot />
+    </Table>
+    <Pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="page"
+      :page-sizes="[10, 20, 50]"
+      :page-size="size"
+      background
+      layout="prev, pager, next"
+      :total="400"
+    />
+  </div>
 </template>
 
 <script>
-import { Table } from "element-ui";
+import { Table, Pagination } from "element-ui";
 export default {
   components: {
     Table,
+    Pagination,
   },
+
   props: {
     stripe: {
       type: Boolean,
       default: true,
+    },
+    pageSize: {
+      type: Number,
+      default: 10,
+    },
+    pageNum: {
+      type: Number,
+      default: 1,
     },
   },
   computed: {
@@ -41,6 +63,22 @@ export default {
         padding: 0,
       };
     },
+    page: {
+      get() {
+        return this.pageNum;
+      },
+      set() {
+        return this.$emit("update:pageNum");
+      },
+    },
+    size: {
+      get() {
+        return this.pageSize;
+      },
+      set() {
+        return this.$emit("update:pageSize");
+      },
+    },
   },
   methods: {
     setRowClass({ row, rowIndex }) {
@@ -52,11 +90,21 @@ export default {
       }
       return classes;
     },
+    handleSizeChange(size) {
+      console.log(size);
+      this.pageSize = size;
+      this.pageNum = 1;
+    },
+    handleCurrentChange(page) {
+      this.pageNum = page;
+    },
   },
 };
 </script>
 
 <style lang="scss">
+$theme: #7dffff;
+$bg: rgba(0, 0, 0, 0.6);
 .el-table {
   background-color: transparent !important;
   .el-table__expanded-cell {
@@ -105,18 +153,46 @@ export default {
     border-color: transparent !important;
     /*border-collapse: collapse和border-radius不兼容,border需要在td/th上面设置,改动需要手动刷新*/
     &:first-child {
-      border-radius: 10px 0 0 10px;
+      border-radius: 2px 0 0 2px;
     }
     &:last-child {
-      border-radius: 0 10px 10px 0;
+      border-radius: 0 2px 2px 0;
     }
   }
   /*底部下边框*/
   &::before {
     height: 0px !important;
   }
-  .el-table__row:hover {
-    color: black;
+}
+.el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
+  background: rgba(112, 217, 217, 0.2) !important;
+}
+.el-pagination {
+  margin-top: 37.7px;
+  text-align: end;
+  .font {
+    font-family: "DIN" !important;
+    font-weight: 400 !important;
+    text-align: center !important; /* 黑白灰/ccc */
+    color: #ccc !important;
+  }
+  &__total {
+    @extend .font;
+  }
+  &.is-background {
+    .el-pager li {
+      @extend .font;
+      background-color: $bg !important;
+    }
+    button {
+      color: #fafafa !important;
+      background-color: transparent !important;
+    }
+  }
+}
+.el-select {
+  &-dropdown__item.selected {
+    color: $theme !important;
   }
 }
 </style>

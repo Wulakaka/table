@@ -13,15 +13,7 @@ export default {
     BsTable,
   },
   data() {
-    return {
-      testFilter: [
-        {
-          text: "张三1",
-          value: "张三1",
-        },
-        { text: "张三2", value: "张三2" },
-      ],
-    };
+    return {};
   },
   methods: {},
 };

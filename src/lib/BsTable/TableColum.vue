@@ -10,7 +10,10 @@
 </template>
 
 <script>
-import { TableColumn } from "element-ui";
+import { TableColumn, Checkbox as ElCheckbox } from "element-ui";
+import Vue from "vue";
+Vue.use(ElCheckbox);
+
 export default {
   components: {
     TableColumn,
@@ -28,4 +31,13 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+$theme: #7dffff;
+
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background: $theme !important;
+  border-color: $theme !important;
+  border-radius: 4px !important;
+}
+</style>
