@@ -1,0 +1,33 @@
+{
+  "group": "大屏/按钮",
+  "title": "Button 按钮",
+  "desc": "一种命令组件，可发起一个闭环的操作任务。",
+  "updateTime": "2022-03-30 12:00:00",
+  "docs": [
+      {
+          "h3": "主要按钮",
+          "p": "一般用于主按钮，是用户在整个页面需要关注优先级最高的操作，引导用户关注并操作",
+          "demosVueName": "bs-button/demos/TestBsButton1.txt"
+      },
+      {
+          "h3": "跟随按钮",
+          "p": "一般用于主按钮，是用户在整个页面需要关注优先级最高的操作，引导用户关注并操作",
+          "demosVueName": "bs-button/demos/TestBsButton2.txt"
+      },
+      {
+          "h3": "描边主按钮",
+          "p": "一般用于主按钮，是用户在整个页面需要关注优先级最高的操作，引导用户关注并操作",
+          "demosVueName": "bs-button/demos/TestBsButton3.txt"
+      },
+      {
+          "h3": "描边跟随按钮",
+          "p": "一般用于主按钮，是用户在整个页面需要关注优先级最高的操作，引导用户关注并操作",
+          "demosVueName": "bs-button/demos/TestBsButton4.txt"
+      },
+      {
+          "h3": "图标按钮",
+          "p": "带图标的按钮",
+          "demosVueName": "bs-button/demos/TestBsButton5.txt"
+      }
+  ]
+}
