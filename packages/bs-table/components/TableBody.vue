@@ -33,7 +33,7 @@
           )
         "
         :class="
-          classObj(
+          columnClass(
             trFixed,
             thFixed,
             yFixedIndex + store.states.visibleRowStartIndex,
@@ -59,11 +59,11 @@
         "
       >
         <TableColumn
+          key="fixed"
           :tr="trFixed"
           :th="thFixed"
           :store="store"
           :y-index="yFixedIndex"
-          key="fixed"
           :x-index="xFixedIndex"
           :columns-width="columnsWidth"
           :cell-class-name="cellClassName"
@@ -108,7 +108,12 @@
             )
           "
           :class="
-            classObj(tr, th, yIndex + store.states.visibleRowStartIndex, xIndex)
+            columnClass(
+              tr,
+              th,
+              yIndex + store.states.visibleRowStartIndex,
+              xIndex
+            )
           "
           :data-key="th.key"
           @mouseenter="
@@ -129,11 +134,11 @@
           "
         >
           <TableColumn
+            key="not-fixed"
             :tr="tr"
             :th="th"
             :store="store"
             :y-index="yIndex"
-            key="not-fixed"
             :x-index="xIndex"
             :columns-width="columnsWidth"
             :cell-class-name="cellClassName"
@@ -181,6 +186,7 @@ export default {
     },
     store: {
       required: true,
+      type: Object,
     },
     scrollY: {
       type: Boolean,
@@ -246,11 +252,13 @@ export default {
         }),
       };
     },
-    classObj(row, column, rowIndex, columnIndex) {
+    columnClass(row, column, rowIndex, columnIndex) {
       return {
         disabled: column.disabled,
         selection: column.type === 'selection',
         error: !this.store.verify(column, row[column.key], rowIndex),
+        checked: this.store.states.dataStatusList[rowIndex].checked,
+        // 扩展自定义类名
         ...this.cellClassName({
           row,
           column,
@@ -286,8 +294,8 @@ export default {
     padding-bottom: 0.16rem;
   }
   .row-fixed__last {
-    box-shadow: -0.1rem 0.2rem 0.16rem rgba(160, 160, 160, 0.2);
-    background-color: #000 !important;
+    box-shadow: 0 0.2rem 0.16rem rgba(160, 160, 160, 0.2);
+    background-color: #000;
   }
   .bs-tr {
     position: absolute;
@@ -297,7 +305,7 @@ export default {
     &__fixed {
       position: absolute;
       z-index: 3;
-      background-color: #000 !important;
+      background-color: #000;
     }
     &:nth-child(2n) {
       background: rgba(0, 0, 0, 0.2);
@@ -320,6 +328,10 @@ export default {
 
     &.error {
       background-color: #ff4c42 !important;
+    }
+
+    &.checked {
+      background-color: change-color(#7dffff, $alpha: 0.06);
     }
   }
 }
