@@ -1,14 +1,23 @@
 {
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "plugin:vue/vue3-recommended",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
   "globals": {
     "ga": true,
     "chrome": true
   },
-  "plugins": ["html", "json"],
-  "extends": "elemefe",
   "rules": {
     "no-restricted-globals": ["error", "event", "fdescribe"]
   },
   "parserOptions": {
+    "parser": "@babel/eslint-parser",
     "ecmaVersion": 6,
     "ecmaFeatures": {
       "jsx": true
