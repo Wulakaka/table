@@ -2,7 +2,9 @@ export default {
   methods: {
     selectionChange() {
       const { states } = this.store;
-      const selection = this.store.states.showData.filter((item, index) => states.dataStatusList[index].checked);
+      const selection = this.store.states.showData.filter(
+        (item, index) => states.dataStatusList[index].checked
+      );
       this.$emit('selection-change', selection);
       if (states.dataStatusList.every((item) => item.checked)) {
         this.$refs.theader.checkedAll = true;

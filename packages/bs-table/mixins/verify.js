@@ -4,7 +4,11 @@ const verifyDate = (value) => {
     return false;
   }
   const d = new Date(result[1], result[3] - 1, result[4]);
-  if (d.getFullYear() === Number(result[1]) && d.getMonth() + 1 === Number(result[3]) && d.getDate() === Number(result[4])) {
+  if (
+    d.getFullYear() === Number(result[1]) &&
+    d.getMonth() + 1 === Number(result[3]) &&
+    d.getDate() === Number(result[4])
+  ) {
     return true;
   }
   return false;
@@ -16,7 +20,10 @@ const verifyMonth = (value) => {
     return false;
   }
   const d = new Date(result[1], result[3] - 1);
-  if (d.getFullYear() === Number(result[1]) && d.getMonth() + 1 === Number(result[3])) {
+  if (
+    d.getFullYear() === Number(result[1]) &&
+    d.getMonth() + 1 === Number(result[3])
+  ) {
     return true;
   }
   return false;
@@ -37,9 +44,4 @@ const verifyNumber = (value) => {
   return true;
 };
 
-export {
-  verifyDate,
-  verifyMonth,
-  verifySelect,
-  verifyNumber,
-};
+export { verifyDate, verifyMonth, verifySelect, verifyNumber };

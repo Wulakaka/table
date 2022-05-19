@@ -21,15 +21,17 @@ export default {
         }
         return null;
       });
-      const errorRows = this.data.map((d, index) => {
-        if (errorRowsIndex.includes(index)) {
-          return {
-            data: d,
-            index,
-          };
-        }
-        return null;
-      }).filter((i) => i);
+      const errorRows = this.data
+        .map((d, index) => {
+          if (errorRowsIndex.includes(index)) {
+            return {
+              data: d,
+              index,
+            };
+          }
+          return null;
+        })
+        .filter((i) => i);
       return errorRows;
     },
     addItem(item) {
