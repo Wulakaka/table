@@ -112,17 +112,17 @@ export default {
   z-index: 20;
   background-color: transparent;
   &.x {
-    bottom: 0;
+    bottom: 4px;
     left: 0;
     width: 100%;
-    height: 8px;
+    height: 4px;
     .bs-scroll-box {
-      height: 8px;
+      height: 4px;
     }
   }
   &.y {
     top: 0;
-    right: 0;
+    right: 4px;
     width: 4px;
     height: 100%;
     .bs-scroll-box {
@@ -132,7 +132,7 @@ export default {
 }
 
 .bs-scroll-box {
-  background: #eeeeee;
+  background: #cccccc;
   opacity: 0.2;
   border-radius: 6px;
   user-select: none;
