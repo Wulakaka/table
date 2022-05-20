@@ -1,98 +1,103 @@
 <template>
-  <div
-    ref="willtable"
-    class="bs-willtable"
-    :style="{
-      width: allSetWidth && tableWidth <= wrapperWidth ? `${tableWidth}px` : '',
-    }"
-  >
+  <div class="tsl-table-content">
     <div
-      v-show="store.states.columns.length > 0"
-      ref="wrapper"
-      v-clickoutside="clickoutside"
-      class="bs-table-wrapper"
-      :class="{
-        scrollX: tableWidth > wrapperWidth,
-        scrollY: tableHeight > maxHeight,
+      ref="willtable"
+      class="bs-willtable"
+      :style="{
+        width:
+          allSetWidth && tableWidth <= wrapperWidth ? `${tableWidth}px` : '',
       }"
     >
-      <table-header
-        ref="theader"
-        :show-icon="showIcon"
-        :columns-width="columnsWidth"
-        :fixed-count="fixedCount"
-        :all-show="true"
-        :store="store"
-      />
-      <table-body
-        ref="tbody"
-        :row-fixed-num="rowFixedNum"
-        :columns-width="columnsWidth"
-        :all-show="true"
-        :row-fixed-data="rowFixedData"
-        :cell-style="cellStyle"
-        :cell-class-name="cellClassName"
-        :store="store"
-        :style="{
-          maxHeight: `${maxHeight}px`,
+      <div
+        v-show="store.states.columns.length > 0"
+        ref="wrapper"
+        v-clickoutside="clickoutside"
+        class="bs-table-wrapper"
+        :class="{
+          scrollX: tableWidth > wrapperWidth,
+          scrollY: tableHeight > maxHeight,
         }"
       >
-      </table-body>
-      <!-- 编辑器 -->
-      <editor
-        ref="editor"
+        <table-header
+          ref="theader"
+          :show-icon="showIcon"
+          :columns-width="columnsWidth"
+          :fixed-count="fixedCount"
+          :all-show="true"
+          :store="store"
+        />
+        <table-body
+          ref="tbody"
+          :row-fixed-num="rowFixedNum"
+          :columns-width="columnsWidth"
+          :all-show="true"
+          :row-fixed-data="rowFixedData"
+          :cell-style="cellStyle"
+          :cell-class-name="cellClassName"
+          :store="store"
+          :style="{
+            maxHeight: `${maxHeight}px`,
+          }"
+        >
+        </table-body>
+        <!-- 编辑器 -->
+        <editor
+          ref="editor"
+          :columns-width="columnsWidth"
+          :fixed-count="fixedCount"
+          :store="store"
+        />
+        <table-header
+          ref="fixedTheader"
+          :style="{ width: `${fixedWidth}px` }"
+          :fixed="true"
+          :show-icon="showIcon"
+          :columns-width="columnsWidth"
+          :fixed-count="fixedCount"
+          :store="store"
+        />
+        <table-body
+          ref="fixedTbody"
+          :row-fixed-num="rowFixedNum"
+          :row-fixed-data="rowFixedData"
+          :style="{ width: `${fixedWidth}px` }"
+          :fixed="true"
+          :columns-width="columnsWidth"
+          :cell-style="cellStyle"
+          :cell-class-name="cellClassName"
+          :store="store"
+          :scroll-y="tableHeight > maxHeight"
+        />
+      </div>
+      <div v-show="store.states.columns.length === 0" class="bs-empty-columns">
+        暂无表头
+      </div>
+
+      <dropdown
         :columns-width="columnsWidth"
         :fixed-count="fixedCount"
         :store="store"
-      />
-      <table-header
-        ref="fixedTheader"
-        :style="{ width: `${fixedWidth}px` }"
-        :fixed="true"
-        :show-icon="showIcon"
-        :columns-width="columnsWidth"
-        :fixed-count="fixedCount"
-        :store="store"
-      />
-      <table-body
-        ref="fixedTbody"
-        :row-fixed-num="rowFixedNum"
-        :row-fixed-data="rowFixedData"
-        :style="{ width: `${fixedWidth}px` }"
-        :fixed="true"
-        :columns-width="columnsWidth"
-        :cell-style="cellStyle"
-        :cell-class-name="cellClassName"
-        :store="store"
-        :scroll-y="tableHeight > maxHeight"
+      >
+      </dropdown>
+      <div
+        v-show="store.states.adjustLineShow"
+        class="bs-adjustLine"
+        :style="{ left: `${store.states.adjustLineLeft}px` }"
+      ></div>
+      <scroll v-if="tableWidth > wrapperWidth" bar-type="x" :store="store" />
+      <scroll bar-type="y" :store="store" />
+    </div>
+    <div class="pagination">
+      <el-pagination
+        background
+        :current-page="page"
+        :page-size="size"
+        layout="total, prev, pager, next"
+        :total="total"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
       />
     </div>
-    <div v-show="store.states.columns.length === 0" class="bs-empty-columns">
-      暂无表头
-    </div>
-    <el-pagination
-      background
-      :style="pagerStyle"
-      :current-page="page"
-      :page-size="size"
-      layout="total, prev, pager, next"
-      :total="total"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-    />
-    <dropdown
-      :columns-width="columnsWidth"
-      :fixed-count="fixedCount"
-      :store="store"
-    >
-    </dropdown>
-    <div
-      v-show="store.states.adjustLineShow"
-      class="bs-adjustLine"
-      :style="{ left: `${store.states.adjustLineLeft}px` }"
-    ></div>
-    <scroll v-if="tableWidth > wrapperWidth" bar-type="x" :store="store" />
-    <scroll bar-type="y" :store="store" />
   </div>
 </template>
 
@@ -124,17 +129,6 @@ export default {
   },
   mixins: [methods, events],
   props: {
-    // 会在window对象上面自动挂在一个tslSmartUIRem属性用于动态计算rem的值,其值为html标签的字体大小,如果未设置则默认为50
-    pagerStyle: {
-      // 分页器的样式
-      type: Object,
-      default() {
-        return {
-          right: 0,
-          bottom: '-0.8rem',
-        };
-      },
-    },
     rowFixedNum: {
       // 固定行的数量
       type: Number,
@@ -914,6 +908,9 @@ export default {
 </script>
 
 <style lang="scss">
+.tsl-table-content {
+  background-color: #222;
+}
 .bs-willtable {
   position: relative;
   color: #eeeeee;
@@ -952,13 +949,17 @@ export default {
   z-index: 10;
 }
 
-.el-pagination {
-  position: absolute;
+.pagination {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
 
+.el-pagination {
   .font {
     font-family: 'DIN';
     font-weight: 400;
-    text-align: center; /* 黑白灰/ccc */
+    text-align: center;
     color: #ccc;
   }
 
