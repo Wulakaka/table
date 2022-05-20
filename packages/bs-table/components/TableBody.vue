@@ -98,7 +98,6 @@
           v-show="th.fixed || allShow"
           :key="xIndex"
           class="bs-td"
-          :title="tr[th.key]"
           :style="
             styleObj(
               tr,
