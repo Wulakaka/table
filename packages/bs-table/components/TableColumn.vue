@@ -19,25 +19,24 @@
         :preview-src-list="[tr[th.key]]"
       />
     </div>
-    <el-tooltip v-else :content="format(tr[th.key], th.type, th.format)">
-      <div
-        class="bs-cell-content"
-        :style="{ 'max-width': `${columnsWidth[xIndex]}px` }"
-      >
-        {{ format(tr[th.key], th.type, th.format) }}
-      </div>
-    </el-tooltip>
+    <OverflowTooltip
+      v-else
+      class="bs-cell-content"
+      :style="{ 'max-width': `${columnsWidth[xIndex]}px` }"
+      :content="format(tr[th.key], th.type, th.format)"
+    ></OverflowTooltip>
   </div>
 </template>
 
 <script>
-import { Checkbox, Tooltip, Image } from 'element-ui';
+import { Checkbox, Image } from 'element-ui';
+import OverflowTooltip from './OverflowTooltip';
 
 export default {
   components: {
     'el-checkbox': Checkbox,
     'el-image': Image,
-    'el-tooltip': Tooltip,
+    OverflowTooltip,
   },
   props: {
     store: {
