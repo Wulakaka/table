@@ -135,7 +135,6 @@ export default {
   background: #eeeeee;
   opacity: 0.2;
   border-radius: 6px;
-  transition: all 0.3s;
   user-select: none;
   &:hover {
     background-color: #80848f;
