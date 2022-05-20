@@ -45,9 +45,6 @@ export default {
       const rangeWidth = Math.floor(range.getBoundingClientRect().width);
       // 从文档中剥离范围
       range.detach();
-      console.log(rangeWidth);
-      console.log('offsetWidth', child.offsetWidth);
-      console.log('scrollWidth', child.scrollWidth);
       if (
         rangeWidth > child.offsetWidth ||
         child.scrollWidth > child.offsetWidth
