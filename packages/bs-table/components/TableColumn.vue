@@ -22,7 +22,7 @@
     <el-tooltip v-else :content="format(tr[th.key], th.type, th.format)">
       <div
         class="bs-cell-content"
-        :style="{ 'max-width': `${columnsWidth[xIndex]}rem` }"
+        :style="{ 'max-width': `${columnsWidth[xIndex]}px` }"
       >
         {{ format(tr[th.key], th.type, th.format) }}
       </div>

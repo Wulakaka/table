@@ -50,17 +50,17 @@ export default {
       return this.store.states.scrollbar;
     },
     boxStyle() {
-      const length = `${this.scrollbar[barLength[this.barType]]}rem`;
+      const length = `${this.scrollbar[barLength[this.barType]]}px`;
       if (this.barType === 'x') {
         return {
           width: length,
-          transform: `translateX(${this.scrollbar[barPos[this.barType]]}rem)`,
+          transform: `translateX(${this.scrollbar[barPos[this.barType]]}px)`,
         };
       }
       if (this.barType === 'y') {
         return {
           height: length,
-          transform: `translateY(${this.scrollbar[barPos[this.barType]]}rem)`,
+          transform: `translateY(${this.scrollbar[barPos[this.barType]]}px)`,
         };
       }
       return {};
@@ -70,8 +70,7 @@ export default {
     handleDown(e) {
       this.canScroll = true;
       this.oriMousePos =
-        e[pagePos[this.barType]] / window.tslSmartUIRem -
-        this.scrollbar[barPos[this.barType]];
+        e[pagePos[this.barType]] - this.scrollbar[barPos[this.barType]];
       window.addEventListener('mouseup', this.handleUp);
       window.addEventListener('mousemove', this.handleMove);
     },
@@ -79,8 +78,7 @@ export default {
       const { states } = this.store;
       const { barType } = this;
       if (this.canScroll) {
-        const scrollBarPos =
-          e[pagePos[barType]] / window.tslSmartUIRem - this.oriMousePos;
+        const scrollBarPos = e[pagePos[barType]] - this.oriMousePos;
         if (scrollBarPos <= 0) {
           states.scrollbar[barPos[barType]] = 0;
         } else if (
@@ -117,18 +115,18 @@ export default {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 0.08rem;
+    height: 8px;
     .bs-scroll-box {
-      height: 0.08rem;
+      height: 8px;
     }
   }
   &.y {
     top: 0;
     right: 0;
-    width: 0.08rem;
+    width: 4px;
     height: 100%;
     .bs-scroll-box {
-      width: 0.08rem;
+      width: 4px;
     }
   }
 }
@@ -136,7 +134,7 @@ export default {
 .bs-scroll-box {
   background: #eeeeee;
   opacity: 0.2;
-  border-radius: 0.12rem;
+  border-radius: 6px;
   transition: all 0.3s;
   user-select: none;
   &:hover {

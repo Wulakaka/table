@@ -32,7 +32,7 @@
           type="date"
           :style="{
             width: `${
-              editor.curEditorWidth > 2.8 ? editor.curEditorWidth : 2.8
+              editor.curEditorWidth > 140 ? editor.curEditorWidth : 140
             }rem`,
           }"
           @blur="resetEditor"
@@ -47,7 +47,7 @@
           type="month"
           :style="{
             width: `${
-              editor.curEditorWidth > 2.8 ? editor.curEditorWidth : 2.8
+              editor.curEditorWidth > 140 ? editor.curEditorWidth : 140
             }rem`,
           }"
           @blur="resetEditor"
@@ -59,7 +59,7 @@
           v-model="editContent"
           size="mini"
           :automatic-dropdown="true"
-          :style="{ width: `${editor.curEditorWidth}rem` }"
+          :style="{ width: `${editor.curEditorWidth}px` }"
           placeholder="请选择"
           clearable
         >
@@ -139,10 +139,10 @@ export default {
           this.editor.editorYIndex * this.rowHeight -
           this.store.states.tableBodyTop +
           this.theaderHeight
-        }rem`,
-        left: `${left}rem`,
-        width: `${this.columnsWidth[this.editor.editorXIndex]}rem`,
-        height: `${this.rowHeight}rem`,
+        }px`,
+        left: `${left}px`,
+        width: `${this.columnsWidth[this.editor.editorXIndex]}px`,
+        height: `${this.rowHeight}px`,
         'z-index': this.editor.editorIsFixed ? 4 : 1,
       };
     },
@@ -170,8 +170,8 @@ export default {
           0.08 -
           this.store.states.tableBodyTop +
           this.theaderHeight
-        }rem`,
-        left: `${left}rem`,
+        }px`,
+        left: `${left}px`,
         'z-index': this.fixedCount > this.autofill.autofillXIndex ? 4 : 1,
       };
     },
@@ -182,24 +182,24 @@ export default {
           this.selector.selectedYArr[0] * this.rowHeight -
           this.store.states.tableBodyTop +
           this.theaderHeight
-        }rem`,
+        }px`,
         left: `${
           this.columnsWidth
             .filter((item, index) => index < this.selector.selectedXArr[0])
             .reduce((sum, item) => sum + item, 0) -
           this.store.states.tableBodyLeft
-        }rem`,
+        }px`,
         width: `${this.columnsWidth
           .filter(
             (item, index) =>
               index <= this.selector.selectedXArr[1] &&
               index >= this.selector.selectedXArr[0]
           )
-          .reduce((sum, item) => sum + item, 0)}rem`,
+          .reduce((sum, item) => sum + item, 0)}px`,
         height: `${
           (this.selector.selectedYArr[1] - this.selector.selectedYArr[0] + 1) *
           this.rowHeight
-        }rem`,
+        }px`,
       };
     },
     // 固定列选中区域
@@ -209,10 +209,10 @@ export default {
           this.selector.selectedYArr[0] * this.rowHeight -
           this.store.states.tableBodyTop +
           this.theaderHeight
-        }rem`,
+        }px`,
         left: `${this.columnsWidth
           .filter((item, index) => index < this.selector.selectedXArr[0])
-          .reduce((sum, item) => sum + item, 0)}rem`,
+          .reduce((sum, item) => sum + item, 0)}px`,
         width: `${this.columnsWidth
           .filter(
             (item, index) =>
@@ -220,11 +220,11 @@ export default {
               index >= this.selector.selectedXArr[0] &&
               this.columns[index].fixed
           )
-          .reduce((sum, item) => sum + item, 0)}rem`,
+          .reduce((sum, item) => sum + item, 0)}px`,
         height: `${
           (this.selector.selectedYArr[1] - this.selector.selectedYArr[0] + 1) *
           this.rowHeight
-        }rem`,
+        }px`,
       };
     },
     // 自动填充区域
@@ -234,20 +234,20 @@ export default {
           this.autofill.autofillYArr[0] * this.rowHeight -
           this.store.states.tableBodyTop +
           this.theaderHeight
-        }rem`,
+        }px`,
         left: `${
           this.columnsWidth
             .filter((item, index) => index < this.selector.selectedXArr[0])
             .reduce((sum, item) => sum + item, 0) -
           this.store.states.tableBodyLeft
-        }rem`,
+        }px`,
         width: `${this.columnsWidth
           .filter(
             (item, index) =>
               index <= this.selector.selectedXArr[1] &&
               index >= this.selector.selectedXArr[0]
           )
-          .reduce((sum, item) => sum + item, 0)}rem`,
+          .reduce((sum, item) => sum + item, 0)}px`,
         height: `${
           this.autofill.autofillYArr.length > 0
             ? (this.autofill.autofillYArr[1] -
@@ -255,7 +255,7 @@ export default {
                 1) *
               this.rowHeight
             : 0
-        }rem`,
+        }px`,
       };
     },
     // 固定列自动填充区域
@@ -265,10 +265,10 @@ export default {
           this.autofill.autofillYArr[0] * this.rowHeight -
           this.store.states.tableBodyTop +
           this.theaderHeight
-        }rem`,
+        }px`,
         left: `${this.columnsWidth
           .filter((item, index) => index < this.selector.selectedXArr[0])
-          .reduce((sum, item) => sum + item, 0)}rem`,
+          .reduce((sum, item) => sum + item, 0)}px`,
         width: `${this.columnsWidth
           .filter(
             (item, index) =>
@@ -276,7 +276,7 @@ export default {
               index >= this.selector.selectedXArr[0] &&
               this.columns[index].fixed
           )
-          .reduce((sum, item) => sum + item, 0)}rem`,
+          .reduce((sum, item) => sum + item, 0)}px`,
         height: `${
           this.autofill.autofillYArr.length > 0
             ? (this.autofill.autofillYArr[1] -
@@ -284,7 +284,7 @@ export default {
                 1) *
               this.rowHeight
             : 0
-        }rem`,
+        }px`,
       };
     },
     theaderHeight() {
@@ -360,11 +360,11 @@ export default {
 // 编辑框
 .bs-cell-editor {
   position: absolute;
-  top: 0.6rem;
+  top: 30px;
   left: 0;
   display: flex;
-  width: 4rem;
-  border: 0.02rem solid #57a3f3;
+  width: 200px;
+  border: 1px solid #57a3f3;
   z-index: 4;
   overflow: hidden;
   &.else {
@@ -373,11 +373,12 @@ export default {
   }
   textarea {
     width: 100%;
-    height: 1rem;
-    line-height: 0.4rem;
+    height: 50px;
+    line-height: 20px;
+
     outline: 0;
     resize: none;
-    padding: 0.08rem 0.12rem;
+    padding: 4px 6px;
     white-space: pre;
     border: none;
   }
@@ -385,11 +386,11 @@ export default {
 
 .bs-autofill-handler {
   position: absolute;
-  top: 1.12rem;
-  left: 3.92rem;
-  width: 0.16rem;
-  height: 0.16rem;
-  border: 0.02rem solid #57a3f3;
+  top: 56px;
+  left: 196px;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #57a3f3;
   background-color: #fff;
   cursor: crosshair;
   z-index: 5;

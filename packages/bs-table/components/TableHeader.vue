@@ -9,10 +9,10 @@
       ref="tr"
       class="bs-tr"
       :style="{
-        width: `${store.states.tableWidth}rem`,
-        height: `${store.states.theaderHeight}rem`,
+        width: `${store.states.tableWidth}px`,
+        height: `${store.states.theaderHeight}px`,
         transform: `translate3d(
-          -${fixed ? 0 : store.states.tableBodyLeft}rem,
+          -${fixed ? 0 : store.states.tableBodyLeft}px,
           0,
           0
         )`,
@@ -24,7 +24,7 @@
         :key="index"
         class="bs-th"
         :style="{
-          width: `${columnsWidth[index]}rem`,
+          width: `${columnsWidth[index]}px`,
           'justify-content': th.align,
         }"
         :class="{
@@ -51,7 +51,7 @@
           class="dropdown"
           :class="{ active: dropdown.index === index }"
           :style="{
-            top: `${(store.states.theaderHeight - 0.28) / 2}rem`,
+            top: `${(store.states.theaderHeight - 14) / 2}px`,
           }"
         >
           <i v-if="th.action" @click.stop="openDropdown(index)"></i>
@@ -133,22 +133,20 @@ export default {
         let width;
         if (this.fixedCount >= this.adjustWidthIndex + 1) {
           width =
-            (e.pageX -
-              this.$parent.excelPos.left -
-              this.$refs.tr.children[this.adjustWidthIndex].offsetLeft) /
-            window.tslSmartUIRem;
+            e.pageX -
+            this.$parent.excelPos.left -
+            this.$refs.tr.children[this.adjustWidthIndex].offsetLeft;
         } else {
           width =
-            e.pageX / window.tslSmartUIRem +
+            e.pageX +
             this.store.states.tableBodyLeft -
-            this.$parent.excelPos.left / window.tslSmartUIRem -
-            this.$refs.tr.children[this.adjustWidthIndex].offsetLeft /
-              window.tslSmartUIRem;
+            this.$parent.excelPos.left -
+            this.$refs.tr.children[this.adjustWidthIndex].offsetLeft;
         }
-        if (width >= 1.6) {
+        if (width >= 80) {
           this.adjustWidthValue = width;
           this.store.states.adjustLineLeft =
-            (e.pageX - this.$parent.excelPos.left) / window.tslSmartUIRem;
+            e.pageX - this.$parent.excelPos.left;
         }
       }
     },
@@ -202,7 +200,7 @@ export default {
 <style lang="scss">
 .bs-theader {
   position: relative;
-  font-size: 0.24rem;
+  font-size: 12px;
   user-select: none;
   overflow: hidden;
   z-index: 5;
@@ -226,12 +224,12 @@ export default {
     }
   }
   .dropdown {
-    margin-left: 0.2rem;
+    margin-left: 10px;
     display: inline-block;
     i {
       display: inline-block;
-      width: 0.2rem;
-      height: 0.2rem;
+      width: 10px;
+      height: 10px;
       background: url('../assets/dropdown.png') center center no-repeat;
       cursor: pointer;
       transition: all 0.3s;
@@ -246,9 +244,9 @@ export default {
     position: absolute;
     z-index: 1;
     top: 0;
-    right: -0.16rem;
-    width: 0.32rem;
-    height: 0.6rem;
+    right: -8px;
+    width: 16px;
+    height: 30px;
     cursor: col-resize;
     text-align: center;
   }
@@ -257,13 +255,13 @@ export default {
   }
 
   .bs-title {
-    height: 0.6rem;
-    line-height: 0.6rem;
-    text-indent: 0.08rem;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 4px;
     font-family: 'Microsoft YaHei';
     font-style: normal;
     font-weight: 700;
-    font-size: 0.32rem;
+    font-size: 16px;
     color: #cccccc;
     overflow: hidden;
     white-space: nowrap;
@@ -272,13 +270,13 @@ export default {
 
   .icon {
     display: inline-block;
-    width: 0.28rem;
-    height: 0.28rem;
+    width: 14px;
+    height: 14px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
     vertical-align: text-bottom;
-    margin-bottom: 0.02rem;
+    margin-bottom: 1px;
     &.text {
       background-image: url('../assets/text.png');
     }

@@ -7,7 +7,7 @@
       empty: showData.length === 0,
     }"
     :style="{
-      top: fixed ? `${store.states.theaderHeight}rem` : '',
+      top: fixed ? `${store.states.theaderHeight}px` : '',
     }"
   >
     <div
@@ -15,7 +15,7 @@
       :key="yFixedIndex + 'yFixedIndex'"
       class="bs-tr bs-tr__fixed"
       :class="{ 'row-fixed__last': yFixedIndex === rowFixedNum - 1 }"
-      :style="[{ top: yFixedIndex * store.states.rowHeight + 'rem' }]"
+      :style="[{ top: yFixedIndex * store.states.rowHeight + 'px' }]"
     >
       <div
         v-for="(thFixed, xFixedIndex) in columns"
@@ -75,13 +75,14 @@
     <!-- 下面是不固定的 -->
     <div
       :style="{
-        width: `${store.states.tableWidth}rem`,
+        width: `${store.states.tableWidth}px`,
+
         height: `${
-          showData.length ? showData.length * store.states.rowHeight : 1.6
-        }rem`,
+          showData.length ? showData.length * store.states.rowHeight : 80
+        }px`,
         transform: `translate3d(
-          -${fixed ? 0 : store.states.tableBodyLeft}rem,
-          -${store.states.tableBodyTop}rem,
+          -${fixed ? 0 : store.states.tableBodyLeft}px,
+          -${store.states.tableBodyTop}px,
           0
         )`,
       }"
@@ -206,7 +207,7 @@ export default {
         return {
           transform: `translate3d(
             0,
-            ${y}rem,
+            ${y}px,
             0
           )`,
         };
@@ -241,8 +242,8 @@ export default {
 
     styleObj(row, column, rowIndex, columnIndex, columnsWidth) {
       return {
-        width: `${columnsWidth[columnIndex]}rem`,
-        height: `${this.rowHeight}rem`,
+        width: `${columnsWidth[columnIndex]}px`,
+        height: `${this.rowHeight}px`,
         justifyContent: column.align,
         ...this.cellStyle({
           row,
@@ -274,7 +275,7 @@ export default {
 <style lang="scss">
 .bs-tbody {
   position: relative;
-  font-size: 0.24rem;
+  font-size: 12px;
   overflow: hidden;
   user-select: none;
   > div {
@@ -284,17 +285,17 @@ export default {
   &.fixed {
     position: absolute;
     left: 0;
-    box-shadow: 0rem 0.1rem 0.4rem rgba(160, 160, 160, 0.6);
+    box-shadow: 0 5px 20px rgba(160, 160, 160, 0.6);
     background-color: #000 !important;
     overflow-x: hidden;
     user-select: none;
     z-index: 2;
   }
   &.scrollY {
-    padding-bottom: 0.16rem;
+    padding-bottom: 8px;
   }
   .row-fixed__last {
-    box-shadow: 0 0.2rem 0.16rem rgba(160, 160, 160, 0.2);
+    box-shadow: 0 10px 8px rgba(160, 160, 160, 0.2);
     background-color: #000;
   }
   .bs-tr {
@@ -309,7 +310,7 @@ export default {
     }
     &:nth-child(2n) {
       background: rgba(0, 0, 0, 0.2);
-      border-radius: 0.04rem;
+      border-radius: 2px;
     }
   }
 
@@ -338,11 +339,11 @@ export default {
 
 .bs-cell-content {
   width: 100%;
-  text-indent: 0.08rem;
+  text-indent: 4px;
   font-family: 'DIN', 'Aria', 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
-  font-size: 0.28rem;
+  font-size: 14px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -352,8 +353,8 @@ export default {
 .bs-empty-block {
   position: relative;
   z-index: 9;
-  font-size: 0.28rem;
-  padding: 0.6rem;
+  font-size: 14px;
+  padding: 30px;
   text-align: center;
   color: #909399;
 }

@@ -12,9 +12,9 @@ class TableStore {
       tableHeight: null,
       mainWidth: null,
       mainHeight: null,
-      rowHeight: 0.56,
-      theaderHeight: 0.96,
-      scrollBarWidth: 0.16,
+      rowHeight: 28,
+      theaderHeight: 48,
+      scrollBarWidth: 8,
       tableBodyLeft: 0,
       tableBodyTop: 0,
       // 存储列信息，会根据是否固定重新排序
@@ -43,7 +43,7 @@ class TableStore {
         editing: false,
         editType: 'text',
         options: [],
-        curEditorWidth: 1.6,
+        curEditorWidth: 80,
       },
 
       // autofill
@@ -115,8 +115,8 @@ class TableStore {
     const barWidth = (states.mainWidth / states.tableWidth) * states.mainWidth;
     if (barWidth > states.mainWidth) {
       states.scrollbar.xWidth = 0;
-    } else if (barWidth <= 0.4) {
-      states.scrollbar.xWidth = 0.4;
+    } else if (barWidth <= 20) {
+      states.scrollbar.xWidth = 20;
     } else {
       states.scrollbar.xWidth = barWidth;
     }
@@ -124,8 +124,8 @@ class TableStore {
       (states.mainHeight / states.tableHeight) * states.mainHeight;
     if (barHeight > states.mainHeight) {
       states.scrollbar.yHeight = 0;
-    } else if (barHeight <= 0.4) {
-      states.scrollbar.yHeight = 0.4;
+    } else if (barHeight <= 20) {
+      states.scrollbar.yHeight = 20;
     } else {
       states.scrollbar.yHeight = barHeight;
     }

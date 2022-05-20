@@ -5,9 +5,7 @@
     class="bs-dropdown-wrapper"
     :class="{ active: parseInt(dropdown.index) >= 0 }"
     :style="{
-      top: `${
-        $parent.$refs.wrapper.offsetTop / rem + store.states.theaderHeight
-      }rem`,
+      top: `${$parent.$refs.wrapper.offsetTop + store.states.theaderHeight}px`,
       left: left,
     }"
   >
@@ -30,7 +28,7 @@
           <el-checkbox
             v-model="item.checked"
             size="mini"
-            style="margin-right: 0.04rem"
+            style="margin-right: 2px"
           >
           </el-checkbox>
           <p>
@@ -73,7 +71,6 @@ export default {
   data() {
     return {
       left: 0,
-      rem: window.tslSmartUIRem,
     };
   },
   computed: {
@@ -100,16 +97,13 @@ export default {
         this.$nextTick(() => {
           left =
             left -
-            this.$refs.dropdown.offsetWidth / window.tslSmartUIRem +
-            this.$parent.$refs.wrapper.offsetLeft / window.tslSmartUIRem -
+            this.$refs.dropdown.offsetWidth +
+            this.$parent.$refs.wrapper.offsetLeft -
             this.store.states.tableBodyLeft;
-          if (
-            left <
-            this.$parent.$refs.wrapper.offsetLeft / window.tslSmartUIRem
-          ) {
-            left = this.$parent.$refs.wrapper.offsetLeft / window.tslSmartUIRem;
+          if (left < this.$parent.$refs.wrapper.offsetLeft) {
+            left = this.$parent.$refs.wrapper.offsetLeft;
           }
-          this.left = `${left}rem`;
+          this.left = `${left}px`;
         });
       },
     },
@@ -148,15 +142,15 @@ export default {
   top: 0;
   left: 0;
   z-index: 30;
-  min-width: 6.4rem;
+  min-width: 320px;
   opacity: 0;
   transform: rotateX(90deg);
   transform-origin: top center;
   transition: transform 0.3s;
-  border-radius: 0.04rem;
+  border-radius: 2px;
   background: rgba(0, 0, 0, 0.3);
-  border: 0.02rem solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(1.08rem);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(54px);
   overflow-y: auto;
 
   &.active {
@@ -166,18 +160,18 @@ export default {
 }
 
 .bs-sort {
-  margin-left: 0.48rem;
-  margin-top: 0.58rem;
+  margin-left: 24px;
+  margin-top: 24px;
   display: flex;
   font-family: 'Microsoft YaHei';
   font-style: normal;
   font-weight: 400;
-  font-size: 0.28rem;
+  font-size: 24px;
   span {
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: 0.08rem 0.16rem;
+    padding: 4px 8px;
     transition: all 0.3s;
     &.active {
       color: #bdffff;
@@ -188,9 +182,9 @@ export default {
     &:before {
       content: '';
       display: inline-block;
-      width: 0.28rem;
-      height: 0.28rem;
-      margin-right: 0.04rem;
+      width: 14px;
+      height: 14px;
+      margin-right: 2px;
     }
     &:first-child {
       &:before {
@@ -208,40 +202,42 @@ export default {
 }
 
 .bs-filter {
-  padding: 0.08rem;
+  padding: 4px;
   .title {
-    font-size: 0.26rem;
-    padding: 0.04rem 0.12rem;
+    font-size: 13px;
+    padding: 2px 6px;
   }
   .content {
-    margin-top: 0.5rem;
-    margin-left: 0.26rem;
-    margin-bottom: 0.08rem;
+    margin-top: 25px;
+    margin-left: 13px;
+    margin-bottom: 4px;
+
     overflow-y: auto;
-    max-height: 6rem;
+    max-height: 300px;
 
     li {
-      width: 5.9rem;
-      height: 0.8rem;
+      width: 295px;
+      height: 40px;
+
       display: flex;
       align-items: center;
-      padding: 0.24rem;
+      padding: 12px;
       &:hover {
         color: #bdffff;
         background: rgba(255, 255, 255, 0.1);
-        border-radius: 0.04rem;
+        border-radius: 2px;
       }
     }
     p {
       display: flex;
-      margin-left: 0.24rem;
+      margin-left: 12px;
       span {
         display: inline-block;
-        max-width: 4rem;
+        max-width: 200px;
         font-family: 'Microsoft YaHei';
         font-style: normal;
         font-weight: 400;
-        font-size: 0.28rem;
+        font-size: 14px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -249,10 +245,11 @@ export default {
     }
   }
   .btns {
-    margin-top: 0.52rem;
-    margin-right: 0.48rem;
-    margin-bottom: 0.56rem;
-    font-size: 0.26rem;
+    margin-top: 26px;
+    margin-right: 24px;
+    margin-bottom: 28px;
+    font-size: 13px;
+
     text-align: end;
     font-family: 'Microsoft YaHei';
     font-style: normal;
@@ -261,8 +258,8 @@ export default {
       display: inline-block;
       cursor: pointer;
       transition: all 0.5s;
-      padding: 0.14rem 0.3rem;
-      border-radius: 0.04rem;
+      padding: 0 4px;
+      border-radius: 2px;
       &:hover {
         color: #bdffff;
       }
@@ -273,7 +270,7 @@ export default {
       &:last-child {
         background: linear-gradient(271.51deg, #7dffff 1.97%, #9affdb 99.89%);
         color: #333333;
-        margin-left: 0.32rem;
+        margin-left: 16px;
       }
     }
   }

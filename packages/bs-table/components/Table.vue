@@ -3,8 +3,7 @@
     ref="willtable"
     class="bs-willtable"
     :style="{
-      width:
-        allSetWidth && tableWidth <= wrapperWidth ? `${tableWidth}rem` : '',
+      width: allSetWidth && tableWidth <= wrapperWidth ? `${tableWidth}px` : '',
     }"
   >
     <div
@@ -35,7 +34,7 @@
         :cell-class-name="cellClassName"
         :store="store"
         :style="{
-          maxHeight: `${maxHeight}rem`,
+          maxHeight: `${maxHeight}px`,
         }"
       >
       </table-body>
@@ -48,7 +47,7 @@
       />
       <table-header
         ref="fixedTheader"
-        :style="{ width: `${fixedWidth}rem` }"
+        :style="{ width: `${fixedWidth}px` }"
         :fixed="true"
         :show-icon="showIcon"
         :columns-width="columnsWidth"
@@ -59,7 +58,7 @@
         ref="fixedTbody"
         :row-fixed-num="rowFixedNum"
         :row-fixed-data="rowFixedData"
-        :style="{ width: `${fixedWidth}rem` }"
+        :style="{ width: `${fixedWidth}px` }"
         :fixed="true"
         :columns-width="columnsWidth"
         :cell-style="cellStyle"
@@ -90,7 +89,7 @@
     <div
       v-show="store.states.adjustLineShow"
       class="bs-adjustLine"
-      :style="{ left: `${store.states.adjustLineLeft}rem` }"
+      :style="{ left: `${store.states.adjustLineLeft}px` }"
     ></div>
     <scroll v-if="tableWidth > wrapperWidth" bar-type="x" :store="store" />
     <scroll bar-type="y" :store="store" />
@@ -151,19 +150,19 @@ export default {
       default: () => [],
     },
     maxHeight: {
-      // 表格最高高度,设置后超过该高度y轴方向会出现滚动条,单位rem
+      // 表格最高高度,设置后超过该高度y轴方向会出现滚动条
       type: [String, Number],
-      default: 10,
+      default: () => window.innerHeight,
     },
     rowHeight: {
-      // 每一行的高度,单位rem
+      // 每一行的高度
       type: [String, Number],
-      default: 0.56,
+      default: 28,
     },
     theaderHeight: {
-      // 表头高度,单位rem
+      // 表头高度
       type: [String, Number],
-      default: 0.96,
+      default: 48,
     },
     disabled: {
       // 禁用编辑,大屏端建议一直禁用
@@ -300,9 +299,9 @@ export default {
   },
   created() {
     // 获取html的字体大小,用于内部将px转为rem
-    let { fontSize } = document.getElementsByTagName('html')[0].style;
-    fontSize = fontSize ? fontSize : '50px';
-    window.tslSmartUIRem = +fontSize.slice(0, -2);
+    // let { fontSize } = document.getElementsByTagName('html')[0].style;
+    // fontSize = fontSize ? fontSize : '50px';
+    // window.tslSmartUIRem = +fontSize.slice(0, -2);
   },
   methods: {
     handleSizeChange(size) {
@@ -341,9 +340,9 @@ export default {
           }
         } else {
           if (e.axis === 2) {
-            tableBodyTop += 0.8 * e.detail;
+            tableBodyTop += 40 * e.detail;
           } else {
-            tableBodyLeft += 0.8 * e.detail;
+            tableBodyLeft += 40 * e.detail;
           }
         }
         this.store.setScrollStatus(tableBodyTop, tableBodyLeft);
@@ -401,7 +400,7 @@ export default {
         maxY: states.showData.length - 1,
       };
 
-      this.wrapperWidth = this.$refs.wrapper.offsetWidth / window.tslSmartUIRem;
+      this.wrapperWidth = this.$refs.wrapper.offsetWidth;
 
       this.$nextTick(() => {
         // 计算剩余列宽度
@@ -417,10 +416,7 @@ export default {
               .reduce((total, item) => total + item.width, 0);
 
           if (surplusWidth > 0) {
-            if (
-              this.$refs.tbody.$el.offsetHeight / window.tslSmartUIRem >
-              this.maxHeight
-            ) {
+            if (this.$refs.tbody.$el.offsetHeight > this.maxHeight) {
               surplusColumnAvg =
                 (surplusWidth - 1 - states.scrollBarWidth) /
                 surplusColumns.length;
@@ -436,10 +432,10 @@ export default {
             this.$set(this.columnsWidth, index, column.width);
           } else {
             // 设置单元格最小宽度
-            if (surplusColumnAvg > 1.6) {
+            if (surplusColumnAvg > 80) {
               this.$set(this.columnsWidth, index, surplusColumnAvg);
             } else {
-              this.$set(this.columnsWidth, index, 1.6);
+              this.$set(this.columnsWidth, index, 80);
             }
           }
         });
@@ -485,9 +481,7 @@ export default {
         }
       });
       states.theaderHeight = this.theaderHeight;
-      states.mainWidth =
-        this.$refs.wrapper.offsetWidth / window.tslSmartUIRem -
-        states.scrollBarWidth;
+      states.mainWidth = this.$refs.wrapper.offsetWidth - states.scrollBarWidth;
       states.mainHeight = this.maxHeight + this.theaderHeight;
       states.tableHeight =
         states.showData.length * this.rowHeight + this.theaderHeight;
@@ -871,19 +865,14 @@ export default {
         ) {
           return;
         }
-        const sTop =
-          this.$refs.willtable.offsetTop / window.tslSmartUIRem +
-          this.theaderHeight;
-        const sLeft =
-          this.excelPos.left / window.tslSmartUIRem + this.fixedWidth;
+        const sTop = this.$refs.willtable.offsetTop + this.theaderHeight;
+        const sLeft = this.excelPos.left + this.fixedWidth;
         const sBottom =
-          this.$refs.willtable.offsetTop / window.tslSmartUIRem +
-          this.$refs.willtable.offsetHeight / window.tslSmartUIRem -
+          this.$refs.willtable.offsetTop +
+          this.$refs.willtable.offsetHeight -
           0.2;
         const sRight =
-          this.excelPos.left / window.tslSmartUIRem +
-          this.$refs.willtable.offsetWidth / window.tslSmartUIRem -
-          0.2;
+          this.excelPos.left + this.$refs.willtable.offsetWidth - 0.2;
         let { tableBodyTop } = states;
         let { tableBodyLeft } = states;
         if (this.tableHeight > this.maxHeight) {
@@ -930,7 +919,7 @@ export default {
   color: #eeeeee;
 
   .el-checkbox {
-    font-size: 0.24rem;
+    font-size: 12px;
   }
 }
 
@@ -939,17 +928,17 @@ export default {
   overflow: hidden;
 
   &.scrollX {
-    padding-bottom: 0.16rem;
+    padding-bottom: 8px;
   }
 
   &.scrollY {
-    padding-right: 0.16rem;
+    padding-right: 8px;
   }
 }
 
 .bs-empty-columns {
   text-align: center;
-  padding: 0.2rem 0.4rem;
+  padding: 10px 20px;
   color: #909399;
 }
 
@@ -957,7 +946,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  width: 0.02rem;
+  width: 1px;
   height: 100%;
   background-color: #d6dfe4;
   z-index: 10;
