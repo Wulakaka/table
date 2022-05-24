@@ -1,7 +1,5 @@
 <template>
-  <div class="page">
-    <TestTable />
-  </div>
+  <TestTable />
 </template>
 
 <script>
@@ -19,9 +17,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.page {
-  background-color: rgb(23, 21, 21);
-  border: 1px solid red;
-}
-</style>
+<style lang="scss" scoped></style>

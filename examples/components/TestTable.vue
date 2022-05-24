@@ -1,6 +1,33 @@
 <template>
   <div class="bs-table">
-    <TslTable :data="tableList">
+    <TslTable :data="tableList" tsl theme="dark" height="400">
+      <TslTableColumn type="selection" fixed />
+      <TslTableColumn type="index" />
+      <TslTableColumn prop="name" label="姓名" type="img" />
+      <TslTableColumn
+        prop="age"
+        label="年龄"
+        :filters="testFilter"
+        :filter-method="() => {}"
+      />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+    </TslTable>
+    <TslTable stripe :data="tableList" tsl theme="light" height="400">
       <TslTableColumn type="selection" />
       <TslTableColumn type="index" />
       <TslTableColumn prop="name" label="姓名" type="img" />
