@@ -1,48 +1,38 @@
 <template>
   <div class="bs-table">
-    <Table :data="tableList">
-      <TableColum type="selection" />
-      <TableColum type="index" />
-      <TableColum prop="name" label="姓名" type="img" />
-      <TableColum
+    <TslTable :data="tableList">
+      <TslTableColumn type="selection" />
+      <TslTableColumn type="index" />
+      <TslTableColumn prop="name" label="姓名" type="img" />
+      <TslTableColumn
         prop="age"
         label="年龄"
         :filters="testFilter"
         :filter-method="() => {}"
       />
-      <TableColum prop="name" label="姓名" />
-      <TableColum prop="age" label="年龄" />
-      <TableColum prop="name" label="姓名" />
-      <TableColum prop="age" label="年龄" />
-      <TableColum prop="name" label="姓名" />
-      <TableColum prop="age" label="年龄" />
-      <TableColum prop="name" label="姓名" />
-      <TableColum prop="age" label="年龄" />
-      <TableColum prop="name" label="姓名" />
-      <TableColum prop="age" label="年龄" />
-      <TableColum prop="name" label="姓名" />
-      <TableColum prop="age" label="年龄" />
-      <TableColum prop="name" label="姓名" />
-      <TableColum prop="age" label="年龄" />
-      <TableColum prop="name" label="姓名" />
-      <TableColum prop="age" label="年龄" />
-    </Table>
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+      <TslTableColumn prop="name" label="姓名" />
+      <TslTableColumn prop="age" label="年龄" />
+    </TslTable>
   </div>
 </template>
 
 <script>
-import Table from "./Table.vue";
-import TableColum from "./TableColum.vue";
-import { Checkbox } from "element-ui";
-
 export default {
-  components: {
-    Table,
-    TableColum,
-    // eslint-disable-next-line vue/no-unused-components
-    ElCheckbox: Checkbox,
-  },
-
+  name: "TestTable",
   data() {
     return {
       tableList: [
@@ -79,9 +69,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.bs-table {
-  margin: 0 auto;
-  width: 90%;
-}
-</style>
+<style scoped></style>

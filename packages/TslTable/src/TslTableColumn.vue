@@ -15,6 +15,7 @@ import Vue from "vue";
 Vue.use(ElCheckbox);
 
 export default {
+  name: "TslTableColumn",
   components: {
     TableColumn,
   },

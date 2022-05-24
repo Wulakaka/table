@@ -28,6 +28,7 @@
 <script>
 import { Table, Pagination } from "element-ui";
 export default {
+  name: "TslTable",
   components: {
     Table,
     Pagination,
@@ -91,12 +92,10 @@ export default {
       return classes;
     },
     handleSizeChange(size) {
-      console.log(size);
-      this.pageSize = size;
-      this.pageNum = 1;
+      this.$emit("size-change", size);
     },
     handleCurrentChange(page) {
-      this.pageNum = page;
+      this.$emit("current-change", page);
     },
   },
 };

@@ -1,16 +1,16 @@
 <template>
   <div class="page">
-    <BsTable />
+    <TestTable />
   </div>
 </template>
 
 <script>
-import BsTable from "./lib/BsTable/index.vue";
+import TestTable from "./components/TestTable";
 
 export default {
   name: "App",
   components: {
-    BsTable,
+    TestTable,
   },
   data() {
     return {};
@@ -21,8 +21,6 @@ export default {
 
 <style lang="scss" scoped>
 .page {
-  height: 100vh;
-  width: 100vw;
   background-color: rgb(23, 21, 21);
   border: 1px solid red;
 }
