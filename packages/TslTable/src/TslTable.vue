@@ -190,10 +190,12 @@ $colors: (
         border-top: 2px solid map-get($colors, $theme, "table-background");
         border-bottom: 2px solid map-get($colors, $theme, "table-background");
         color: map-get($colors, $theme, "body-cell-color");
+
         &:first-child {
           border-top-left-radius: 10px;
           border-bottom-left-radius: 10px;
         }
+
         &:last-child {
           border-top-right-radius: 10px;
           border-bottom-right-radius: 10px;
@@ -249,12 +251,15 @@ $colors: (
         height: 8px;
         background-color: map-get($colors, $theme, "table-color");
       }
+
       &::-webkit-scrollbar-corner {
         background-color: transparent;
       }
+
       &::-webkit-scrollbar-track {
         background-color: transparent;
       }
+
       &::-webkit-scrollbar-thumb {
         background: map-get($colors, $theme, "scrollbar-color");
         border-radius: 4px;
@@ -303,6 +308,11 @@ $colors: (
           background: map-get($colors, $theme, "body-row-checked-background");
         }
       }
+    }
+
+    .el-table__expanded-cell {
+      background-color: map-get($colors, $theme, "header-cell-background");
+      border-bottom: 2px solid map-get($colors, $theme, "table-background");
     }
   }
 

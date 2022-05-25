@@ -1,6 +1,6 @@
 import TslTable from "../packages/TslTable";
-import TslTableColumn from "../packages/TslTableColumn";
-import { Checkbox } from "element-ui";
+import { Checkbox, TableColumn as TslTableColumn } from "element-ui";
+TslTableColumn.name = "TslTableColumn";
 const components = [TslTable, TslTableColumn, Checkbox];
 import "element-ui/lib/theme-chalk/index.css";
 const install = function (Vue, opts = {}) {
