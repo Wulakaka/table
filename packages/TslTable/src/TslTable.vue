@@ -1,5 +1,6 @@
 <template>
   <Table
+    ref="table"
     class="tsl-table"
     :class="[theme]"
     v-bind="$attrs"
@@ -78,6 +79,10 @@ export default {
       },
     },
   },
+  mounted() {
+    // 调整滚动条宽
+    this.$refs.table.layout.gutterWidth = 8;
+  },
   methods: {
     handleSelectionChange(val) {
       this.$emit("selection-change", val);
@@ -132,6 +137,7 @@ $colors: (
     body-row-checked-background: #272f2f,
     body-cell-color: #eeeeee,
     table-shadow: #fafafa,
+    scrollbar-color: change-color(#cccccc, $alpha: 0.2),
     // checkbox
     checkbox-color: map-get($primary, "dark"),
     checkbox-inner-after-color: #333333,
@@ -146,6 +152,7 @@ $colors: (
     body-row-checked-background: #f1f1f9,
     body-cell-color: #666,
     table-shadow: #222222,
+    scrollbar-color: change-color(#999999, $alpha: 0.2),
     // checkbox
     checkbox-color: map-get($primary, "light"),
     checkbox-inner-after-color: white,
@@ -233,6 +240,24 @@ $colors: (
 
       &.checked-row .body-cell {
         background: map-get($colors, $theme, "body-row-checked-background");
+      }
+    }
+
+    .el-table__body-wrapper {
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: map-get($colors, $theme, "table-color");
+      }
+      &::-webkit-scrollbar-corner {
+        background-color: transparent;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: map-get($colors, $theme, "scrollbar-color");
+        border-radius: 4px;
       }
     }
 
