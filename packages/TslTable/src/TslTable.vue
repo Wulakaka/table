@@ -4,11 +4,17 @@
     :class="[theme]"
     v-bind="$attrs"
     v-on="$listeners"
-    row-class-name="body-row"
-    cell-class-name="body-cell"
-    header-row-class-name="header-row"
-    header-cell-class-name="header-cell"
-    :stripe="theme === 'dark' ? true : stripe"
+    :row-class-name="getRowClassName"
+    :cell-class-name="
+      (payload) => mergeClass(payload, cellClassName, 'body-cell')
+    "
+    :header-row-class-name="
+      (payload) => mergeClass(payload, headerRowClassName, 'header-row')
+    "
+    :header-cell-class-name="
+      (payload) => mergeClass(payload, headerCellClassName, 'header-cell')
+    "
+    @selection-change="handleSelectionChange"
   >
     <slot />
   </Table>
@@ -16,6 +22,7 @@
 
 <script>
 import { Table } from "element-ui";
+
 export default {
   name: "TslTable",
   components: {
@@ -27,35 +34,33 @@ export default {
       required: false,
       default: "dark",
     },
-    stripe: {
-      type: Boolean,
-      default: false,
+    rowClassName: {
+      type: [String, Function],
+      required: false,
+      default: "",
     },
-    pageSize: {
-      type: Number,
-      default: 10,
+    cellClassName: {
+      type: [String, Function],
+      required: false,
+      default: "",
     },
-    pageNum: {
-      type: Number,
-      default: 1,
+    headerRowClassName: {
+      type: [String, Function],
+      required: false,
+      default: "",
+    },
+    headerCellClassName: {
+      type: [String, Function],
+      required: false,
+      default: "",
     },
   },
+  data() {
+    return {
+      multipleSelection: [],
+    };
+  },
   computed: {
-    transparent() {
-      return {
-        background: "transparent",
-      };
-    },
-    rowStyle() {
-      return {
-        height: "48px",
-      };
-    },
-    cellStyle() {
-      return {
-        padding: 0,
-      };
-    },
     page: {
       get() {
         return this.pageNum;
@@ -74,20 +79,38 @@ export default {
     },
   },
   methods: {
-    setRowClass({ row, rowIndex }) {
-      console.log(row, rowIndex % 2);
-      let classes = "row";
-      if (this.stripe) {
-        classes =
-          rowIndex % 2 ? classes + " row__stripe" : classes + " transparent";
+    handleSelectionChange(val) {
+      this.$emit("selection-change", val);
+      this.multipleSelection = val;
+    },
+    getCustomClass(propClass, payload) {
+      if (propClass) {
+        if (typeof propClass === "string") {
+          return propClass;
+        } else {
+          if (typeof propClass === "function") {
+            return propClass(payload);
+          }
+        }
       }
-      return classes;
+      return "";
     },
-    handleSizeChange(size) {
-      this.$emit("size-change", size);
+    mergeClass(payload, propClass, defaultClassName) {
+      const customClass = this.getCustomClass(propClass, payload);
+      return `${defaultClassName} ${customClass}`;
     },
-    handleCurrentChange(page) {
-      this.$emit("current-change", page);
+    getRowClassName({ row, rowIndex }) {
+      const classes = ["body-row"];
+      if (this.multipleSelection.includes(row)) {
+        classes.push("checked-row");
+      }
+      const customClass = this.getCustomClass(this.rowClassName, {
+        row,
+        rowIndex,
+      });
+      if (customClass) classes.push(customClass);
+
+      return classes.join(" ");
     },
   },
 };
@@ -102,23 +125,27 @@ $colors: (
   dark: (
     //  table
     table-background: #222222,
-    header-cell-background: rgba(0, 0, 0, 0.4),
+    header-cell-background: #141414,
     header-cell-color: #cccccc,
-    body-row-background: rgba(0, 0, 0, 0.2),
+    body-row-background: #1b1b1b,
     body-row-hover-background: #272d2d,
+    body-row-checked-background: #272f2f,
     body-cell-color: #eeeeee,
+    table-shadow: #fafafa,
     // checkbox
     checkbox-color: map-get($primary, "dark"),
     checkbox-inner-after-color: #333333,
   ),
   light: (
     //  table
-    table-background: transparent,
-    header-cell-background: change-color(#6266ea, $alpha: 0.04),
+    table-background: #fafafa,
+    header-cell-background: #f2f2f9,
     header-cell-color: #333,
-    body-row-background: rgba(255, 255, 255, 0.9),
+    body-row-background: #fefefe,
     body-row-hover-background: #f1f1f9,
+    body-row-checked-background: #f1f1f9,
     body-cell-color: #666,
+    table-shadow: #222222,
     // checkbox
     checkbox-color: map-get($primary, "light"),
     checkbox-inner-after-color: white,
@@ -128,8 +155,10 @@ $colors: (
 @mixin theme($theme) {
   &.el-table {
     background: map-get($colors, $theme, "table-background");
+
     tr {
       background: transparent;
+
       th.el-table__cell.gutter {
         background: transparent;
       }
@@ -137,33 +166,117 @@ $colors: (
 
     .header-row {
       background: map-get($colors, $theme, "header-row-background");
+
       .header-cell {
         background: map-get($colors, $theme, "header-cell-background");
         color: map-get($colors, $theme, "header-cell-color");
-        border-color: transparent;
+        border-bottom: 2px solid map-get($colors, $theme, "table-background");
         padding: 6px 0;
       }
     }
+
+    .body-row {
+      background: transparent;
+
+      .body-cell {
+        background: transparent;
+        border-top: 2px solid map-get($colors, $theme, "table-background");
+        border-bottom: 2px solid map-get($colors, $theme, "table-background");
+        color: map-get($colors, $theme, "body-cell-color");
+        &:first-child {
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+        }
+        &:last-child {
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
+        }
+      }
+
+      &:hover .body-cell {
+        background: map-get($colors, $theme, "body-row-hover-background");
+      }
+
+      &.hover-row .body-cell {
+        background: map-get($colors, $theme, "body-row-hover-background");
+      }
+
+      &.current-row .body-cell {
+        background: map-get($colors, $theme, "body-row-hover-background");
+      }
+
+      &.checked-row .body-cell {
+        background: map-get($colors, $theme, "body-row-checked-background");
+      }
+    }
+
     &.el-table--striped .el-table__body tr.el-table__row--striped {
       td.el-table__cell {
         background: map-get($colors, $theme, "body-row-background");
       }
+
       &:hover {
         td.el-table__cell {
           background: map-get($colors, $theme, "body-row-hover-background");
         }
       }
-    }
-    .body-row {
-      background: transparent;
-      .body-cell {
-        background: transparent;
-        border-color: transparent;
-        color: map-get($colors, $theme, "body-cell-color");
+
+      &.hover-row {
+        td.el-table__cell {
+          background: map-get($colors, $theme, "body-row-hover-background");
+        }
       }
 
-      &:hover .body-cell {
+      &.current-row .body-cell {
         background: map-get($colors, $theme, "body-row-hover-background");
+      }
+
+      &.checked-row .body-cell {
+        background: map-get($colors, $theme, "body-row-checked-background");
+      }
+    }
+
+    .el-table__fixed-right::before,
+    .el-table__fixed::before {
+      background-color: transparent;
+    }
+
+    .el-table__fixed-right-patch {
+      background-color: map-get($colors, $theme, "table-background");
+    }
+
+    .el-table--border th.el-table__cell,
+    .el-table__fixed-right-patch {
+      border-color: map-get($colors, $theme, "table-background");
+    }
+
+    .el-table__fixed,
+    .el-table__fixed-right {
+      box-shadow: 0 0 20px
+        change-color(map-get($colors, $theme, "table-shadow"), $alpha: 0.12);
+    }
+
+    .el-table__fixed-body-wrapper {
+      .body-row {
+        .body-cell {
+          background: map-get($colors, $theme, "table-background");
+        }
+
+        &:hover .body-cell {
+          background: map-get($colors, $theme, "body-row-hover-background");
+        }
+
+        &.hover-row .body-cell {
+          background: map-get($colors, $theme, "body-row-hover-background");
+        }
+
+        &.current-row .body-cell {
+          background: map-get($colors, $theme, "body-row-hover-background");
+        }
+
+        &.checked-row .body-cell {
+          background: map-get($colors, $theme, "body-row-checked-background");
+        }
       }
     }
   }
@@ -171,9 +284,13 @@ $colors: (
   .el-checkbox {
     .el-checkbox__inner {
       border-radius: 4px;
+      background-color: map-get($colors, $theme, "checkbox-inner-after-color");
+      border: 1px solid #cccccc;
+
       &:hover {
         border-color: map-get($colors, $theme, "checkbox-color");
       }
+
       &::after {
         border-color: map-get($colors, $theme, "checkbox-inner-after-color");
       }
@@ -183,11 +300,17 @@ $colors: (
       background-color: map-get($colors, $theme, "checkbox-color");
       border-color: map-get($colors, $theme, "checkbox-color");
     }
+
     .el-checkbox__input.is-indeterminate .el-checkbox__inner::before {
       background-color: map-get($colors, $theme, "checkbox-inner-after-color");
     }
+
     .el-checkbox__input.is-checked .el-checkbox__inner {
       background-color: map-get($colors, $theme, "checkbox-color");
+      border-color: map-get($colors, $theme, "checkbox-color");
+    }
+
+    .el-checkbox__input.is-focus .el-checkbox__inner {
       border-color: map-get($colors, $theme, "checkbox-color");
     }
   }
@@ -197,6 +320,7 @@ $colors: (
   &.dark {
     @include theme("dark");
   }
+
   &.light {
     @include theme("light");
   }

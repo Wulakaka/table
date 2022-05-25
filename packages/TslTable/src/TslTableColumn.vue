@@ -1,10 +1,5 @@
 <template>
-  <TableColumn
-    v-bind="$attrs"
-    v-on="$listeners"
-    :show-overflow-tooltip="showOverflowTooltip"
-    :align="align"
-  >
+  <TableColumn v-bind="$attrs" v-on="$listeners">
     <slot />
   </TableColumn>
 </template>
@@ -16,16 +11,6 @@ export default {
   name: "TslTableColumn",
   components: {
     TableColumn,
-  },
-  props: {
-    showOverflowTooltip: {
-      type: Boolean,
-      default: true,
-    },
-    align: {
-      type: String,
-      default: "center",
-    },
   },
 };
 </script>
