@@ -61,24 +61,6 @@ export default {
       multipleSelection: [],
     };
   },
-  computed: {
-    page: {
-      get() {
-        return this.pageNum;
-      },
-      set() {
-        return this.$emit("update:pageNum");
-      },
-    },
-    size: {
-      get() {
-        return this.pageSize;
-      },
-      set() {
-        return this.$emit("update:pageSize");
-      },
-    },
-  },
   mounted() {
     // 调整滚动条宽
     this.$refs.table.layout.gutterWidth = 8;
