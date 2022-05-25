@@ -16,7 +16,7 @@
       <TslTableColumn prop="name" label="姓名" />
       <TslTableColumn prop="age" label="年龄" fixed="right" />
     </TslTable>
-    <TslTable stripe :data="tableList" theme="light" height="400">
+    <TslTable stripe :data="tableList" theme="light" height="400" border>
       <TslTableColumn type="selection" fixed />
       <TslTableColumn type="index" />
       <TslTableColumn prop="name" label="姓名" type="img" />
