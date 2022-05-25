@@ -82,6 +82,10 @@ export default {
   mounted() {
     // 调整滚动条宽
     this.$refs.table.layout.gutterWidth = 8;
+    // 包装筛选事件
+    this.wrapFilterClick(this.$refs.table.$refs.tableHeader);
+    this.wrapFilterClick(this.$refs.table.$refs.fixedTableHeader);
+    this.wrapFilterClick(this.$refs.table.$refs.rightFixedTableHeader);
   },
   methods: {
     handleSelectionChange(val) {
@@ -117,6 +121,20 @@ export default {
 
       return classes.join(" ");
     },
+    wrapFilterClick(el) {
+      if (!el) return;
+      const originHandler = el.handleFilterClick;
+      el.handleFilterClick = (...args) => {
+        originHandler(...args);
+        // 在筛选框上增加类名
+        Object.values(el.filterPanels).forEach((el) => {
+          const themeClassName = `tsl_${this.theme}`;
+          if (!Array.from(el.$el.classList).includes(themeClassName)) {
+            el.$el.classList.add(themeClassName);
+          }
+        });
+      };
+    },
   },
 };
 </script>
@@ -138,9 +156,26 @@ $colors: (
     body-cell-color: #eeeeee,
     table-shadow: #fafafa,
     scrollbar-color: change-color(#cccccc, $alpha: 0.2),
+    filter-icon: url("assets/icon-filter-dark.svg"),
     // checkbox
+    checkbox:
+      (
+        color: map-get($primary, "dark"),
+        inner-after-color: #333333,
+        radius: 2px,
+      ),
     checkbox-color: map-get($primary, "dark"),
     checkbox-inner-after-color: #333333,
+    // filterPanel
+    filter-panel:
+      (
+        background: #181818,
+        color: #eeeeee,
+        border: 1px solid rgba(255, 255, 255, 0.1),
+        radius: 0,
+        button-primary-background:
+          linear-gradient(271.51deg, #7dffff 1.97%, #9affdb 99.89%),
+      ),
   ),
   light: (
     //  table
@@ -153,15 +188,36 @@ $colors: (
     body-cell-color: #666,
     table-shadow: #222222,
     scrollbar-color: change-color(#999999, $alpha: 0.2),
+    filter-icon: url("assets/icon-filter-light.svg"),
     // checkbox
+    checkbox:
+      (
+        color: map-get($primary, "light"),
+        inner-after-color: white,
+        radius: 4px,
+      ),
     checkbox-color: map-get($primary, "light"),
     checkbox-inner-after-color: white,
+    // filterPanel
+    filter-panel:
+      (
+        background: white,
+        color: #333333,
+        border: 1px solid white,
+        radius: 16px,
+        button-primary-background:
+          linear-gradient(134.03deg, #8286ef 14.88%, #4d52e2 84.04%),
+      ),
   ),
 );
 
-@mixin theme($theme) {
+@mixin table($theme) {
   &.el-table {
     background: map-get($colors, $theme, "table-background");
+
+    &::before {
+      background-color: map-get($colors, $theme, "table-background");
+    }
 
     tr {
       background: transparent;
@@ -190,6 +246,7 @@ $colors: (
         border-top: 2px solid map-get($colors, $theme, "table-background");
         border-bottom: 2px solid map-get($colors, $theme, "table-background");
         color: map-get($colors, $theme, "body-cell-color");
+        font-family: "DIN", Arial, "Microsoft YaHei";
 
         &:first-child {
           border-top-left-radius: 10px;
@@ -314,143 +371,193 @@ $colors: (
       background-color: map-get($colors, $theme, "header-cell-background");
       border-bottom: 2px solid map-get($colors, $theme, "table-background");
     }
-  }
 
+    th.el-table__cell > .cell.highlight {
+      color: map-get($primary, $theme);
+    }
+
+    .ascending .sort-caret.ascending {
+      border-bottom-color: map-get($primary, $theme);
+    }
+
+    .descending .sort-caret.descending {
+      border-top-color: map-get($primary, $theme);
+    }
+
+    .el-table__column-filter-trigger {
+      background-image: map-get($colors, $theme, "filter-icon");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 17px;
+
+      i {
+        &::before {
+          content: "";
+        }
+
+        width: 13px;
+      }
+    }
+  }
+  @include checkbox($theme);
+}
+
+@mixin checkbox($theme) {
   .el-checkbox {
     .el-checkbox__inner {
-      border-radius: 4px;
-      background-color: map-get($colors, $theme, "checkbox-inner-after-color");
+      border-radius: map-get($colors, $theme, "checkbox", "radius");
+      background-color: map-get(
+        $colors,
+        $theme,
+        "checkbox",
+        "inner-after-color"
+      );
       border: 1px solid #cccccc;
 
       &:hover {
-        border-color: map-get($colors, $theme, "checkbox-color");
+        border-color: map-get($colors, $theme, "checkbox", "color");
       }
 
       &::after {
-        border-color: map-get($colors, $theme, "checkbox-inner-after-color");
+        border-color: map-get($colors, $theme, "checkbox", "inner-after-color");
       }
     }
 
+    .el-checkbox__input.is-checked + .el-checkbox__label {
+      color: map-get($colors, $theme, "checkbox", "color");
+    }
+
     .el-checkbox__input.is-indeterminate .el-checkbox__inner {
-      background-color: map-get($colors, $theme, "checkbox-color");
-      border-color: map-get($colors, $theme, "checkbox-color");
+      background-color: map-get($colors, $theme, "checkbox", "color");
+      border-color: map-get($colors, $theme, "checkbox", "color");
     }
 
     .el-checkbox__input.is-indeterminate .el-checkbox__inner::before {
-      background-color: map-get($colors, $theme, "checkbox-inner-after-color");
+      background-color: map-get(
+        $colors,
+        $theme,
+        "checkbox",
+        "inner-after-color"
+      );
     }
 
     .el-checkbox__input.is-checked .el-checkbox__inner {
-      background-color: map-get($colors, $theme, "checkbox-color");
-      border-color: map-get($colors, $theme, "checkbox-color");
+      background-color: map-get($colors, $theme, "checkbox", "color");
+      border-color: map-get($colors, $theme, "checkbox", "color");
     }
 
     .el-checkbox__input.is-focus .el-checkbox__inner {
-      border-color: map-get($colors, $theme, "checkbox-color");
+      border-color: map-get($colors, $theme, "checkbox", "color");
     }
   }
 }
 
 .tsl-table {
   &.dark {
-    @include theme("dark");
+    @include table("dark");
   }
 
   &.light {
-    @include theme("light");
+    @include table("light");
   }
 }
 
-//$theme: #7dffff;
-//$bg: rgba(0, 0, 0, 0.6);
-//.el-table {
-//  background-color: transparent !important;
-//  .el-table__expanded-cell {
-//    background-color: transparent !important;
-//  }
-//  th.el-table__cell {
-//    background-color: transparent !important;
-//  }
-//  tbody {
-//    background-color: transparent;
-//  }
-//  .head-row {
-//    font-family: "Microsoft YaHei";
-//    font-style: normal;
-//    font-weight: 700;
-//    font-size: 16px;
-//    color: #cccccc;
-//  }
-//  .row {
-//    height: 48px;
-//    padding: 0;
-//    font-family: "DIN", Arial, "Microsoft YaHei";
-//    font-style: normal;
-//    font-weight: 400;
-//    font-size: 14px;
-//    color: #eeeeee;
-//  }
-//  .row__stripe {
-//    background: rgba(255, 255, 255, 0.1);
-//    border-radius: 10px;
-//  }
-//  .transparent {
-//    background-color: transparent;
-//  }
-//  /*头部下边框*/
-//  thead tr th.is-leaf {
-//    border: 0px solid #ebeef5 !important;
-//    border-right: none;
-//  }
-//  thead tr th:nth-last-of-type(2) {
-//    border-right: 0px solid #ebeef5 !important;
-//  }
-//
-//  /*表格内下边框*/
-//  &__row > td {
-//    border-color: transparent !important;
-//    /*border-collapse: collapse和border-radius不兼容,border需要在td/th上面设置,改动需要手动刷新*/
-//    &:first-child {
-//      border-radius: 2px 0 0 2px;
-//    }
-//    &:last-child {
-//      border-radius: 0 2px 2px 0;
-//    }
-//  }
-//  /*底部下边框*/
-//  &::before {
-//    height: 0px !important;
-//  }
-//}
-//.el-table--enable-row-hover .el-table__body tr:hover > td.el-table__cell {
-//  background: rgba(112, 217, 217, 0.2) !important;
-//}
-//.el-pagination {
-//  margin-top: 37.7px;
-//  text-align: end;
-//  .font {
-//    font-family: "DIN" !important;
-//    font-weight: 400 !important;
-//    text-align: center !important; /* 黑白灰/ccc */
-//    color: #ccc !important;
-//  }
-//  &__total {
-//    @extend .font;
-//  }
-//  &.is-background {
-//    .el-pager li {
-//      @extend .font;
-//      background-color: $bg !important;
-//    }
-//    button {
-//      color: #fafafa !important;
-//      background-color: transparent !important;
-//    }
-//  }
-//}
-//.el-select {
-//  &-dropdown__item.selected {
-//    color: $theme !important;
-//  }
-//}
+@mixin filterPanel($theme) {
+  &.tsl_#{$theme} {
+    border-radius: map-get($colors, $theme, "filter-panel", "radius");
+    background: map-get($colors, $theme, "filter-panel", "background");
+    border: map-get($colors, $theme, "filter-panel", "border");
+    @include checkbox($theme);
+    min-width: 320px;
+
+    .el-table-filter__checkbox-group label.el-checkbox {
+      line-height: 40px;
+      margin: 0;
+      padding: 0 10px;
+      border-radius: 4px;
+      color: map-get($colors, $theme, "filter-panel", "color");
+
+      &:hover {
+        background-color: change-color(map-get($primary, $theme), $alpha: 0.1);
+        color: map-get($primary, $theme);
+
+        .el-checkbox__inner {
+          border-color: map-get($primary, $theme);
+        }
+      }
+    }
+
+    .el-table-filter__bottom {
+      border: none;
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 0 24px 24px;
+      $size: (
+        dark: "small",
+        light: "normal",
+      );
+
+      button {
+        &:first-child {
+          @include button($theme, map-get($size, $theme), false);
+          @include button-primary($theme);
+          margin-left: 14px;
+        }
+
+        &:nth-child(2) {
+          @include button($theme, map-get($size, $theme));
+          @include button-plain($theme);
+        }
+      }
+    }
+  }
+}
+
+@mixin button-primary($theme) {
+  color: map-get($colors, $theme, "filter-panel", "background");
+  background: map-get(
+    $colors,
+    $theme,
+    "filter-panel",
+    "button-primary-background"
+  );
+}
+
+@mixin button-plain($theme) {
+  color: map-get($primary, $theme);
+  background: map-get($colors, $theme, "filter-panel", "background");
+}
+
+@mixin button($theme, $size, $border: true) {
+  box-sizing: border-box;
+  @if ($size == "normal") {
+    height: 32px;
+    width: 88px;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 32px;
+    @if ($border) {
+      line-height: 30px;
+      border-style: solid;
+      border-width: 1px;
+    }
+  }
+  @if ($size == "small") {
+    height: 24px;
+    width: 48px;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 24px;
+    @if ($border) {
+      line-height: 22px;
+      border-style: solid;
+      border-width: 1px;
+    }
+  }
+}
+
+.el-table-filter {
+  @include filterPanel("dark");
+  @include filterPanel("light");
+}
 </style>
