@@ -157,6 +157,7 @@ $colors: (
     table-shadow: #fafafa,
     scrollbar-color: change-color(#cccccc, $alpha: 0.2),
     filter-icon: url("assets/icon-filter-dark.svg"),
+    table-border-color: #666666,
     // checkbox
     checkbox:
       (
@@ -189,6 +190,7 @@ $colors: (
     table-shadow: #222222,
     scrollbar-color: change-color(#999999, $alpha: 0.2),
     filter-icon: url("assets/icon-filter-light.svg"),
+    table-border-color: change-color(map-get($primary, "light"), $alpha: 0.2),
     // checkbox
     checkbox:
       (
@@ -397,6 +399,18 @@ $colors: (
 
         width: 13px;
       }
+    }
+
+    &.el-table--border .header-row .el-table__cell,
+    &.el-table--border .body-row .el-table__cell,
+    .el-table__body-wrapper
+      .el-table--border.is-scrolling-left
+      ~ .el-table__fixed {
+      border-radius: 0;
+      border-right: 1px solid map-get($colors, $theme, "table-border-color");
+      border-color: map-get($colors, $theme, "table-border-color");
+      border-top-width: 0;
+      border-bottom-width: 1px;
     }
   }
   @include checkbox($theme);
