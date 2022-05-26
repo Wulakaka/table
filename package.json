@@ -1,7 +1,7 @@
 {
   "name": "@tslsmart/bigscreen-table",
-  "version": "0.0.1",
-  "main": "lib/tslbstb.js",
+  "version": "0.0.2",
+  "main": "lib/tsl-table.umd.js",
   "keywords": [
     "vue",
     "components",
