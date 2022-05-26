@@ -4,7 +4,6 @@
     class="tsl-table"
     :class="[theme]"
     v-bind="$attrs"
-    v-on="$listeners"
     :row-class-name="getRowClassName"
     :cell-class-name="
       (payload) => mergeClass(payload, cellClassName, 'body-cell')
@@ -15,6 +14,7 @@
     :header-cell-class-name="
       (payload) => mergeClass(payload, headerCellClassName, 'header-cell')
     "
+    v-on="$listeners"
     @selection-change="handleSelectionChange"
   >
     <slot />
