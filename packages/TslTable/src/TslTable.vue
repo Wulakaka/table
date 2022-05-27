@@ -68,8 +68,20 @@ export default {
     this.wrapFilterClick(this.$refs.table.$refs.tableHeader);
     this.wrapFilterClick(this.$refs.table.$refs.fixedTableHeader);
     this.wrapFilterClick(this.$refs.table.$refs.rightFixedTableHeader);
+    this.proxyFunctions();
   },
   methods: {
+    proxyFunctions() {
+      const el = this.$refs.table;
+      for (const key in el) {
+        if (
+          Object.hasOwnProperty.call(el, key) &&
+          typeof el[key] === "function"
+        ) {
+          this[key] = this[key] || el[key];
+        }
+      }
+    },
     handleSelectionChange(val) {
       this.$emit("selection-change", val);
       this.multipleSelection = val;
