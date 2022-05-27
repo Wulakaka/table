@@ -383,6 +383,20 @@ $colors: (
       }
     }
 
+    &.el-table--border {
+      border-color: map-get($colors, $theme, "table-border-color");
+
+      &::after,
+      &::before {
+        background-color: map-get($colors, $theme, "table-border-color");
+      }
+
+      .el-table__fixed-right::before,
+      .el-table__fixed::before {
+        background-color: map-get($colors, $theme, "table-border-color");
+      }
+    }
+
     &.el-table--border .header-row .el-table__cell,
     &.el-table--border .body-row .el-table__cell,
     .el-table__body-wrapper
