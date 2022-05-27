@@ -1,156 +1,99 @@
 <template>
-  <div class="bs-table">
-    <TslTable :data="tableList" tsl theme="dark" height="400" stripe>
-      <TslTableColumn type="selection" fixed />
-      <TslTableColumn type="index" />
-      <TslTableColumn prop="name" label="姓名" type="img" />
-      <TslTableColumn
-        prop="age"
-        label="年龄"
+  <div>
+    <el-button @click="resetDateFilter">清除日期过滤器</el-button>
+    <el-button @click="clearFilter">清除所有过滤器</el-button>
+    <tsl-table ref="filterTable" :data="tableData" stripe style="width: 100%">
+      <tsl-table-column
+        prop="date"
+        label="日期"
         sortable
-        :filters="testFilter"
-        :filter-method="() => {}"
-      />
-      <TslTableColumn prop="name" label="姓名" />
-      <TslTableColumn prop="age" label="年龄" />
-      <TslTableColumn prop="name" label="姓名" />
-      <TslTableColumn prop="age" label="年龄" fixed="right" />
-    </TslTable>
-    <TslTable stripe :data="tableList" theme="light" height="400" border>
-      <TslTableColumn type="selection" fixed />
-      <TslTableColumn type="index" />
-      <TslTableColumn prop="name" label="姓名" type="img" />
-      <TslTableColumn
-        prop="age"
-        label="年龄"
-        sortable
-        :filters="testFilter"
-        :filter-method="() => {}"
-      />
-      <TslTableColumn prop="name" label="姓名" />
-      <TslTableColumn prop="age" label="年龄" />
-      <TslTableColumn prop="name" label="姓名" />
-      <TslTableColumn prop="age" label="年龄" fixed="right" />
-    </TslTable>
-    <tsl-table :data="tableData" height="300" stripe>
-      <tsl-table-column type="expand">
-        <template slot-scope="props">
-          <el-form label-position="left" inline class="demo-table-expand">
-            <el-form-item label="商品名称">
-              <span>{{ props.row.name }}</span>
-            </el-form-item>
-            <el-form-item label="所属店铺">
-              <span>{{ props.row.shop }}</span>
-            </el-form-item>
-            <el-form-item label="商品 ID">
-              <span>{{ props.row.id }}</span>
-            </el-form-item>
-            <el-form-item label="店铺 ID">
-              <span>{{ props.row.shopId }}</span>
-            </el-form-item>
-            <el-form-item label="商品分类">
-              <span>{{ props.row.category }}</span>
-            </el-form-item>
-            <el-form-item label="店铺地址">
-              <span>{{ props.row.address }}</span>
-            </el-form-item>
-            <el-form-item label="商品描述">
-              <span>{{ props.row.desc }}</span>
-            </el-form-item>
-          </el-form>
+        width="180"
+        column-key="date"
+        :filters="[
+          { text: '2016-05-01', value: '2016-05-01' },
+          { text: '2016-05-02', value: '2016-05-02' },
+          { text: '2016-05-03', value: '2016-05-03' },
+          { text: '2016-05-04', value: '2016-05-04' },
+        ]"
+        :filter-method="filterHandler"
+      >
+      </tsl-table-column>
+      <tsl-table-column prop="name" label="姓名" width="180">
+      </tsl-table-column>
+      <tsl-table-column prop="address" label="地址" :formatter="formatter">
+      </tsl-table-column>
+      <tsl-table-column
+        prop="tag"
+        label="标签"
+        width="100"
+        :filters="[
+          { text: '家', value: '家' },
+          { text: '公司', value: '公司' },
+        ]"
+        :filter-method="filterTag"
+        filter-placement="bottom-end"
+      >
+        <template slot-scope="scope">
+          <el-tag
+            :type="scope.row.tag === '家' ? 'primary' : 'success'"
+            disable-transitions
+            >{{ scope.row.tag }}</el-tag
+          >
         </template>
       </tsl-table-column>
-      <tsl-table-column label="商品 ID" prop="id"> </tsl-table-column>
-      <tsl-table-column label="商品名称" prop="name"> </tsl-table-column>
-      <tsl-table-column label="描述" prop="desc"> </tsl-table-column>
     </tsl-table>
   </div>
 </template>
 
 <script>
 export default {
-  name: "TestTable",
   data() {
     return {
-      tableList: [
-        { name: "张三", age: 18 },
-        { name: "张三1", age: 18 },
-        { name: "张三2", age: 18 },
-        { name: "张三3", age: 18 },
-        { name: "张三1", age: 18 },
-        { name: "张三2", age: 18 },
-        { name: "张三3", age: 18 },
-        { name: "张三1", age: 18 },
-        { name: "张三2", age: 18 },
-        { name: "张三3", age: 18 },
-        { name: "张三1", age: 18 },
-        { name: "张三2", age: 18 },
-        { name: "张三3", age: 18 },
-        { name: "张三1", age: 18 },
-        { name: "张三2", age: 18 },
-        { name: "张三3", age: 18 },
-        { name: "张三1", age: 18 },
-        { name: "张三2", age: 18 },
-        { name: "张三3", age: 18 },
-      ],
-      testFilter: [
-        { text: "张三11111111111111", value: "张三1" },
-        { text: "张三222222222222222", value: "张三2" },
-      ],
       tableData: [
         {
-          id: "12987122",
-          name: "好滋好味鸡蛋仔",
-          category: "江浙小吃、小吃零食",
-          desc: "荷兰优质淡奶，奶香浓而不腻",
-          address: "上海市普陀区真北路",
-          shop: "王小虎夫妻店",
-          shopId: "10333",
+          date: "2016-05-02",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄",
+          tag: "家",
         },
         {
-          id: "12987123",
-          name: "好滋好味鸡蛋仔",
-          category: "江浙小吃、小吃零食",
-          desc: "荷兰优质淡奶，奶香浓而不腻",
-          address: "上海市普陀区真北路",
-          shop: "王小虎夫妻店",
-          shopId: "10333",
+          date: "2016-05-04",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1517 弄",
+          tag: "公司",
         },
         {
-          id: "12987125",
-          name: "好滋好味鸡蛋仔",
-          category: "江浙小吃、小吃零食",
-          desc: "荷兰优质淡奶，奶香浓而不腻",
-          address: "上海市普陀区真北路",
-          shop: "王小虎夫妻店",
-          shopId: "10333",
+          date: "2016-05-01",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1519 弄",
+          tag: "家",
         },
         {
-          id: "12987126",
-          name: "好滋好味鸡蛋仔",
-          category: "江浙小吃、小吃零食",
-          desc: "荷兰优质淡奶，奶香浓而不腻",
-          address: "上海市普陀区真北路",
-          shop: "王小虎夫妻店",
-          shopId: "10333",
+          date: "2016-05-03",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1516 弄",
+          tag: "公司",
         },
       ],
     };
   },
+  methods: {
+    resetDateFilter() {
+      this.$refs.filterTable.clearFilter("date");
+    },
+    clearFilter() {
+      this.$refs.filterTable.clearFilter();
+    },
+    formatter(row) {
+      return row.address;
+    },
+    filterTag(value, row) {
+      return row.tag === value;
+    },
+    filterHandler(value, row, column) {
+      const property = column["property"];
+      return row[property] === value;
+    },
+  },
 };
 </script>
-
-<style scoped>
-.demo-table-expand {
-  font-size: 0;
-}
-.demo-table-expand label {
-  width: 90px;
-  color: #99a9bf;
-}
-.demo-table-expand .el-form-item {
-  margin-right: 0;
-  margin-bottom: 0;
-  width: 50%;
-}
-</style>

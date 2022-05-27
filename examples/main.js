@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import TslTable from "../lib/tsl-table.umd";
 import "../lib/tsl-table.css";
+// import TslTable from "../src";
 import ElementUI from "element-ui";
 
 Vue.config.productionTip = false;
