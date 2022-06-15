@@ -134,6 +134,7 @@ export default {
 </script>
 
 <style lang="scss">
+@use "sass:math";
 $primary: (
   dark: #70d9d9,
   light: #6266ea,
@@ -141,9 +142,11 @@ $primary: (
 $colors: (
   dark: (
     //  table
+    background: #222222,
     table-background: #222222,
     header-cell-background: #141414,
     header-cell-color: #cccccc,
+    header-cell-border-color: #222222,
     body-row-background: #1b1b1b,
     body-row-hover-background: #272d2d,
     body-row-checked-background: #272f2f,
@@ -174,9 +177,11 @@ $colors: (
   ),
   light: (
     //  table
+    background: transparent,
     table-background: #fafafa,
     header-cell-background: #f2f2f9,
     header-cell-color: #333,
+    header-cell-border-color: change-color(#6266ea, $alpha: 0.1),
     body-row-background: #fefefe,
     body-row-hover-background: #f1f1f9,
     body-row-checked-background: #f1f1f9,
@@ -209,7 +214,7 @@ $colors: (
 
 @mixin table($theme) {
   &.el-table {
-    background: map-get($colors, $theme, "table-background");
+    background: map-get($colors, $theme, "background");
 
     &::before {
       background-color: map-get($colors, $theme, "table-background");
@@ -229,8 +234,17 @@ $colors: (
       .header-cell {
         background: map-get($colors, $theme, "header-cell-background");
         color: map-get($colors, $theme, "header-cell-color");
-        border-bottom: 2px solid map-get($colors, $theme, "table-background");
-        padding: 6px 0;
+        border-bottom: 1px solid
+          map-get($colors, $theme, "header-cell-border-color");
+        box-sizing: border-box;
+        padding: 6px 0 5px;
+        .cell {
+          line-height: 36px;
+        }
+      }
+
+      .el-table-column--selection .cell {
+        padding-left: 14px;
       }
     }
 
@@ -373,11 +387,24 @@ $colors: (
     }
 
     .ascending .sort-caret.ascending {
-      border-bottom-color: map-get($primary, $theme);
+      border-bottom-color: #333333;
     }
 
     .descending .sort-caret.descending {
-      border-top-color: map-get($primary, $theme);
+      border-top-color: #333333;
+    }
+
+    .el-table__expand-icon {
+      color: #999999;
+      $size: 16px;
+      font-size: $size;
+      & > .el-icon {
+        margin-left: math.div(-$size, 2);
+        margin-top: math.div(-$size, 2);
+      }
+    }
+    .el-icon-arrow-right:before {
+      content: "";
     }
 
     .el-table__column-filter-trigger {
