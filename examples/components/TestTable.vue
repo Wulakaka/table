@@ -2,7 +2,13 @@
   <div>
     <el-button @click="resetDateFilter">清除日期过滤器</el-button>
     <el-button @click="clearFilter">清除所有过滤器</el-button>
-    <tsl-table ref="filterTable" :data="tableData" stripe style="width: 100%">
+    <tsl-table
+      ref="filterTable"
+      :data="tableData"
+      stripe
+      style="width: 100%"
+      theme="light"
+    >
       <tsl-table-column
         prop="date"
         label="日期"
