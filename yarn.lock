@@ -9006,6 +9006,11 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npmmirror.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
+vue-willtable@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.npmjs.org/vue-willtable/-/vue-willtable-2.0.3.tgz#2126dd29c0dcefb5805c1d5ab80e953b5025a616"
+  integrity sha512-TZ0w2tBh2nQYCMc4GTKu1UaOu5aWkfUFwBjrqfl3j/pKVsgdYfgI04lDWlwIs9CmZJnG4mPxDVINeoh+xl+yOw==
+
 vue@^2.6.11:
   version "2.6.14"
   resolved "https://registry.npmmirror.com/vue/-/vue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"

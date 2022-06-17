@@ -1,7 +1,8 @@
 import TslTable from "../packages/TslTable";
 import TslTableColumn from "../packages/TslTableColumn";
+import TslWilltable from "../packages/TslWilltable";
 import { Checkbox } from "element-ui";
-const components = [TslTable, TslTableColumn, Checkbox];
+const components = [TslTable, TslTableColumn, Checkbox, TslWilltable];
 import "element-ui/lib/theme-chalk/index.css";
 const install = function (Vue, opts = {}) {
   components.forEach((component) => {
@@ -24,4 +25,5 @@ export default {
   install,
   TslTable,
   TslTableColumn,
+  TslWilltable,
 };

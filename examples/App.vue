@@ -1,14 +1,19 @@
 <template>
-  <TestTable />
+  <div>
+    <!--    <TestTable />-->
+    <WillTable></WillTable>
+  </div>
 </template>
 
 <script>
-import TestTable from "./components/TestTable";
+// import TestTable from "./components/TestTable";
+import WillTable from "./components/WillTable";
 
 export default {
   name: "App",
   components: {
-    TestTable,
+    // TestTable,
+    WillTable,
   },
   data() {
     return {};
