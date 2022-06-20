@@ -27,7 +27,6 @@
           v-else-if="editor.editType === 'date'"
           ref="date"
           v-model="editContent"
-          size="mini"
           value-format="yyyy-MM-dd"
           type="date"
           :style="{
@@ -42,7 +41,6 @@
           v-else-if="editor.editType === 'month'"
           ref="month"
           v-model="editContent"
-          size="mini"
           value-format="yyyy-MM"
           type="month"
           :style="{
@@ -57,7 +55,6 @@
           v-else-if="editor.editType === 'select'"
           ref="select"
           v-model="editContent"
-          size="mini"
           :automatic-dropdown="true"
           :style="{ width: `${editor.curEditorWidth}px` }"
           placeholder="请选择"

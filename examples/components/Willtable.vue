@@ -6,7 +6,6 @@
       :columns="columns"
       :max-height="maxHeight"
       :cell-style="cellStyle"
-      show-icon
     ></TslWilltable>
     <div class="colored" style="height: 100px"></div>
   </div>

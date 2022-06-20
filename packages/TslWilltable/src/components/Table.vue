@@ -121,11 +121,11 @@ export default {
     },
     rowHeight: {
       type: [String, Number],
-      default: 28,
+      default: 40,
     },
     theaderHeight: {
       type: [String, Number],
-      default: 30,
+      default: 40,
     },
     disabled: {
       type: Boolean,

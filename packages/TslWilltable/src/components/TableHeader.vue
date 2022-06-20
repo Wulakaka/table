@@ -268,8 +268,8 @@ export default {
   }
 
   .ww-title {
-    height: 30px;
-    line-height: 30px;
+    height: 40px;
+    line-height: 40px;
     text-indent: 4px;
     overflow: hidden;
     white-space: nowrap;
