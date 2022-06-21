@@ -139,10 +139,13 @@ $primary: (
   dark: #70d9d9,
   light: #6266ea,
 );
+$back: (
+  dark: #70d9d9,
+  light: transparent,
+);
 $colors: (
   dark: (
     //  table
-    background: #222222,
     table-background: #222222,
     header-cell-background: #141414,
     header-cell-color: #cccccc,
@@ -177,14 +180,17 @@ $colors: (
   ),
   light: (
     //  table
-    background: transparent,
-    table-background: #fafafa,
-    header-cell-background: #f2f2f9,
+    table-background: transparent,
+    header-cell-background:
+      mix(map-get($primary, "light"), map-get($back, "light"), 5),
     header-cell-color: #333,
-    header-cell-border-color: change-color(#6266ea, $alpha: 0.1),
-    body-row-background: #fefefe,
-    body-row-hover-background: #f1f1f9,
-    body-row-checked-background: #f1f1f9,
+    header-cell-border-color:
+      mix(map-get($primary, "light"), map-get($back, "light"), 10),
+    body-row-background: mix(white, map-get($back, "light"), 90),
+    body-row-hover-background:
+      mix(map-get($primary, "light"), map-get($back, "light"), 6),
+    body-row-checked-background:
+      mix(map-get($primary, "light"), map-get($back, "light"), 6),
     body-cell-color: #666,
     table-shadow: #222222,
     scrollbar-color: change-color(#999999, $alpha: 0.2),
@@ -214,7 +220,7 @@ $colors: (
 
 @mixin table($theme) {
   &.el-table {
-    background: map-get($colors, $theme, "background");
+    background: map-get($colors, $theme, "table-background");
 
     &::before {
       background-color: map-get($colors, $theme, "table-background");
@@ -251,10 +257,14 @@ $colors: (
     .body-row {
       background: transparent;
 
+      .cell {
+        line-height: 26px;
+      }
+
       .body-cell {
         background: transparent;
-        border-top: 2px solid map-get($colors, $theme, "table-background");
-        border-bottom: 2px solid map-get($colors, $theme, "table-background");
+        border-top-width: 0;
+        border-bottom-width: 0;
         color: map-get($colors, $theme, "body-cell-color");
         font-family: "DIN", Arial, "Microsoft YaHei";
 
