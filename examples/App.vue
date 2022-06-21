@@ -1,21 +1,48 @@
 <template>
   <div class="app">
-    <TestTable />
-    <Selection />
-    <Expand />
+    <TableBase />
+    <TableStripe />
+    <TableBorder />
+    <TableAlign />
+    <TableScrollbar />
+    <TableHighlight />
+    <TableSelection />
+    <TableSort />
+    <TableFilter />
+    <TableTooltip />
+    <TableExpand />
+    <Willtable />
   </div>
 </template>
 
 <script>
-import TestTable from "./components/TestTable";
-import Selection from "./components/Selection";
-import Expand from "./components/Expand";
+import Willtable from "./components/Willtable";
+import TableBase from "./components/TableBase";
+import TableStripe from "./components/TableStripe";
+import TableBorder from "./components/TableBorder";
+import TableAlign from "./components/TableAlign";
+import TableScrollbar from "./components/TableScrollbar";
+import TableHighlight from "./components/TableHighlight";
+import TableSelection from "./components/TableSelection";
+import TableSort from "./components/TableSort";
+import TableFilter from "./components/TableFilter";
+import TableTooltip from "./components/TableTooltip";
+import TableExpand from "./components/TableExpand";
 export default {
   name: "App",
   components: {
-    TestTable,
-    Selection,
-    Expand,
+    TableBase,
+    TableStripe,
+    TableBorder,
+    TableAlign,
+    TableScrollbar,
+    TableHighlight,
+    TableSelection,
+    TableSort,
+    TableFilter,
+    TableTooltip,
+    TableExpand,
+    Willtable,
   },
   data() {
     return {};
@@ -27,5 +54,6 @@ export default {
 <style lang="scss" scoped>
 .app {
   background-color: #fafafa;
+  padding: 0 20px;
 }
 </style>

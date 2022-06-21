@@ -7,7 +7,6 @@
       :max-height="maxHeight"
       :cell-style="cellStyle"
     ></TslWilltable>
-    <div class="colored" style="height: 100px"></div>
   </div>
 </template>
 
@@ -18,7 +17,6 @@ export default {
 
   data() {
     return {
-      // columns: [],
       columns: [
         {
           type: "selection",
@@ -36,12 +34,12 @@ export default {
           title: "预警时间",
           key: "date",
           type: "date",
-          width: 100,
+          width: 200,
         },
         {
           title: "开门次数",
           key: "count",
-          width: 100,
+          width: 200,
         },
         {
           title: "所属小区",
@@ -71,16 +69,16 @@ export default {
         {
           title: "楼栋号",
           key: "building",
-          width: 200,
+          width: 400,
         },
         {
           title: "所属居委",
           key: "committee",
-          width: 300,
+          width: 400,
         },
       ],
       data: [],
-      maxHeight: 800,
+      maxHeight: 400,
     };
   },
   mounted() {
@@ -99,13 +97,4 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-.content {
-  width: 1000px;
-  margin: auto;
-}
-
-.colored {
-  background: mix(white, #6266ea, 95);
-}
-</style>
+<style scoped lang="scss"></style>

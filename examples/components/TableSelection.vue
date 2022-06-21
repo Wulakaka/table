@@ -1,5 +1,5 @@
 <template>
-  <div class="table">
+  <div>
     <tsl-table
       ref="multipleTable"
       :data="tableData"
@@ -29,7 +29,6 @@
 
 <script>
 export default {
-  name: "TableSelection",
   data() {
     return {
       tableData: [
