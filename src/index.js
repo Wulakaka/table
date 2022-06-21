@@ -2,8 +2,9 @@ import TslTable from "../packages/TslTable";
 import TslTableColumn from "../packages/TslTableColumn";
 import TslWilltable from "../packages/TslWilltable/src";
 import { Checkbox } from "element-ui";
+import "../packages/styles/index.scss";
+
 const components = [TslTable, TslTableColumn, Checkbox, TslWilltable];
-import "../packages/styles/element-variables.scss";
 const install = function (Vue, opts = {}) {
   components.forEach((component) => {
     Vue.component(component.name, component);

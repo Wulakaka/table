@@ -829,6 +829,7 @@ export default {
 <style lang="scss">
 .ww-willtable {
   position: relative;
+  font-family: DIN, Microsoft YaHei;
   .el-checkbox {
     font-size: 12px;
   }
