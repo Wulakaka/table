@@ -1,30 +1,30 @@
 <template>
   <tsl-table :data="tableData" stripe style="width: 100%" theme="light">
     <tsl-table-column type="expand">
-      <template slot-scope="props">
-        <el-form label-position="left" inline class="demo-table-expand">
-          <el-form-item label="商品名称">
-            <span>{{ props.row.name }}</span>
-          </el-form-item>
-          <el-form-item label="所属店铺">
-            <span>{{ props.row.shop }}</span>
-          </el-form-item>
-          <el-form-item label="商品 ID">
-            <span>{{ props.row.id }}</span>
-          </el-form-item>
-          <el-form-item label="店铺 ID">
-            <span>{{ props.row.shopId }}</span>
-          </el-form-item>
-          <el-form-item label="商品分类">
-            <span>{{ props.row.category }}</span>
-          </el-form-item>
-          <el-form-item label="店铺地址">
-            <span>{{ props.row.address }}</span>
-          </el-form-item>
-          <el-form-item label="商品描述">
-            <span>{{ props.row.desc }}</span>
-          </el-form-item>
-        </el-form>
+      <template #default="props">
+        <div
+          style="
+            display: grid;
+            grid-template-columns: auto 1fr auto 1fr;
+            grid-gap: 20px;
+            padding-left: 62px;
+          "
+        >
+          <div style="color: #999999">商品名称</div>
+          <div style="color: #666666">{{ props.row.name }}</div>
+          <div style="color: #999999">所属店铺</div>
+          <div style="color: #666666">{{ props.row.shop }}</div>
+          <div style="color: #999999">商品 ID</div>
+          <div style="color: #666666">{{ props.row.id }}</div>
+          <div style="color: #999999">店铺 ID</div>
+          <div style="color: #666666">{{ props.row.shopId }}</div>
+          <div style="color: #999999">商品分类</div>
+          <div style="color: #666666">{{ props.row.category }}</div>
+          <div style="color: #999999">店铺地址</div>
+          <div style="color: #666666">{{ props.row.address }}</div>
+          <div style="color: #999999">商品描述</div>
+          <div style="color: #666666">{{ props.row.desc }}</div>
+        </div>
       </template>
     </tsl-table-column>
     <tsl-table-column label="商品 ID" prop="id"> </tsl-table-column>
@@ -81,19 +81,4 @@ export default {
 };
 </script>
 
-<style>
-.demo-table-expand {
-  font-size: 0;
-  padding-left: 62px;
-  color: #666666;
-}
-.demo-table-expand label {
-  width: 90px;
-  color: #999999;
-}
-.demo-table-expand .el-form-item {
-  margin-right: 0;
-  margin-bottom: 0;
-  width: 50%;
-}
-</style>
+<style></style>
