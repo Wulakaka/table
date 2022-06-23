@@ -222,6 +222,7 @@ export default {
   user-select: none;
   border-bottom: 1px solid #d6dfe4;
   border-right: 1px solid #d6dfe4;
+  background: #fff;
   > div {
     position: relative;
   }
