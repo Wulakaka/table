@@ -141,7 +141,7 @@ $primary: (
 );
 $back: (
   dark: #70d9d9,
-  light: transparent,
+  light: #fafafa,
 );
 $colors: (
   dark: (
@@ -180,13 +180,11 @@ $colors: (
   ),
   light: (
     //  table
-    table-background: transparent,
-    header-cell-background:
-      mix(map-get($primary, "light"), map-get($back, "light"), 5),
+    table-background: map-get($back, "light"),
+    header-cell-background: #f5f5f5,
     header-cell-color: #333,
-    header-cell-border-color:
-      mix(map-get($primary, "light"), map-get($back, "light"), 10),
-    body-row-background: mix(white, map-get($back, "light"), 90),
+    header-cell-border-color: #eeeeee,
+    body-row-background: #f5f5f5,
     body-row-hover-background:
       mix(map-get($primary, "light"), map-get($back, "light"), 6),
     body-row-checked-background:
@@ -258,13 +256,13 @@ $colors: (
       background: transparent;
 
       .cell {
-        line-height: 26px;
+        line-height: 24px;
       }
 
       .body-cell {
         background: transparent;
-        border-top-width: 0;
-        border-bottom-width: 0;
+        border-top: 2px solid map-get($colors, $theme, "table-background");
+        border-bottom: 2px solid map-get($colors, $theme, "table-background");
         color: map-get($colors, $theme, "body-cell-color");
         font-family: "DIN", Arial, "Microsoft YaHei";
 
