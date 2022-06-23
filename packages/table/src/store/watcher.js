@@ -172,7 +172,7 @@ export default Vue.extend({
         const selectedMap = getKeysMap(selection, rowKey);
         const dataMap = getKeysMap(data, rowKey);
         for (let key in selectedMap) {
-          if (selectedMap.hasOwnProperty(key) && !dataMap[key]) {
+          if (Object.hasOwnProperty.call(selectedMap, key) && !dataMap[key]) {
             deleted.push(selectedMap[key].row);
           }
         }

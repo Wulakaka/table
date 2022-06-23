@@ -27,7 +27,7 @@ class TableLayout {
     this.gutterWidth = scrollbarWidth();
 
     for (let name in options) {
-      if (options.hasOwnProperty(name)) {
+      if (Object.hasOwnProperty.call(options, name)) {
         this[name] = options[name];
       }
     }

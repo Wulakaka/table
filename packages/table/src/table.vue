@@ -269,7 +269,7 @@
 </template>
 
 <script type="text/babel">
-import ElCheckbox from "element-ui/packages/checkbox";
+// import ElCheckbox from "element-ui/packages/checkbox";
 import { debounce, throttle } from "throttle-debounce";
 import {
   addResizeListener,
@@ -298,7 +298,7 @@ export default {
     TableHeader,
     TableFooter,
     TableBody,
-    ElCheckbox,
+    // ElCheckbox,
   },
 
   mixins: [Locale, Migrating],

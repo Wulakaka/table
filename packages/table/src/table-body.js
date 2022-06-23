@@ -36,7 +36,7 @@ export default {
     highlight: Boolean,
   },
 
-  render(h) {
+  render() {
     const data = this.data || [];
     return (
       <table class="el-table__body" cellspacing="0" cellpadding="0" border="0">
@@ -379,7 +379,7 @@ export default {
           nativeOn-dblclick={($event) => this.handleDoubleClick($event, row)}
           nativeOn-click={($event) => this.handleClick($event, row)}
           nativeOn-contextmenu={($event) => this.handleContextMenu($event, row)}
-          nativeOn-mouseenter={(_) => this.handleMouseEnter($index)}
+          nativeOn-mouseenter={() => this.handleMouseEnter($index)}
           nativeOn-mouseleave={this.handleMouseLeave}
           columns={columns}
           row={row}

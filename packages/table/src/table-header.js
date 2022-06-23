@@ -247,7 +247,7 @@ export default {
   beforeDestroy() {
     const panels = this.filterPanels;
     for (let prop in panels) {
-      if (panels.hasOwnProperty(prop) && panels[prop]) {
+      if (Object.hasOwnProperty.call(panels, prop) && panels[prop]) {
         panels[prop].$destroy(true);
       }
     }
