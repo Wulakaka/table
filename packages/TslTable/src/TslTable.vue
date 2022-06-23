@@ -141,7 +141,7 @@ $primary: (
 );
 $back: (
   dark: #70d9d9,
-  light: #fafafa,
+  light: #ffffff,
 );
 $colors: (
   dark: (
