@@ -1,12 +1,12 @@
-import { toggleRowStatus, getKeysMap, getRowIdentity } from '../util';
+import { toggleRowStatus, getKeysMap, getRowIdentity } from "../util";
 
 export default {
   data() {
     return {
       states: {
         defaultExpandAll: false,
-        expandRows: []
-      }
+        expandRows: [],
+      },
     };
   },
 
@@ -34,7 +34,7 @@ export default {
     toggleRowExpansion(row, expanded) {
       const changed = toggleRowStatus(this.states.expandRows, row, expanded);
       if (changed) {
-        this.table.$emit('expand-change', row, this.states.expandRows.slice());
+        this.table.$emit("expand-change", row, this.states.expandRows.slice());
         this.scheduleLayout();
       }
     },
@@ -60,6 +60,6 @@ export default {
         return !!expandMap[getRowIdentity(row, rowKey)];
       }
       return expandRows.indexOf(row) !== -1;
-    }
-  }
+    },
+  },
 };

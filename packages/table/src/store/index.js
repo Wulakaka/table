@@ -1,6 +1,6 @@
-import Vue from 'vue';
-import Watcher from './watcher';
-import { arrayFind } from 'element-ui/src/utils/util';
+import Vue from "vue";
+import Watcher from "./watcher";
+import { arrayFind } from "element-ui/src/utils/util";
 
 Watcher.prototype.mutations = {
   setData(states, data) {
@@ -34,13 +34,13 @@ Watcher.prototype.mutations = {
       if (!array) array = parent.children = [];
     }
 
-    if (typeof index !== 'undefined') {
+    if (typeof index !== "undefined") {
       array.splice(index, 0, column);
     } else {
       array.push(column);
     }
 
-    if (column.type === 'selection') {
+    if (column.type === "selection") {
       states.selectable = column.selectable;
       states.reserveSelection = column.reserveSelection;
     }
@@ -70,11 +70,14 @@ Watcher.prototype.mutations = {
   sort(states, options) {
     const { prop, order, init } = options;
     if (prop) {
-      const column = arrayFind(states.columns, column => column.property === prop);
+      const column = arrayFind(
+        states.columns,
+        (column) => column.property === prop
+      );
       if (column) {
         column.order = order;
         this.updateSort(column, prop, order);
-        this.commit('changeSortCondition', { init });
+        this.commit("changeSortCondition", { init });
       }
     }
   },
@@ -90,10 +93,10 @@ Watcher.prototype.mutations = {
     this.execQuery(ingore);
 
     if (!options || !(options.silent || options.init)) {
-      this.table.$emit('sort-change', {
+      this.table.$emit("sort-change", {
         column,
         prop,
-        order
+        order,
       });
     }
 
@@ -107,7 +110,7 @@ Watcher.prototype.mutations = {
     this.execQuery();
 
     if (!silent) {
-      this.table.$emit('filter-change', newFilters);
+      this.table.$emit("filter-change", newFilters);
     }
 
     this.updateTableScrollY();
@@ -128,10 +131,10 @@ Watcher.prototype.mutations = {
 
   setCurrentRow(states, row) {
     this.updateCurrentRow(row);
-  }
+  },
 };
 
-Watcher.prototype.commit = function(name, ...args) {
+Watcher.prototype.commit = function (name, ...args) {
   const mutations = this.mutations;
   if (mutations[name]) {
     mutations[name].apply(this, [this.states].concat(args));
@@ -140,7 +143,7 @@ Watcher.prototype.commit = function(name, ...args) {
   }
 };
 
-Watcher.prototype.updateTableScrollY = function() {
+Watcher.prototype.updateTableScrollY = function () {
   Vue.nextTick(this.table.updateScrollY);
 };
 
