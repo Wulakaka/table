@@ -4,6 +4,7 @@ import TslWilltable from "../packages/TslWilltable/src";
 import { Checkbox } from "element-ui";
 import TslElTable from "../packages/table";
 import TslElTableColumn from "../packages/table-column";
+import TslTooltip from "../packages/tooltip";
 import "../packages/styles/index.scss";
 
 const components = [
@@ -13,6 +14,7 @@ const components = [
   TslWilltable,
   TslElTable,
   TslElTableColumn,
+  TslTooltip,
 ];
 const install = function (Vue, opts = {}) {
   components.forEach((component) => {
@@ -38,4 +40,5 @@ export default {
   TslWilltable,
   TslElTable,
   TslElTableColumn,
+  TslTooltip,
 };

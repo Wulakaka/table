@@ -5,7 +5,7 @@ import { generateId } from "element-ui/src/utils/util";
 import Vue from "vue";
 
 export default {
-  name: "ElTooltip",
+  name: "TslTooltip",
 
   mixins: [Popper],
 
@@ -67,7 +67,9 @@ export default {
 
     this.popperVM = new Vue({
       data: { node: "" },
-      render(h) {
+      mounted() {},
+      render() {
+        console.log(this.node);
         return this.node;
       },
     }).$mount();
@@ -75,7 +77,7 @@ export default {
     this.debounceClose = debounce(200, () => this.handleClosePopper());
   },
 
-  render(h) {
+  render() {
     if (this.popperVM) {
       this.popperVM.node = (
         <transition name={this.transition} onAfterLeave={this.doDestroy}>
