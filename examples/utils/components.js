@@ -10,6 +10,7 @@ import TableSort from "../components/TableSort";
 import TableFilter from "../components/TableFilter";
 import TableTooltip from "../components/TableTooltip";
 import TableExpand from "../components/TableExpand";
+import ElTableFilter from "../components/ElTableFilter";
 
 const components = {
   TableBase,
@@ -24,6 +25,7 @@ const components = {
   TableTooltip,
   TableExpand,
   Willtable,
+  ElTableFilter,
 };
 
 export const routes = Object.entries(components).map(([name, component]) => {
