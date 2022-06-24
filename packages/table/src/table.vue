@@ -17,6 +17,7 @@
           (store.states.data || []).length < 100,
       },
       tableSize ? `tsl-table--${tableSize}` : '',
+      tableTheme ? `tsl-table--${tableTheme}` : '',
     ]"
     @mouseleave="handleMouseLeave($event)"
   >
@@ -398,6 +399,8 @@ export default {
     lazy: Boolean,
 
     load: Function,
+
+    theme: String,
   },
 
   methods: {
@@ -566,6 +569,10 @@ export default {
     // 表格size
     tableSize() {
       return this.size || (this.$ELEMENT || {}).size;
+    },
+    // 表格主题
+    tableTheme() {
+      return this.theme;
     },
 
     bodyWrapper() {

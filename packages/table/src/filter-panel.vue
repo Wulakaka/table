@@ -97,7 +97,7 @@ export default {
   props: {
     placement: {
       type: String,
-      default: "bottom-end",
+      default: "bottom-start",
     },
   },
 

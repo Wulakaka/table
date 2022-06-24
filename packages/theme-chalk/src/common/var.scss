@@ -1,4 +1,31 @@
 /* 改变 icon 字体路径变量，必需 */
 //$--font-path: '~element-ui/lib/theme-chalk/fonts';
 
+/* Table
+-------------------------- */
+$--table-background-color: #222222 !default;
+$--table-background-color-light: transparent !default;
+//$--table-border-color: $--border-color-lighter !default;
+//$--table-border: 1px solid $--table-border-color !default;
+$--table-font-color: #EEEEEE;
+// todo
+$--table-font-color-light: #EEEEEE;
+// todo
+$--table-font-color-light: #EEEEEE !default;
+$--table-header-font-color: #CCCCCC !default;
+$--table-header-font-color-light: #333 !default;
+//$--table-row-hover-background-color: $--background-color-base !default;
+//$--table-current-row-background-color: $--color-primary-light-9 !default;
+$--table-header-background-color: mix(black, $--table-background-color, 40);
+// todo
+$--table-header-background-color-light: mix(black, $--table-background-color-light, 40);
+//$--table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, .12) !default;
+
+
+$--table-body-background-color: transparent;
+
+$--table-body-background-color-striped: mix(black, $--table-background-color-light, 20);
+// todo
+$--table-body-background-color-striped-light: mix(black, $--table-background-color-light, 20);
+
 @import "~element-ui/packages/theme-chalk/src/common/var";
