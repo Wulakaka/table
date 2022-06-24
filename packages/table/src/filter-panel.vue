@@ -7,6 +7,12 @@
       class="el-table-filter"
     >
       <div class="el-table-filter__content">
+        <el-checkbox
+          v-model="checkAll"
+          :indeterminate="isIndeterminate"
+          class="el-table-filter__checkbox-all"
+          >全选</el-checkbox
+        >
         <el-scrollbar wrap-class="el-table-filter__wrap">
           <el-checkbox-group
             v-model="filteredValue"
@@ -104,6 +110,22 @@ export default {
   },
 
   computed: {
+    checkAll: {
+      get() {
+        return this.filters.length === this.filteredValue.length;
+      },
+      set(val) {
+        this.filteredValue = val
+          ? this.filters.map((filter) => filter.value)
+          : [];
+      },
+    },
+    isIndeterminate() {
+      return (
+        this.filteredValue.length > 0 &&
+        this.filters.length > this.filteredValue.length
+      );
+    },
     filters() {
       return this.column && this.column.filters;
     },
