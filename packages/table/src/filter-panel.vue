@@ -4,19 +4,19 @@
       v-if="multiple"
       v-show="showPopper"
       v-clickoutside="handleOutsideClick"
-      class="el-table-filter"
+      class="tsl-table-filter"
     >
-      <div class="el-table-filter__content">
+      <div class="tsl-table-filter__content">
         <el-checkbox
           v-model="checkAll"
           :indeterminate="isIndeterminate"
-          class="el-table-filter__checkbox-all"
+          class="tsl-table-filter__checkbox-all"
           >全选</el-checkbox
         >
-        <el-scrollbar wrap-class="el-table-filter__wrap">
+        <el-scrollbar wrap-class="tsl-table-filter__wrap">
           <el-checkbox-group
             v-model="filteredValue"
-            class="el-table-filter__checkbox-group"
+            class="tsl-table-filter__checkbox-group"
           >
             <el-checkbox
               v-for="filter in filters"
@@ -27,7 +27,7 @@
           </el-checkbox-group>
         </el-scrollbar>
       </div>
-      <div class="el-table-filter__bottom">
+      <div class="tsl-table-filter__bottom">
         <button
           :class="{ 'is-disabled': filteredValue.length === 0 }"
           :disabled="filteredValue.length === 0"
@@ -42,11 +42,11 @@
       v-else
       v-show="showPopper"
       v-clickoutside="handleOutsideClick"
-      class="el-table-filter"
+      class="tsl-table-filter"
     >
-      <ul class="el-table-filter__list">
+      <ul class="tsl-table-filter__list">
         <li
-          class="el-table-filter__list-item"
+          class="tsl-table-filter__list-item"
           :class="{
             'is-active': filterValue === undefined || filterValue === null,
           }"
@@ -57,7 +57,7 @@
         <li
           v-for="filter in filters"
           :key="filter.value"
-          class="el-table-filter__list-item"
+          class="tsl-table-filter__list-item"
           :label="filter.value"
           :class="{ 'is-active': isActive(filter) }"
           @click="handleSelect(filter.value)"

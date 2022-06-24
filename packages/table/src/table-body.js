@@ -39,7 +39,7 @@ export default {
   render() {
     const data = this.data || [];
     return (
-      <table class="el-table__body" cellspacing="0" cellpadding="0" border="0">
+      <table class="tsl-table__body" cellspacing="0" cellpadding="0" border="0">
         <colgroup>
           {this.columns.map((column) => (
             <col name={column.id} key={column.id} />
@@ -97,7 +97,7 @@ export default {
         raf = (fn) => setTimeout(fn, 16);
       }
       raf(() => {
-        const rows = this.$el.querySelectorAll(".el-table__row");
+        const rows = this.$el.querySelectorAll(".tsl-table__row");
         const oldRow = rows[oldVal];
         const newRow = rows[newVal];
         if (oldRow) {
@@ -178,7 +178,7 @@ export default {
     },
 
     getRowClass(row, rowIndex) {
-      const classes = ["el-table__row"];
+      const classes = ["tsl-table__row"];
       if (
         this.table.highlightCurrentRow &&
         row === this.store.states.currentRow
@@ -187,7 +187,7 @@ export default {
       }
 
       if (this.stripe && rowIndex % 2 === 1) {
-        classes.push("el-table__row--striped");
+        classes.push("tsl-table__row--striped");
       }
       const rowClassName = this.table.rowClassName;
       if (typeof rowClassName === "string") {
@@ -242,7 +242,7 @@ export default {
         );
       }
 
-      classes.push("el-table__cell");
+      classes.push("tsl-table__cell");
 
       return classes.join(" ");
     },
@@ -361,7 +361,7 @@ export default {
       const rowClasses = this.getRowClass(row, $index);
       let display = true;
       if (treeRowData) {
-        rowClasses.push("el-table__row--level-" + treeRowData.level);
+        rowClasses.push("tsl-table__row--level-" + treeRowData.level);
         display = treeRowData.display;
       }
       // 指令 v-show 会覆盖 row-style 中 display
@@ -422,7 +422,7 @@ export default {
             <tr key={"expanded-row__" + tr.key}>
               <td
                 colspan={this.columnsCount}
-                class="el-table__cell el-table__expanded-cell"
+                class="tsl-table__cell tsl-table__expanded-cell"
               >
                 {renderExpanded(this.$createElement, {
                   row,

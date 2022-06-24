@@ -76,7 +76,7 @@ export default {
     if (isGroup) this.$parent.isGroup = true;
     return (
       <table
-        class="el-table__header"
+        class="tsl-table__header"
         cellspacing="0"
         cellpadding="0"
         border="0"
@@ -164,7 +164,7 @@ export default {
                     )}
                     {column.filterable ? (
                       <span
-                        class="el-table__column-filter-trigger"
+                        class="tsl-table__column-filter-trigger"
                         on-click={($event) =>
                           this.handleFilterClick($event, column)
                         }
@@ -182,7 +182,7 @@ export default {
                   </div>
                 </th>
               ))}
-              {this.hasGutter ? <th class="el-table__cell gutter"></th> : ""}
+              {this.hasGutter ? <th class="tsl-table__cell gutter"></th> : ""}
             </tr>
           ))}
         </thead>
@@ -341,7 +341,7 @@ export default {
         );
       }
 
-      classes.push("el-table__cell");
+      classes.push("tsl-table__cell");
 
       return classes.join(" ");
     },
@@ -355,7 +355,7 @@ export default {
       const target = event.target;
       let cell = target.tagName === "TH" ? target : target.parentNode;
       if (hasClass(cell, "noclick")) return;
-      cell = cell.querySelector(".el-table__column-filter-trigger") || cell;
+      cell = cell.querySelector(".tsl-table__column-filter-trigger") || cell;
       const table = this.$parent;
 
       let filterPanel = this.filterPanels[column.id];

@@ -1,22 +1,22 @@
 <template>
   <div
-    class="el-table"
+    class="tsl-table"
     :class="[
       {
-        'el-table--fit': fit,
-        'el-table--striped': stripe,
-        'el-table--border': border || isGroup,
-        'el-table--hidden': isHidden,
-        'el-table--group': isGroup,
-        'el-table--fluid-height': maxHeight,
-        'el-table--scrollable-x': layout.scrollX,
-        'el-table--scrollable-y': layout.scrollY,
-        'el-table--enable-row-hover': !store.states.isComplex,
-        'el-table--enable-row-transition':
+        'tsl-table--fit': fit,
+        'tsl-table--striped': stripe,
+        'tsl-table--border': border || isGroup,
+        'tsl-table--hidden': isHidden,
+        'tsl-table--group': isGroup,
+        'tsl-table--fluid-height': maxHeight,
+        'tsl-table--scrollable-x': layout.scrollX,
+        'tsl-table--scrollable-y': layout.scrollY,
+        'tsl-table--enable-row-hover': !store.states.isComplex,
+        'tsl-table--enable-row-transition':
           (store.states.data || []).length !== 0 &&
           (store.states.data || []).length < 100,
       },
-      tableSize ? `el-table--${tableSize}` : '',
+      tableSize ? `tsl-table--${tableSize}` : '',
     ]"
     @mouseleave="handleMouseLeave($event)"
   >
@@ -27,7 +27,7 @@
       v-if="showHeader"
       ref="headerWrapper"
       v-mousewheel="handleHeaderFooterMousewheel"
-      class="el-table__header-wrapper"
+      class="tsl-table__header-wrapper"
     >
       <table-header
         ref="tableHeader"
@@ -43,7 +43,7 @@
     <!--  表体  -->
     <div
       ref="bodyWrapper"
-      class="el-table__body-wrapper"
+      class="tsl-table__body-wrapper"
       :class="[
         layout.scrollX ? `is-scrolling-${scrollPosition}` : 'is-scrolling-none',
       ]"
@@ -64,17 +64,17 @@
       <div
         v-if="!data || data.length === 0"
         ref="emptyBlock"
-        class="el-table__empty-block"
+        class="tsl-table__empty-block"
         :style="emptyBlockStyle"
       >
-        <span class="el-table__empty-text">
+        <span class="tsl-table__empty-text">
           <slot name="empty">{{ emptyText || t("el.table.emptyText") }}</slot>
         </span>
       </div>
       <div
         v-if="$slots.append"
         ref="appendWrapper"
-        class="el-table__append-wrapper"
+        class="tsl-table__append-wrapper"
       >
         <slot name="append"></slot>
       </div>
@@ -85,7 +85,7 @@
       v-show="data && data.length > 0"
       ref="footerWrapper"
       v-mousewheel="handleHeaderFooterMousewheel"
-      class="el-table__footer-wrapper"
+      class="tsl-table__footer-wrapper"
     >
       <table-footer
         :store="store"
@@ -104,7 +104,7 @@
       v-if="fixedColumns.length > 0"
       ref="fixedWrapper"
       v-mousewheel="handleFixedMousewheel"
-      class="el-table__fixed"
+      class="tsl-table__fixed"
       :style="[
         {
           width: layout.fixedWidth ? layout.fixedWidth + 'px' : '',
@@ -115,7 +115,7 @@
       <div
         v-if="showHeader"
         ref="fixedHeaderWrapper"
-        class="el-table__fixed-header-wrapper"
+        class="tsl-table__fixed-header-wrapper"
       >
         <table-header
           ref="fixedTableHeader"
@@ -129,7 +129,7 @@
       </div>
       <div
         ref="fixedBodyWrapper"
-        class="el-table__fixed-body-wrapper"
+        class="tsl-table__fixed-body-wrapper"
         :style="[
           {
             top: layout.headerHeight + 'px',
@@ -151,7 +151,7 @@
         </table-body>
         <div
           v-if="$slots.append"
-          class="el-table__append-gutter"
+          class="tsl-table__append-gutter"
           :style="{ height: layout.appendHeight + 'px' }"
         ></div>
       </div>
@@ -159,7 +159,7 @@
         v-if="showSummary"
         v-show="data && data.length > 0"
         ref="fixedFooterWrapper"
-        class="el-table__fixed-footer-wrapper"
+        class="tsl-table__fixed-footer-wrapper"
       >
         <table-footer
           fixed="left"
@@ -178,7 +178,7 @@
       v-if="rightFixedColumns.length > 0"
       ref="rightFixedWrapper"
       v-mousewheel="handleFixedMousewheel"
-      class="el-table__fixed-right"
+      class="tsl-table__fixed-right"
       :style="[
         {
           width: layout.rightFixedWidth ? layout.rightFixedWidth + 'px' : '',
@@ -192,7 +192,7 @@
       <div
         v-if="showHeader"
         ref="rightFixedHeaderWrapper"
-        class="el-table__fixed-header-wrapper"
+        class="tsl-table__fixed-header-wrapper"
       >
         <table-header
           ref="rightFixedTableHeader"
@@ -206,7 +206,7 @@
       </div>
       <div
         ref="rightFixedBodyWrapper"
-        class="el-table__fixed-body-wrapper"
+        class="tsl-table__fixed-body-wrapper"
         :style="[
           {
             top: layout.headerHeight + 'px',
@@ -228,7 +228,7 @@
         </table-body>
         <div
           v-if="$slots.append"
-          class="el-table__append-gutter"
+          class="tsl-table__append-gutter"
           :style="{ height: layout.appendHeight + 'px' }"
         ></div>
       </div>
@@ -236,7 +236,7 @@
         v-if="showSummary"
         v-show="data && data.length > 0"
         ref="rightFixedFooterWrapper"
-        class="el-table__fixed-footer-wrapper"
+        class="tsl-table__fixed-footer-wrapper"
       >
         <table-footer
           fixed="right"
@@ -254,7 +254,7 @@
     <div
       v-if="rightFixedColumns.length > 0"
       ref="rightFixedPatch"
-      class="el-table__fixed-right-patch"
+      class="tsl-table__fixed-right-patch"
       :style="{
         width: layout.scrollY ? layout.gutterWidth + 'px' : '0',
         height: layout.headerHeight + 'px',
@@ -263,7 +263,7 @@
     <div
       v-show="resizeProxyVisible"
       ref="resizeProxy"
-      class="el-table__column-resize-proxy"
+      class="tsl-table__column-resize-proxy"
     ></div>
   </div>
 </template>
@@ -729,7 +729,7 @@ export default {
   },
 
   created() {
-    this.tableId = "el-table_" + tableIdSeed++;
+    this.tableId = "tsl-table_" + tableIdSeed++;
     this.debouncedUpdateLayout = debounce(50, () => this.doLayout());
   },
 

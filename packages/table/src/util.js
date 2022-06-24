@@ -106,7 +106,7 @@ export const getColumnByKey = function (table, columnKey) {
 };
 
 export const getColumnByCell = function (table, cell) {
-  const matches = (cell.className || "").match(/el-table_[^\s]+/gm);
+  const matches = (cell.className || "").match(/tsl-table_[^\s]+/gm);
   if (matches) {
     return getColumnById(table, matches[0]);
   }

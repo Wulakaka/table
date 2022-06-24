@@ -49,7 +49,7 @@ export default {
 
     return (
       <table
-        class="el-table__footer"
+        class="tsl-table__footer"
         cellspacing="0"
         cellpadding="0"
         border="0"
@@ -69,7 +69,7 @@ export default {
                 rowspan={column.rowSpan}
                 class={[
                   ...this.getRowClasses(column, cellIndex),
-                  "el-table__cell",
+                  "tsl-table__cell",
                 ]}
               >
                 <div class={["cell", column.labelClassName]}>
@@ -77,7 +77,7 @@ export default {
                 </div>
               </td>
             ))}
-            {this.hasGutter ? <th class="el-table__cell gutter"></th> : ""}
+            {this.hasGutter ? <th class="tsl-table__cell gutter"></th> : ""}
           </tr>
         </tbody>
       </table>
