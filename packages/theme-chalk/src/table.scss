@@ -1,10 +1,10 @@
-@import "mixins/mixins";
+@use "mixins/mixins";
 @import "~element-ui/packages/theme-chalk/src/checkbox";
 @import "~element-ui/packages/theme-chalk/src/tag";
 @import "~element-ui/packages/theme-chalk/src/tooltip";
 @import "common/var";
 
-@include b(table) {
+@include mixins.b(table) {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
@@ -16,7 +16,7 @@
   color: $--table-font-color;
 
   // 数据为空
-  @include e(empty-block) {
+  @include mixins.e(empty-block) {
     min-height: 60px;
     text-align: center;
     width: 100%;
@@ -25,7 +25,7 @@
     align-items: center;
   }
 
-  @include e(empty-text) {
+  @include mixins.e(empty-text) {
     // min-height doesn't work in IE10 and IE11 https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
     // set empty text line height up to contrainer min-height as workaround.
     line-height: 60px;
@@ -34,14 +34,14 @@
   }
 
   // 展开行
-  @include e(expand-column) {
+  @include mixins.e(expand-column) {
     .cell {
       padding: 0;
       text-align: center;
     }
   }
 
-  @include e(expand-icon) {
+  @include mixins.e(expand-icon) {
     position: relative;
     cursor: pointer;
     color: #666;
@@ -49,7 +49,7 @@
     transition: transform 0.2s ease-in-out;
     height: 20px;
 
-    @include m(expanded) {
+    @include mixins.m(expanded) {
       transform: rotate(90deg);
     }
 
@@ -62,7 +62,7 @@
     }
   }
 
-  @include e(expanded-cell) {
+  @include mixins.e(expanded-cell) {
     background-color: $--color-white;
 
     // 纯属为了增加权重
@@ -75,33 +75,33 @@
     }
   }
 
-  @include e(placeholder) {
+  @include mixins.e(placeholder) {
     display: inline-block;
     width: 20px;
   }
 
-  @include e(append-wrapper) {
+  @include mixins.e(append-wrapper) {
     // 避免外边距重合 https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing
     overflow: hidden;
   }
 
-  @include m(fit) {
+  @include mixins.m(fit) {
     border-right: 0;
     border-bottom: 0;
 
-    .el-table__cell.gutter {
+    .tsl-table__cell.gutter {
       border-right-width: 1px;
     }
   }
 
-  @include m(scrollable-x) {
-    .el-table__body-wrapper {
+  @include mixins.m(scrollable-x) {
+    .tsl-table__body-wrapper {
       overflow-x: auto;
     }
   }
 
-  @include m(scrollable-y) {
-    .el-table__body-wrapper {
+  @include mixins.m(scrollable-y) {
+    .tsl-table__body-wrapper {
       overflow-y: auto;
     }
   }
@@ -111,13 +111,13 @@
     font-weight: 500;
 
     &.is-group {
-      th.el-table__cell {
+      th.tsl-table__cell {
         background: $--background-color-base;
       }
     }
   }
 
-  .el-table__cell {
+  .tsl-table__cell {
     padding: 12px 0;
     min-width: 0;
     box-sizing: border-box;
@@ -148,22 +148,22 @@
     }
   }
 
-  @include m(medium) {
-    .el-table__cell {
+  @include mixins.m(medium) {
+    .tsl-table__cell {
       padding: 10px 0;
     }
   }
 
-  @include m(small) {
+  @include mixins.m(small) {
     font-size: 12px;
-    .el-table__cell {
+    .tsl-table__cell {
       padding: 8px 0;
     }
   }
 
-  @include m(mini) {
+  @include mixins.m(mini) {
     font-size: 12px;
-    .el-table__cell {
+    .tsl-table__cell {
       padding: 6px 0;
     }
   }
@@ -176,16 +176,16 @@
     }
   }
 
-  th.el-table__cell.is-leaf,
-  td.el-table__cell {
+  th.tsl-table__cell.is-leaf,
+  td.tsl-table__cell {
     border-bottom: $--table-border;
   }
 
-  th.el-table__cell.is-sortable {
+  th.tsl-table__cell.is-sortable {
     cursor: pointer;
   }
 
-  th.el-table__cell {
+  th.tsl-table__cell {
     overflow: hidden;
     user-select: none;
     background-color: $--table-header-background-color;
@@ -216,7 +216,7 @@
     }
   }
 
-  td.el-table__cell {
+  td.tsl-table__cell {
     div {
       box-sizing: border-box;
     }
@@ -243,7 +243,7 @@
   }
 
   // 拥有多级表头
-  @include m((group, border)) {
+  @include mixins.m((group, border)) {
     border: $--table-border;
 
     @include share-rule(border-pseudo) {
@@ -255,7 +255,7 @@
 
     // 表格右部伪 border
     &::after {
-      @include extend-rule(border-pseudo);
+      @include mixins.extend-rule(border-pseudo);
       top: 0;
       right: 0;
       width: 1px;
@@ -265,7 +265,7 @@
 
   // 表格底部伪 border，总是有的
   &::before {
-    @include extend-rule(border-pseudo);
+    @include mixins.extend-rule(border-pseudo);
     left: 0;
     bottom: 0;
     width: 100%;
@@ -273,7 +273,7 @@
   }
 
   // table--border
-  @include m(border) {
+  @include mixins.m(border) {
     border-right: none;
     border-bottom: none;
 
@@ -281,7 +281,7 @@
       border-color: transparent;
     }
 
-    .el-table__cell {
+    .tsl-table__cell {
       border-right: $--table-border;
 
       &:first-child .cell {
@@ -289,21 +289,21 @@
       }
     }
 
-    th.el-table__cell.gutter:last-of-type {
+    th.tsl-table__cell.gutter:last-of-type {
       border-bottom: $--table-border;
       border-bottom-width: 1px;
     }
 
-    & th.el-table__cell {
+    & th.tsl-table__cell {
       border-bottom: $--table-border;
     }
   }
 
-  @include m(hidden) {
+  @include mixins.m(hidden) {
     visibility: hidden;
   }
 
-  @include e((fixed, fixed-right)) {
+  @include mixins.e((fixed, fixed-right)) {
     position: absolute;
     top: 0;
     left: 0;
@@ -323,7 +323,7 @@
     }
   }
 
-  @include e(fixed-right-patch) {
+  @include mixins.e(fixed-right-patch) {
     position: absolute;
     top: -1px;
     right: 0;
@@ -331,40 +331,40 @@
     border-bottom: $--table-border;
   }
 
-  @include e(fixed-right) {
+  @include mixins.e(fixed-right) {
     top: 0;
     left: auto;
     right: 0;
 
-    .el-table__fixed-header-wrapper,
-    .el-table__fixed-body-wrapper,
-    .el-table__fixed-footer-wrapper {
+    .tsl-table__fixed-header-wrapper,
+    .tsl-table__fixed-body-wrapper,
+    .tsl-table__fixed-footer-wrapper {
       left: auto;
       right: 0;
     }
   }
 
-  @include e(fixed-header-wrapper) {
+  @include mixins.e(fixed-header-wrapper) {
     position: absolute;
     left: 0;
     top: 0;
     z-index: 3;
   }
 
-  @include e(fixed-footer-wrapper) {
+  @include mixins.e(fixed-footer-wrapper) {
     position: absolute;
     left: 0;
     bottom: 0;
     z-index: 3;
 
-    & tbody td.el-table__cell {
+    & tbody td.tsl-table__cell {
       border-top: $--table-border;
       background-color: $--table-row-hover-background-color;
       color: $--table-font-color;
     }
   }
 
-  @include e(fixed-body-wrapper) {
+  @include mixins.e(fixed-body-wrapper) {
     position: absolute;
     left: 0;
     top: 37px;
@@ -372,63 +372,63 @@
     z-index: 3;
   }
 
-  @include e((header-wrapper, body-wrapper, footer-wrapper)) {
+  @include mixins.e((header-wrapper, body-wrapper, footer-wrapper)) {
     width: 100%;
   }
 
-  @include e(footer-wrapper) {
+  @include mixins.e(footer-wrapper) {
     margin-top: -1px;
-    td.el-table__cell {
+    td.tsl-table__cell {
       border-top: $--table-border;
     }
   }
 
-  @include e((header, body, footer)) {
+  @include mixins.e((header, body, footer)) {
     table-layout: fixed;
     border-collapse: separate;
   }
 
-  @include e((header-wrapper, footer-wrapper)) {
+  @include mixins.e((header-wrapper, footer-wrapper)) {
     overflow: hidden;
 
-    & tbody td.el-table__cell {
+    & tbody td.tsl-table__cell {
       background-color: $--table-row-hover-background-color;
       color: $--table-font-color;
     }
   }
 
-  @include e(body-wrapper) {
+  @include mixins.e(body-wrapper) {
     overflow: hidden;
     position: relative;
 
     @include when(scrolling-none) {
-      ~ .el-table__fixed,
-      ~ .el-table__fixed-right {
+      ~ .tsl-table__fixed,
+      ~ .tsl-table__fixed-right {
         box-shadow: none;
       }
     }
 
     @include when(scrolling-left) {
-      ~ .el-table__fixed {
+      ~ .tsl-table__fixed {
         box-shadow: none;
       }
     }
 
     @include when(scrolling-right) {
-      ~ .el-table__fixed-right {
+      ~ .tsl-table__fixed-right {
         box-shadow: none;
       }
     }
 
-    .el-table--border {
+    .tsl-table--border {
       @include when(scrolling-right) {
-        ~ .el-table__fixed-right {
+        ~ .tsl-table__fixed-right {
           border-left: $--table-border;
         }
       }
 
       @include when(scrolling-left) {
-        ~ .el-table__fixed {
+        ~ .tsl-table__fixed {
           border-right: $--table-border;
         }
       }
@@ -479,37 +479,37 @@
     z-index: -1;
   }
 
-  @include m(striped) {
-    & .el-table__body {
-      & tr.el-table__row--striped {
-        td.el-table__cell {
+  @include mixins.m(striped) {
+    & .tsl-table__body {
+      & tr.tsl-table__row--striped {
+        td.tsl-table__cell {
           background: #FAFAFA;
         }
 
-        &.current-row td.el-table__cell {
+        &.current-row td.tsl-table__cell {
           background-color: $--table-current-row-background-color;
         }
       }
     }
   }
 
-  @include e(body) {
+  @include mixins.e(body) {
     tr.hover-row {
-      &, &.el-table__row--striped {
+      &, &.tsl-table__row--striped {
         &, &.current-row {
-          > td.el-table__cell {
+          > td.tsl-table__cell {
             background-color: $--table-row-hover-background-color;
           }
         }
       }
     }
 
-    tr.current-row > td.el-table__cell {
+    tr.current-row > td.tsl-table__cell {
       background-color: $--table-current-row-background-color;
     }
   }
 
-  @include e(column-resize-proxy) {
+  @include mixins.e(column-resize-proxy) {
     position: absolute;
     left: 200px;
     top: 0;
@@ -519,7 +519,7 @@
     z-index: 10;
   }
 
-  @include e(column-filter-trigger) {
+  @include mixins.e(column-filter-trigger) {
     display: inline-block;
     line-height: 34px;
     cursor: pointer;
@@ -531,28 +531,28 @@
     }
   }
 
-  @include m(enable-row-transition) {
-    .el-table__body td.el-table__cell {
+  @include mixins.m(enable-row-transition) {
+    .tsl-table__body td.tsl-table__cell {
       transition: background-color .25s ease;
     }
   }
 
-  @include m(enable-row-hover) {
-    .el-table__body tr:hover > td.el-table__cell {
+  @include mixins.m(enable-row-hover) {
+    .tsl-table__body tr:hover > td.tsl-table__cell {
       background-color: $--table-row-hover-background-color;
     }
   }
 
-  @include m(fluid-height) {
-    .el-table__fixed,
-    .el-table__fixed-right {
+  @include mixins.m(fluid-height) {
+    .tsl-table__fixed,
+    .tsl-table__fixed-right {
       bottom: 0;
       overflow: hidden;
     }
   }
 
-  [class*=el-table__row--level] {
-    .el-table__expand-icon {
+  [class*=tsl-table__row--level] {
+    .tsl-table__expand-icon {
       display: inline-block;
       width: 20px;
       line-height: 20px;

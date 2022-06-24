@@ -1,10 +1,10 @@
-@import "mixins/mixins";
+@use "mixins/mixins";
 @import "~element-ui/packages/theme-chalk/src/checkbox";
 @import "~element-ui/packages/theme-chalk/src/tag";
 @import "common/var";
 
-@include b(table-column) {
-  @include m(selection) {
+@include mixins.b(table-column) {
+  @include mixins.m(selection) {
     .cell {
       padding-left: 14px;
       padding-right: 14px;
@@ -12,7 +12,7 @@
   }
 }
 
-@include b(table-filter) {
+@include mixins.b(table-filter) {
   border: solid 1px $--border-color-lighter;
   border-radius: 2px;
   background-color: $--color-white;
@@ -21,14 +21,14 @@
   margin: 2px 0;
 
   /** used for dropdown mode */
-  @include e(list) {
+  @include mixins.e(list) {
     padding: 5px 0;
     margin: 0;
     list-style: none;
     min-width: 100px;
   }
 
-  @include e(list-item) {
+  @include mixins.e(list-item) {
     line-height: 36px;
     padding: 0 10px;
     cursor: pointer;
@@ -45,11 +45,11 @@
     }
   }
 
-  @include e(content) {
+  @include mixins.e(content) {
     min-width: 100px;
   }
 
-  @include e(bottom) {
+  @include mixins.e(bottom) {
     border-top: 1px solid $--border-color-lighter;
     padding: 8px;
 
@@ -76,11 +76,11 @@
     }
   }
 
-  @include e(wrap) {
+  @include mixins.e(wrap) {
     max-height: 280px;
   }
 
-  @include e(checkbox-group) {
+  @include mixins.e(checkbox-group) {
     padding: 10px;
 
     label.el-checkbox {
