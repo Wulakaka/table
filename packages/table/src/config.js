@@ -9,7 +9,7 @@ export const cellStarts = {
     minWidth: 48,
     realWidth: 48,
     order: "",
-    className: "el-table-column--selection",
+    className: "tsl-table-column--selection",
   },
   expand: {
     width: 48,
@@ -82,9 +82,9 @@ export const cellForced = {
       return column.label || "";
     },
     renderCell: function (h, { row, store, isExpanded }) {
-      const classes = ["el-table__expand-icon"];
+      const classes = ["tsl-table__expand-icon"];
       if (isExpanded) {
-        classes.push("el-table__expand-icon--expanded");
+        classes.push("tsl-table__expand-icon--expanded");
       }
       const callback = function (e) {
         e.stopPropagation();
@@ -98,7 +98,7 @@ export const cellForced = {
     },
     sortable: false,
     resizable: false,
-    className: "el-table__expand-column",
+    className: "tsl-table__expand-column",
   },
 };
 
@@ -121,15 +121,15 @@ export function treeCellPrefix(h, { row, treeNode, store }) {
   if (treeNode.indent) {
     ele.push(
       <span
-        class="el-table__indent"
+        class="tsl-table__indent"
         style={{ "padding-left": treeNode.indent + "px" }}
       ></span>
     );
   }
   if (typeof treeNode.expanded === "boolean" && !treeNode.noLazyChildren) {
     const expandClasses = [
-      "el-table__expand-icon",
-      treeNode.expanded ? "el-table__expand-icon--expanded" : "",
+      "tsl-table__expand-icon",
+      treeNode.expanded ? "tsl-table__expand-icon--expanded" : "",
     ];
     let iconClasses = ["el-icon-arrow-right"];
     if (treeNode.loading) {
@@ -141,7 +141,7 @@ export function treeCellPrefix(h, { row, treeNode, store }) {
       </div>
     );
   } else {
-    ele.push(<span class="el-table__placeholder"></span>);
+    ele.push(<span class="tsl-table__placeholder"></span>);
   }
   return ele;
 }
