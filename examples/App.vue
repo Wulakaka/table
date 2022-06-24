@@ -1,59 +1,38 @@
-<template>
-  <div class="app">
-    <TableBase />
-    <TableStripe />
-    <TableBorder />
-    <TableAlign />
-    <TableScrollbar />
-    <TableHighlight />
-    <TableSelection />
-    <TableSort />
-    <TableFilter />
-    <TableTooltip />
-    <TableExpand />
-    <Willtable />
-  </div>
-</template>
-
 <script>
-import Willtable from "./components/Willtable";
-import TableBase from "./components/TableBase";
-import TableStripe from "./components/TableStripe";
-import TableBorder from "./components/TableBorder";
-import TableAlign from "./components/TableAlign";
-import TableScrollbar from "./components/TableScrollbar";
-import TableHighlight from "./components/TableHighlight";
-import TableSelection from "./components/TableSelection";
-import TableSort from "./components/TableSort";
-import TableFilter from "./components/TableFilter";
-import TableTooltip from "./components/TableTooltip";
-import TableExpand from "./components/TableExpand";
+import { routes } from "./utils/components";
 export default {
-  name: "App",
-  components: {
-    TableBase,
-    TableStripe,
-    TableBorder,
-    TableAlign,
-    TableScrollbar,
-    TableHighlight,
-    TableSelection,
-    TableSort,
-    TableFilter,
-    TableTooltip,
-    TableExpand,
-    Willtable,
+  render() {
+    const routeLinks = routes.map((route) => (
+      <router-link to={route.path}>{route.name}</router-link>
+    ));
+    return (
+      <div id="app">
+        <div id="nav">{routeLinks}</div>
+        <router-view />
+      </div>
+    );
   },
-  data() {
-    return {};
-  },
-  methods: {},
 };
 </script>
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-<style lang="scss" scoped>
-.app {
-  background-color: #fafafa;
-  padding: 0 20px;
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>

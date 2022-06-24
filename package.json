@@ -1,32 +1,33 @@
 {
   "name": "@tslsmart/bigscreen-table",
   "version": "0.0.2",
-  "main": "lib/tsl-table.umd.js",
-  "keywords": [
-    "vue",
-    "components",
-    "tslsmart",
-    "bigscreen",
-    "table"
-  ],
-  "author": "zhaoxiaokai",
-  "license": "ISC",
   "description": "tslsmart ui bigscreen table",
-  "peerDependencies": {},
+  "author": "zhaoxiaokai",
   "scripts": {
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "serve": "vue-cli-service serve",
     "lib": "vue-cli-service build --target lib --name tsl-table src/index.js"
   },
+  "main": "lib/tsl-table.umd.js",
   "files": [
     "lib"
   ],
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "element-ui": "^2.15.8",
+    "sass": "^1.52.1",
+    "sass-loader": "^7.3.1",
+    "throttle-debounce": "^5.0.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~4.5.15",
     "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-router": "^4.5.18",
     "@vue/cli-service": "~4.5.15",
     "babel-eslint": "^10.1.0",
     "babel-plugin-component": "^1.1.1",
@@ -37,15 +38,16 @@
     "prettier": "^2.4.1",
     "vue-template-compiler": "^2.6.11"
   },
+  "peerDependencies": {},
+  "keywords": [
+    "vue",
+    "components",
+    "tslsmart",
+    "bigscreen",
+    "table"
+  ],
+  "license": "ISC",
   "resolutions": {
     "gifsicle": "5.2.1"
-  },
-  "dependencies": {
-    "core-js": "^3.6.5",
-    "element-ui": "^2.15.8",
-    "sass": "^1.52.1",
-    "sass-loader": "^7.3.1",
-    "throttle-debounce": "^5.0.0",
-    "vue": "^2.6.11"
   }
 }
