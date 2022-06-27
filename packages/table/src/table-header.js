@@ -4,6 +4,7 @@ import ElCheckbox from "element-ui/packages/checkbox";
 import FilterPanel from "./filter-panel.vue";
 import LayoutObserver from "./layout-observer";
 import { mapStates } from "./store/helper";
+import FilterIcon from "./filter-icon";
 
 const getAllColumns = (columns) => {
   const result = [];
@@ -169,12 +170,7 @@ export default {
                           this.handleFilterClick($event, column)
                         }
                       >
-                        <i
-                          class={[
-                            "el-icon-arrow-down",
-                            column.filterOpened ? "el-icon-arrow-up" : "",
-                          ]}
-                        ></i>
+                        <filter-icon />
                       </span>
                     ) : (
                       ""
@@ -209,6 +205,7 @@ export default {
 
   components: {
     ElCheckbox,
+    FilterIcon,
   },
 
   computed: {

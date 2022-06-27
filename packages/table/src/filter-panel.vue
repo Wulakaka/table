@@ -10,7 +10,7 @@
         <el-checkbox
           v-model="checkAll"
           :indeterminate="isIndeterminate"
-          class="tsl-table-filter__checkbox-all"
+          class="tsl-table-filter__check-all"
           >全选</el-checkbox
         >
         <el-scrollbar wrap-class="tsl-table-filter__wrap">
@@ -28,14 +28,17 @@
         </el-scrollbar>
       </div>
       <div class="tsl-table-filter__bottom">
+        <button @click="handleCancel" class="tsl-table-filter__cancel-button">
+          取消
+        </button>
         <button
+          class="tsl-table-filter__confirm-button"
           :class="{ 'is-disabled': filteredValue.length === 0 }"
           :disabled="filteredValue.length === 0"
           @click="handleConfirm"
         >
-          {{ t("el.table.confirmFilter") }}
+          确定
         </button>
-        <button @click="handleReset">{{ t("el.table.resetFilter") }}</button>
       </div>
     </div>
     <div
@@ -80,8 +83,7 @@ import ElCheckboxGroup from "element-ui/packages/checkbox-group";
 import ElScrollbar from "element-ui/packages/scrollbar";
 
 export default {
-  name: "ElTableFilterPanel",
-
+  name: "TslElTableFilterPanel",
   directives: {
     Clickoutside,
   },
@@ -213,6 +215,10 @@ export default {
     handleReset() {
       this.filteredValue = [];
       this.confirmFilter(this.filteredValue);
+      this.handleOutsideClick();
+    },
+
+    handleCancel() {
       this.handleOutsideClick();
     },
 

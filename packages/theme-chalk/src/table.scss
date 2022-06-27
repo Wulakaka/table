@@ -1,5 +1,5 @@
 @use "mixins/mixins";
-@import "~element-ui/packages/theme-chalk/src/checkbox";
+@import "./checkbox";
 @import "~element-ui/packages/theme-chalk/src/tag";
 @import "~element-ui/packages/theme-chalk/src/tooltip";
 @import "common/var";
@@ -44,8 +44,8 @@
   @include mixins.e(expand-icon) {
     position: relative;
     cursor: pointer;
-    color: #666;
-    font-size: 12px;
+    color: #CCCCCC;
+    font-size: 16px;
     transition: transform 0.2s ease-in-out;
     height: 20px;
 
@@ -57,13 +57,13 @@
       position: absolute;
       left: 50%;
       top: 50%;
-      margin-left: -5px;
-      margin-top: -5px;
+      margin-left: -8px;
+      margin-top: -8px;
     }
   }
 
   @include mixins.e(expanded-cell) {
-    background-color: $--color-white;
+    background-color: transparent;
 
     // 纯属为了增加权重
     &[class*=cell] {
@@ -195,8 +195,6 @@
       box-sizing: border-box;
       position: relative;
       vertical-align: middle;
-      padding-left: 10px;
-      padding-right: 10px;
       width: 100%;
 
       &.highlight {
@@ -217,6 +215,14 @@
   }
 
   td.tsl-table__cell {
+    &:first-child {
+      border-top-left-radius: $--table-row-radius;
+      border-bottom-left-radius: $--table-row-radius;
+    }
+    &:last-child {
+      border-top-right-radius: $--table-row-radius;
+      border-bottom-right-radius: $--table-row-radius;
+    }
     div {
       box-sizing: border-box;
     }
@@ -244,7 +250,7 @@
 
   // 拥有多级表头
   @include mixins.m((group, border)) {
-    border: $--table-border;
+    border: $--table-border-border;
 
     @include share-rule(border-pseudo) {
       content: '';
@@ -281,8 +287,13 @@
       border-color: transparent;
     }
 
+    th.tsl-table__cell.is-leaf,
+    td.tsl-table__cell {
+      border-bottom: $--table-border-border;
+    }
+
     .tsl-table__cell {
-      border-right: $--table-border;
+      border-right: $--table-border-border;
 
       &:first-child .cell {
         padding-left: 10px;
@@ -290,12 +301,12 @@
     }
 
     th.tsl-table__cell.gutter:last-of-type {
-      border-bottom: $--table-border;
+      border-bottom: $--table-border-border;
       border-bottom-width: 1px;
     }
 
     & th.tsl-table__cell {
-      border-bottom: $--table-border;
+      border-bottom: $--table-border-border;
     }
   }
 
@@ -401,6 +412,25 @@
     overflow: hidden;
     position: relative;
 
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: $--table-background-color;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $--table-scrollbar-background-color;
+      border-radius: 4px;
+    }
+
     @include when(scrolling-none) {
       ~ .tsl-table__fixed,
       ~ .tsl-table__fixed-right {
@@ -483,11 +513,15 @@
     & .tsl-table__body {
       & tr.tsl-table__row--striped {
         td.tsl-table__cell {
-          background: #FAFAFA;
+          background: $--table-body-background-color-striped;
         }
 
         &.current-row td.tsl-table__cell {
           background-color: $--table-current-row-background-color;
+        }
+
+        &.is-selected td.tsl-table__cell {
+          background-color: $--table-row-selected-background-color;
         }
       }
     }
@@ -496,7 +530,7 @@
   @include mixins.e(body) {
     tr.hover-row {
       &, &.tsl-table__row--striped {
-        &, &.current-row {
+        &, &.current-row, &.is-selected {
           > td.tsl-table__cell {
             background-color: $--table-row-hover-background-color;
           }
@@ -506,6 +540,10 @@
 
     tr.current-row > td.tsl-table__cell {
       background-color: $--table-current-row-background-color;
+    }
+
+    tr.is-selected > td.tsl-table__cell {
+      background-color: $--table-row-selected-background-color;
     }
   }
 
@@ -523,12 +561,8 @@
     display: inline-block;
     line-height: 34px;
     cursor: pointer;
-
-    & i {
-      color: $--color-info;
-      font-size: 12px;
-      transform: scale(.75);
-    }
+    color: $--color-info;
+    font-size: 17px;
   }
 
   @include mixins.m(enable-row-transition) {

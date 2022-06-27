@@ -205,6 +205,10 @@ export default {
         classes.push("expanded");
       }
 
+      if (this.store.isSelected(row)) {
+        classes.push("is-selected");
+      }
+
       return classes;
     },
 

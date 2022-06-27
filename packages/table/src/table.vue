@@ -294,7 +294,6 @@ export default {
   directives: {
     Mousewheel,
   },
-
   components: {
     TableHeader,
     TableFooter,
