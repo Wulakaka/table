@@ -399,7 +399,10 @@ export default {
 
     load: Function,
 
-    theme: String,
+    theme: {
+      type: String,
+      default: "dark",
+    },
   },
 
   methods: {

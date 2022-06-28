@@ -1,0 +1,137 @@
+@use "mixins/mixins";
+@import "~element-ui/packages/theme-chalk/src/tag";
+@import "common/var";
+@import "~element-ui/packages/theme-chalk/src/common/var";
+
+//@include mixins.b(table-column) {
+//  @import "./checkbox";
+//  @include mixins.m(selection) {
+//    .cell {
+//      padding-left: 14px;
+//      padding-right: 14px;
+//    }
+//  }
+//}
+//
+// 复选框样式
+@mixin checkbox {
+  //display: block;
+  //line-height: 40px;
+  //padding: 0 12px;
+  //margin-right: 0;
+  border-radius: 4px;
+  color: #333333;
+
+  &:hover {
+    background: change-color($--color-primary-light, $alpha: 0.1);
+    color: change-color($--color-primary-light, $alpha: 0.8);
+  }
+}
+
+@include mixins.b(table-filter) {
+  @include mixins.m(light) {
+    @import "./checkbox--light";
+    //  border: solid 1px rgba(255,255,255,.1);
+      border-radius: $--table-filter-radius-light;
+      background-color: $--table-filter-background-color-light;
+    //  box-shadow: $--dropdown-menu-box-shadow;
+    //  box-sizing: border-box;
+    //  margin: 2px 0;
+    //  padding: 12px;
+
+    @include mixins.e(bottom) {
+      //    display: flex;
+      //    justify-content: flex-end;
+      padding: $--table-filter-bottom-padding-light;
+
+      button {
+        //      border-width: 1px;
+        //      border-style: solid;
+        //      box-sizing: border-box;
+        border-radius: $--table-filter-button-radius-light;
+        //
+        //      cursor: pointer;
+        font-size: $--table-filter-button-font-size-light;
+        padding: $--table-filter-button-padding-light;
+        line-height: $--table-filter-button-line-height-light;
+        //
+        //
+        //      &:focus {
+        //        outline: none;
+        //      }
+        //
+
+
+        &:not(:last-child) {
+          margin-right: $--table-filter-button-margin-light;
+        }
+      }
+
+      @include mixins.e(cancel-button){
+        //background: transparent;
+        border-color: $--color-primary-light;
+        color: $--color-primary-light;
+      }
+      //
+      @include mixins.e(confirm-button){
+        background: $--table-filter-confirm-button-background-light;
+        //      border-color: transparent;
+        color: $--table-filter-color-light;
+      }
+    }
+    //  /** used for dropdown mode */
+    //  @include mixins.e(list) {
+    //    padding: 5px 0;
+    //    margin: 0;
+    //    list-style: none;
+    //    min-width: 100px;
+    //  }
+    //
+    //  @include mixins.e(list-item) {
+    //    line-height: 36px;
+    //    padding: 0 10px;
+    //    cursor: pointer;
+    //    font-size: $--font-size-base;
+    //
+    //    &:hover {
+    //      background-color: $--dropdown-menuItem-hover-fill;
+    //      color: $--dropdown-menuItem-hover-color;
+    //    }
+    //
+    //    @include when(active) {
+    //      background-color: $--color-primary;
+    //      color: $--color-white;
+    //    }
+    //  }
+    //
+    //  @include mixins.e(content) {
+    //    min-width: 100px;
+    //  }
+    //
+
+    //
+    //
+    //  @include mixins.e(wrap) {
+    //    max-height: 280px;
+    //  }
+    //
+    //
+    //
+      @include mixins.e(check-all) {
+        @include checkbox;
+      }
+
+      @include mixins.e(checkbox-group) {
+
+        label.el-checkbox {
+          @include checkbox;
+        }
+
+        //.el-checkbox:last-child {
+        //  margin-bottom: 0;
+        //}
+      }
+
+  }
+
+}

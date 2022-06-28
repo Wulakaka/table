@@ -3,6 +3,7 @@
 @import "~element-ui/packages/theme-chalk/src/tag";
 @import "~element-ui/packages/theme-chalk/src/tooltip";
 @import "common/var";
+@import "~element-ui/packages/theme-chalk/src/common/var";
 
 @include mixins.b(table) {
 
@@ -37,10 +38,10 @@
     //  }
     //}
     //
-    //@include mixins.e(expand-icon) {
+    @include mixins.e(expand-icon) {
     //  position: relative;
     //  cursor: pointer;
-    //  color: #CCCCCC;
+      color: $--table-expand-icon-color-light;
     //  font-size: 16px;
     //  transition: transform 0.2s ease-in-out;
     //  height: 20px;
@@ -56,7 +57,7 @@
     //    margin-left: -8px;
     //    margin-top: -8px;
     //  }
-    //}
+    }
     //
     //@include mixins.e(expanded-cell) {
     //  background-color: transparent;
@@ -186,17 +187,17 @@
     //  user-select: none;
       background-color: $--table-header-background-color-light;
     //
-    //  > .cell {
-    //    display: inline-block;
-    //    box-sizing: border-box;
-    //    position: relative;
-    //    vertical-align: middle;
-    //    width: 100%;
-    //
-    //    &.highlight {
-    //      color: $--color-primary;
-    //    }
-    //  }
+      > .cell {
+        //display: inline-block;
+        //box-sizing: border-box;
+        //position: relative;
+        //vertical-align: middle;
+        //width: 100%;
+
+        &.highlight {
+          color: $--color-primary-light;
+        }
+      }
     //
     //  &.required > div::before {
     //    display: inline-block;
@@ -244,26 +245,7 @@
     //  }
     //}
     //
-    //// 拥有多级表头
-    @include mixins.m((group, border)) {
-      border: $--table-border-border-light;
 
-      @include share-rule(border-pseudo) {
-        //content: '';
-        //position: absolute;
-        background-color: $--table-border-color-light;
-        //z-index: 1;
-      }
-
-      // 表格右部伪 border
-      //&::after {
-      //  @include mixins.extend-rule(border-pseudo);
-      //  top: 0;
-      //  right: 0;
-      //  width: 1px;
-      //  height: 100%;
-      //}
-    }
     //
     //// 表格底部伪 border，总是有的
     //&::before {
@@ -274,37 +256,7 @@
     //  height: 1px;
     //}
     //
-    // table--border
-    @include mixins.m(border) {
-    //  border-right: none;
-    //  border-bottom: none;
-    //
-    //  &.el-loading-parent--relative {
-    //    border-color: transparent;
-    //  }
-    //
-      th.tsl-table__cell.is-leaf,
-      td.tsl-table__cell {
-        border-bottom: $--table-border-border-light;
-      }
-    //
-      .tsl-table__cell {
-        border-right: $--table-border-border-light;
 
-        //&:first-child .cell {
-        //  padding-left: 10px;
-        //}
-      }
-    //
-      th.tsl-table__cell.gutter:last-of-type {
-        border-bottom: $--table-border-border-light;
-        //border-bottom-width: 1px;
-      }
-    //
-      & th.tsl-table__cell {
-        border-bottom: $--table-border-border-light;
-      }
-    }
     //
     //@include mixins.m(hidden) {
     //  visibility: hidden;
@@ -491,13 +443,13 @@
     //  }
     //}
     //
-    //.ascending .sort-caret.ascending {
-    //  border-bottom-color: $--color-primary;
-    //}
+    .ascending .sort-caret.ascending {
+      border-bottom-color: $--table-header-font-color-light;
+    }
     //
-    //.descending .sort-caret.descending {
-    //  border-top-color: $--color-primary;
-    //}
+    .descending .sort-caret.descending {
+      border-top-color: $--table-header-font-color-light;
+    }
     //
     //.hidden-columns {
     //  visibility: hidden;
@@ -505,23 +457,6 @@
     //  z-index: -1;
     //}
     //
-    @include mixins.m(striped) {
-      & .tsl-table__body {
-        & tr.tsl-table__row--striped {
-          td.tsl-table__cell {
-            background: $--table-body-background-color-striped-light;
-          }
-
-          &.current-row td.tsl-table__cell {
-            background-color: $--table-current-row-background-color-light;
-          }
-
-          &.is-selected td.tsl-table__cell {
-            background-color: $--table-row-selected-background-color-light;
-          }
-        }
-      }
-    }
     //
     @include mixins.e(body) {
       tr.hover-row {
@@ -553,13 +488,13 @@
       //  z-index: 10;
     }
     //
-    //@include mixins.e(column-filter-trigger) {
-    //  display: inline-block;
-    //  line-height: 34px;
-    //  cursor: pointer;
-    //  color: $--color-info;
-    //  font-size: 17px;
-    //}
+    @include mixins.e(column-filter-trigger) {
+      //display: inline-block;
+      //line-height: 34px;
+      //cursor: pointer;
+      color: $--table-header-font-color-light;
+      //font-size: 17px;
+    }
     //
     //@include mixins.m(enable-row-transition) {
     //  .tsl-table__body td.tsl-table__cell {
@@ -567,11 +502,7 @@
     //  }
     //}
     //
-    @include mixins.m(enable-row-hover) {
-      .tsl-table__body tr:hover > td.tsl-table__cell {
-        background-color: $--table-row-hover-background-color-light;
-      }
-    }
+
     //
     //@include mixins.m(fluid-height) {
     //  .tsl-table__fixed,
@@ -591,5 +522,82 @@
     //    margin-right: 3px;
     //  }
     //}
+  }
+
+  // 拥有多级表头
+  @include mixins.m((group, border)) {
+    border: $--table-border-border-light;
+
+    @include share-rule(border-pseudo) {
+      //content: '';
+      //position: absolute;
+      background-color: $--table-border-color-light;
+      //z-index: 1;
+    }
+
+    // 表格右部伪 border
+    //&::after {
+    //  @include mixins.extend-rule(border-pseudo);
+    //  top: 0;
+    //  right: 0;
+    //  width: 1px;
+    //  height: 100%;
+    //}
+  }
+
+  // table--border
+  @include mixins.m(border) {
+    //  border-right: none;
+    //  border-bottom: none;
+    //
+    //  &.el-loading-parent--relative {
+    //    border-color: transparent;
+    //  }
+    //
+    th.tsl-table__cell.is-leaf,
+    td.tsl-table__cell {
+      border-bottom: $--table-border-border-light;
+    }
+    //
+    .tsl-table__cell {
+      border-right: $--table-border-border-light;
+
+      //&:first-child .cell {
+      //  padding-left: 10px;
+      //}
+    }
+    //
+    th.tsl-table__cell.gutter:last-of-type {
+      border-bottom: $--table-border-border-light;
+      //border-bottom-width: 1px;
+    }
+    //
+    & th.tsl-table__cell {
+      border-bottom: $--table-border-border-light;
+    }
+  }
+
+  @include mixins.m((striped, light), '') {
+    & .tsl-table__body {
+      & tr.tsl-table__row--striped {
+        td.tsl-table__cell {
+          background: $--table-body-background-color-striped-light;
+        }
+
+        &.current-row td.tsl-table__cell {
+          background-color: $--table-current-row-background-color-light;
+        }
+
+        &.is-selected td.tsl-table__cell {
+          background-color: $--table-row-selected-background-color-light;
+        }
+      }
+    }
+  }
+
+  @include mixins.m((enable-row-hover, light), '') {
+    .tsl-table__body tr:hover > td.tsl-table__cell {
+      background-color: $--table-row-hover-background-color-light;
+    }
   }
 }

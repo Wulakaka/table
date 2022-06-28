@@ -1,6 +1,7 @@
 @use "mixins/mixins";
 @import "~element-ui/packages/theme-chalk/src/tag";
 @import "common/var";
+@import "~element-ui/packages/theme-chalk/src/common/var";
 
 @include mixins.b(table-column) {
   @import "./checkbox";
@@ -67,7 +68,7 @@
   @include mixins.e(bottom) {
     display: flex;
     justify-content: flex-end;
-    padding: 20px 12px 16px;
+    padding: $--table-filter-bottom-padding;
 
     button {
       border-width: 1px;
@@ -79,6 +80,7 @@
       font-size: $--table-filter-button-font-size;
       padding: $--table-filter-button-padding;
       line-height: $--table-filter-button-line-height;
+      white-space: nowrap;
 
 
       &:focus {
@@ -86,12 +88,12 @@
       }
 
       &.is-disabled {
-        color: $--table-filter-color-disabled;
+        opacity: 0.8;
         cursor: not-allowed;
       }
 
       &:not(:last-child) {
-        margin-right: 20px;
+        margin-right: $--table-filter-button-margin;
       }
     }
 

@@ -1,7 +1,7 @@
 /* 改变 icon 字体路径变量，必需 */
 //$--font-path: '~element-ui/lib/theme-chalk/fonts';
 
-$--color-primary: #70D9D9;
+$--color-primary: #70D9D9 !default;
 $--color-primary-light: #6266ea;
 /* Table
 -------------------------- */
@@ -25,7 +25,8 @@ $--table-header-background-color: mix(black, $--table-background-color, 40);
 $--table-header-background-color-light: #F5F5F5;
 $--table-fixed-box-shadow: 0 0 20px rgba(160, 160, 160, 0.27);
 $--table-fixed-box-shadow-light: 0 0 40px rgba(5, 11, 72, 0.06);
-
+$--table-expand-icon-color: #cccccc;
+$--table-expand-icon-color-light: #999999;
 
 $--table-body-background-color: $--table-background-color;
 $--table-body-background-color-light: $--table-background-color-light;
@@ -40,38 +41,52 @@ $--table-row-selected-background-color: mix($--color-primary, $--table-backgroun
 $--table-row-selected-background-color-light: mix($--color-primary-light, $--table-background-color-light, 10);
 
 $--table-filter-radius: 0;
-// todo
-$--table-filter-radius-light: 0;
+$--table-filter-radius-light: 16px;
 $--table-filter-background-color: mix(black,$--table-background-color, 10);
-// todo
-$--table-filter-background-color-light: mix(black,$--table-background-color, 10);
-
+$--table-filter-background-color-light: white;
+$--table-filter-bottom-padding: 20px 12px 16px;
+$--table-filter-bottom-padding-light: 16px 12px 12px;
 $--table-filter-button-line-height: 20px;
+$--table-filter-button-line-height-light: 32px;
 $--table-filter-button-font-size: 12px;
+$--table-filter-button-font-size-light: 14px;
 $--table-filter-button-padding: 0 12px;
+$--table-filter-button-padding-light: 0 32px;
 $--table-filter-button-radius: 2px;
+$--table-filter-button-radius-light: 4px;
+$--table-filter-button-margin: 20px;
+$--table-filter-button-margin-light: 16px;
 $--table-filter-confirm-button-background: linear-gradient(271.51deg, #7DFFFF 1.97%, #9AFFDB 99.89%);
+$--table-filter-confirm-button-background-light: linear-gradient(134.03deg, #8286EF 14.88%, #4D52E2 84.04%);
 $--table-filter-color: #333 !default;
-$--table-filter-color-disabled: mix($--table-filter-color, white, 80);
+$--table-filter-color-light: white !default;
 
 // checkbox
 $--checkbox-font-color: #fafafa;
+$--checkbox-font-color-light: #333;
 $--checkbox-input-height: 16px;
 $--checkbox-input-width: 16px;
 $--checkbox-border-radius: 4px;
 $--checkbox-background-color: transparent;
 $--checkbox-checked-icon-color: #333;
-
+$--checkbox-checked-icon-color-light: white;
+$--checkbox-checked-background-color: $--color-primary;
+$--checkbox-checked-background-color-light: $--color-primary-light;
 $--checkbox-disabled-border-color: #666666;
+$--checkbox-disabled-border-color-light: #ccc;
 $--checkbox-disabled-input-fill: #333333;
+$--checkbox-disabled-input-fill-light: #F5F5F5;
 $--checkbox-disabled-icon-color: #F5F5F5;
+$--checkbox-disabled-icon-color-light: #CCCCCC;
 
 $--checkbox-disabled-checked-input-fill: #333333;
+$--checkbox-disabled-checked-input-fill-light: #F5F5F5;
 $--checkbox-disabled-checked-input-border-color: #999999;
+$--checkbox-disabled-checked-input-border-color-light: #CCCCCC;
 $--checkbox-disabled-checked-icon-color: #F5F5F5;
+$--checkbox-disabled-checked-icon-color-light: #CCCCCC;
 
 $--checkbox-button-checked-font-color: #333333;
 
 $--checkbox-button-disabled-checked-fill: mix($--color-primary, black, 80);
 $--checkbox-button-disabled-checked-color: mix($--checkbox-font-color, black, 80);
-@import "~element-ui/packages/theme-chalk/src/common/var";

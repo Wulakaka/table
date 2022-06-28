@@ -100,11 +100,11 @@
   }
 }
 
-@mixin m($modifier) {
+@mixin m($modifier, $joint: ',') {
   $selector: &;
   $currentSelector: "";
   @each $unit in $modifier {
-    $currentSelector: #{$currentSelector + & + $modifier-separator + $unit + ","};
+    $currentSelector: #{$currentSelector + & + $modifier-separator + $unit + $joint};
   }
 
   @at-root {

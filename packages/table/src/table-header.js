@@ -371,6 +371,7 @@ export default {
         filterPanel.table = table;
         filterPanel.cell = cell;
         filterPanel.column = column;
+        filterPanel.theme = this.table.tableTheme;
         !this.$isServer && filterPanel.$mount(document.createElement("div"));
       }
 

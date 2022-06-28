@@ -5,6 +5,7 @@
       v-show="showPopper"
       v-clickoutside="handleOutsideClick"
       class="tsl-table-filter"
+      :class="[`tsl-table-filter--${tableTheme}`]"
     >
       <div class="tsl-table-filter__content">
         <el-checkbox
@@ -101,6 +102,10 @@ export default {
       type: String,
       default: "bottom-start",
     },
+    theme: {
+      type: String,
+      default: "",
+    },
   },
 
   data() {
@@ -166,6 +171,10 @@ export default {
         return this.column.filterMultiple;
       }
       return true;
+    },
+
+    tableTheme() {
+      return this.theme;
     },
   },
   watch: {
