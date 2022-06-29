@@ -1,40 +1,7 @@
-@import "common/var";
-
-
-// checkbox
-$--color-primary: $--color-primary-light;
-$--checkbox-font-color: $--checkbox-font-color-light;
-//$--checkbox-input-height: 16px;
-//$--checkbox-input-width: 16px;
-//$--checkbox-border-radius: 4px;
-//$--checkbox-background-color: transparent;
-$--checkbox-checked-icon-color: $--checkbox-checked-icon-color-light;
-$--checkbox-checked-background-color: $--checkbox-checked-background-color-light;
-
-$--checkbox-disabled-border-color: $--checkbox-disabled-border-color-light;
-$--checkbox-disabled-input-fill: $--checkbox-disabled-input-fill-light;
-$--checkbox-disabled-icon-color: $--checkbox-disabled-icon-color-light;
-
-$--checkbox-disabled-checked-input-fill: $--checkbox-disabled-checked-input-fill-light;
-$--checkbox-disabled-checked-input-border-color: $--checkbox-disabled-checked-input-border-color-light;
-$--checkbox-disabled-checked-icon-color: $--checkbox-disabled-checked-icon-color-light;
-
-
-
-//$--checkbox-button-checked-font-color: #333333;
-
-//$--checkbox-button-disabled-checked-fill: mix($--color-primary, black, 80);
-//$--checkbox-button-disabled-checked-color: mix($--checkbox-font-color, black, 80);
-
-
-$--checkbox-checked-font-color: $--color-primary;
-$--checkbox-checked-input-border-color: $--color-primary;
-$--checkbox-input-border-color-hover: $--color-primary;
-
+@import "checkbox/var--light";
 @import "~element-ui/packages/theme-chalk/src/common/var";
 @import "~element-ui/packages/theme-chalk/src/mixins/mixins";
 @import "~element-ui/packages/theme-chalk/src/mixins/_button";
 @import "~element-ui/packages/theme-chalk/src/mixins/utils";
-
 
 @import "checkbox-base";

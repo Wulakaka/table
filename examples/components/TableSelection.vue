@@ -6,6 +6,23 @@
       tooltip-effect="dark"
       style="width: 100%"
       stripe
+      @selection-change="handleSelectionChange"
+    >
+      <tsl-table-column type="selection" width="55"> </tsl-table-column>
+      <tsl-table-column label="日期" width="120">
+        <template slot-scope="scope">{{ scope.row.date }}</template>
+      </tsl-table-column>
+      <tsl-table-column prop="name" label="姓名" width="120">
+      </tsl-table-column>
+      <tsl-table-column prop="address" label="地址" show-overflow-tooltip>
+      </tsl-table-column>
+    </tsl-table>
+    <tsl-table
+      ref="multipleTable"
+      :data="tableData"
+      tooltip-effect="dark"
+      style="width: 100%"
+      stripe
       theme="light"
       @selection-change="handleSelectionChange"
     >

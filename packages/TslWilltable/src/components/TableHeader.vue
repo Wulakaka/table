@@ -204,13 +204,13 @@ export default {
 </script>
 
 <style lang="scss">
-@use "../../../styles/vars";
+@import "../../../theme-chalk/src/common/var";
 .ww-theader {
   position: relative;
   font-size: 12px;
   user-select: none;
   overflow: hidden;
-  border-right: 1px solid #d6dfe4;
+  border-right: 1px solid $--checkbox-disabled-border-color-light;
   z-index: 5;
   &.fixed {
     position: absolute;
@@ -221,15 +221,15 @@ export default {
   }
   .ww-tr {
     display: flex;
-    background-color: mix(vars.$color-primary, white, 5);
-    border-bottom: 1px solid #d6dfe4;
+    background-color: mix($--color-primary-light, white, 5);
+    border-bottom: 1px solid $--checkbox-disabled-border-color-light;
   }
   .ww-th {
     position: relative;
     display: flex;
     align-items: center;
-    border-top: 1px solid #d6dfe4;
-    border-left: 1px solid #d6dfe4;
+    border-top: 1px solid $--checkbox-disabled-border-color-light;
+    border-left: 1px solid $--checkbox-disabled-border-color-light;
     &.selection {
       justify-content: center;
     }

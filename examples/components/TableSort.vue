@@ -1,18 +1,33 @@
 <template>
-  <tsl-table
-    :data="tableData"
-    style="width: 100%"
-    :default-sort="{ prop: 'date', order: 'descending' }"
-    stripe
-    theme="light"
-  >
-    <tsl-table-column prop="date" label="日期" sortable width="180">
-    </tsl-table-column>
-    <tsl-table-column prop="name" label="姓名" sortable width="180">
-    </tsl-table-column>
-    <tsl-table-column prop="address" label="地址" :formatter="formatter">
-    </tsl-table-column>
-  </tsl-table>
+  <div>
+    <tsl-table
+      :data="tableData"
+      style="width: 100%"
+      :default-sort="{ prop: 'date', order: 'descending' }"
+      stripe
+    >
+      <tsl-table-column prop="date" label="日期" sortable width="180">
+      </tsl-table-column>
+      <tsl-table-column prop="name" label="姓名" sortable width="180">
+      </tsl-table-column>
+      <tsl-table-column prop="address" label="地址" :formatter="formatter">
+      </tsl-table-column>
+    </tsl-table>
+    <tsl-table
+      :data="tableData"
+      style="width: 100%"
+      :default-sort="{ prop: 'date', order: 'descending' }"
+      stripe
+      theme="light"
+    >
+      <tsl-table-column prop="date" label="日期" sortable width="180">
+      </tsl-table-column>
+      <tsl-table-column prop="name" label="姓名" sortable width="180">
+      </tsl-table-column>
+      <tsl-table-column prop="address" label="地址" :formatter="formatter">
+      </tsl-table-column>
+    </tsl-table>
+  </div>
 </template>
 
 <script>

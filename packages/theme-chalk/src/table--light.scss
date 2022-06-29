@@ -5,6 +5,7 @@
 @include mixins.b(table) {
 
   @include mixins.m(light) {
+    font-family: DIN, Microsoft YaHei;
     background-color: $--table-background-color-light;
     color: $--table-font-color-light;
     @import "./checkbox--light";

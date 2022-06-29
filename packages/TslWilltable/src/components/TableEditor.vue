@@ -354,7 +354,7 @@ export default {
 </script>
 
 <style lang="scss">
-@use "../../../styles/vars";
+@import "../../../theme-chalk/src/common/var";
 // 编辑框
 .ww-cell-editor {
   position: absolute;
@@ -362,7 +362,7 @@ export default {
   left: 0;
   display: flex;
   width: 200px;
-  border: 1px solid vars.$color-primary;
+  border: 1px solid $--color-primary-light;
   z-index: 4;
   overflow: hidden;
   &.else {
@@ -387,7 +387,7 @@ export default {
   left: 196px;
   width: 8px;
   height: 8px;
-  border: 1px solid vars.$color-primary;
+  border: 1px solid $--color-primary-light;
   background-color: #fff;
   cursor: crosshair;
   z-index: 5;
@@ -406,7 +406,7 @@ export default {
   left: 0;
   pointer-events: none;
   &.selected {
-    background-color: change-color(vars.$color-primary, $alpha: 0.2);
+    background-color: rgba($--color-primary-light, 0.2);
   }
   &.autofill {
     background-color: rgba(127, 127, 127, 0.2);

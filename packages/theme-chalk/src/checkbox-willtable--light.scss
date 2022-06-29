@@ -1,0 +1,32 @@
+@import "checkbox/var--light";
+@import "~element-ui/packages/theme-chalk/src/common/var";
+@import "~element-ui/packages/theme-chalk/src/mixins/mixins";
+@mixin e($element) {
+  $E: $element !global;
+  $selector: &;
+  $currentSelector: "";
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector + "." + $B + $element-separator + $unit + ","};
+  }
+
+  @if hitAllSpecialNestRule($selector) {
+    @at-root .ww-willtable {
+      #{$selector} {
+        #{$currentSelector} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root .ww-willtable {
+      #{$currentSelector} {
+        @content;
+      }
+    }
+  }
+}
+
+@import "~element-ui/packages/theme-chalk/src/mixins/_button";
+@import "~element-ui/packages/theme-chalk/src/mixins/utils";
+
+@import "checkbox-base";
