@@ -289,7 +289,7 @@ import { parseHeight } from "./util";
 let tableIdSeed = 1;
 
 export default {
-  name: "TslElTable",
+  name: "TslTable",
 
   directives: {
     Mousewheel,

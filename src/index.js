@@ -1,19 +1,15 @@
-import TslTable from "../packages/TslTable";
-import TslTableColumn from "../packages/TslTableColumn";
 import TslWilltable from "../packages/TslWilltable/src";
-import { Checkbox } from "element-ui";
-import TslElTable from "../packages/table";
-import TslElTableColumn from "../packages/table-column";
+// import { Checkbox } from "element-ui";
+import TslTable from "../packages/table";
+import TslTableColumn from "../packages/table-column";
 import TslTooltip from "../packages/tooltip";
 import "../packages/styles/index.scss";
 
 const components = [
+  // Checkbox,
+  TslWilltable,
   TslTable,
   TslTableColumn,
-  Checkbox,
-  TslWilltable,
-  TslElTable,
-  TslElTableColumn,
   TslTooltip,
 ];
 const install = function (Vue, opts = {}) {
@@ -35,10 +31,8 @@ if (typeof window !== "undefined" && window.Vue) {
 export default {
   version: "0.0.1",
   install,
+  TslWilltable,
   TslTable,
   TslTableColumn,
-  TslWilltable,
-  TslElTable,
-  TslElTableColumn,
   TslTooltip,
 };

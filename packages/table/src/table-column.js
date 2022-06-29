@@ -10,7 +10,7 @@ import ElCheckbox from "element-ui/packages/checkbox";
 let columnIdSeed = 1;
 
 export default {
-  name: "TslElTableColumn",
+  name: "TslTableColumn",
 
   props: {
     type: {
