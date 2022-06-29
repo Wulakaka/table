@@ -1,7 +1,4 @@
 @use "mixins/mixins";
-@import "./checkbox";
-@import "~element-ui/packages/theme-chalk/src/tag";
-@import "~element-ui/packages/theme-chalk/src/tooltip";
 @import "common/var";
 @import "~element-ui/packages/theme-chalk/src/common/var";
 
@@ -10,7 +7,7 @@
   @include mixins.m(light) {
     background-color: $--table-background-color-light;
     color: $--table-font-color-light;
-
+    @import "./checkbox--light";
 
     // 数据为空
     //@include mixins.e(empty-block) {
@@ -114,7 +111,8 @@
       //}
     }
     //
-    //.tsl-table__cell {
+    .tsl-table__cell {
+      background: white;
     //  padding: 12px 0;
     //  min-width: 0;
     //  box-sizing: border-box;
@@ -143,7 +141,7 @@
     //      visibility: hidden;
     //    }
     //  }
-    //}
+    }
     //
     //@include mixins.m(medium) {
     //  .tsl-table__cell {
@@ -176,6 +174,7 @@
     th.tsl-table__cell.is-leaf,
     td.tsl-table__cell {
       border-bottom: $--table-border-light;
+      border-top: $--table-border-light;
     }
     //
     //th.tsl-table__cell.is-sortable {
@@ -248,14 +247,15 @@
 
     //
     //// 表格底部伪 border，总是有的
-    //&::before {
-    //  @include mixins.extend-rule(border-pseudo);
-    //  left: 0;
-    //  bottom: 0;
-    //  width: 100%;
-    //  height: 1px;
-    //}
-    //
+    &::before {
+      //@include mixins.extend-rule(border-pseudo-light);
+      //left: 0;
+      //bottom: 0;
+      //width: 100%;
+      //height: 1px;
+      background-color: $--table-border-color-light;
+    }
+
 
     //
     //@include mixins.m(hidden) {
@@ -270,16 +270,16 @@
     //  overflow-y: hidden;
       box-shadow: $--table-fixed-box-shadow-light;
     //
-    //  &::before {
+      &::before {
     //    content: '';
     //    position: absolute;
     //    left: 0;
     //    bottom: 0;
     //    width: 100%;
     //    height: 1px;
-    //    background-color: $--table-background-color;
+        background-color: $--table-background-color-light;
     //    z-index: 4;
-    //  }
+      }
     }
     //
     @include mixins.e(fixed-right-patch) {
@@ -360,11 +360,11 @@
       //  overflow: hidden;
       //  position: relative;
       //
-      //  &::-webkit-scrollbar {
-      //    width: 8px;
-      //    height: 8px;
-      //    background-color: $--table-background-color;
-      //  }
+        &::-webkit-scrollbar {
+          //width: 8px;
+          //height: 8px;
+          background-color: $--table-background-color-light;
+        }
       //
       //  &::-webkit-scrollbar-corner {
       //    background-color: transparent;
@@ -374,10 +374,10 @@
       //    background-color: transparent;
       //  }
       //
-      //  &::-webkit-scrollbar-thumb {
-      //    background: $--table-scrollbar-background-color;
-      //    border-radius: 4px;
-      //  }
+        &::-webkit-scrollbar-thumb {
+          background: $--table-scrollbar-background-color-light;
+          //border-radius: 4px;
+        }
       //
       //  @include when(scrolling-none) {
       //    ~ .tsl-table__fixed,
@@ -484,7 +484,7 @@
       //  top: 0;
       //  bottom: 0;
       //  width: 0;
-      border-left: $--table-border-light;
+      border-left: $--table-border-border-light;
       //  z-index: 10;
     }
     //
@@ -526,29 +526,48 @@
 
   // 拥有多级表头
   @include mixins.m((group, border)) {
-    border: $--table-border-border-light;
 
-    @include share-rule(border-pseudo) {
+
+    @include share-rule(border-pseudo-light) {
       //content: '';
       //position: absolute;
-      background-color: $--table-border-color-light;
+      background-color: $--table-border-color-border-light;
       //z-index: 1;
     }
 
+    &::before {
+      background-color: $--table-border-color-border-light;
+    }
+  }
+
+  @include mixins.m((group, light), '') {
+    border: $--table-border-border-light;
     // 表格右部伪 border
-    //&::after {
-    //  @include mixins.extend-rule(border-pseudo);
-    //  top: 0;
-    //  right: 0;
-    //  width: 1px;
-    //  height: 100%;
-    //}
+    &::after {
+      @include mixins.extend-rule(border-pseudo-light);
+      //top: 0;
+      //right: 0;
+      //width: 1px;
+      //height: 100%;
+    }
+  }
+
+  @include mixins.m((border, light), '') {
+    border: $--table-border-border-light;
+    // 表格右部伪 border
+    &::after {
+      @include mixins.extend-rule(border-pseudo-light);
+      //top: 0;
+      //right: 0;
+      //width: 1px;
+      //height: 100%;
+    }
   }
 
   // table--border
-  @include mixins.m(border) {
-    //  border-right: none;
-    //  border-bottom: none;
+  @include mixins.m((border, light), '') {
+      border-right: none;
+      border-bottom: none;
     //
     //  &.el-loading-parent--relative {
     //    border-color: transparent;
@@ -557,6 +576,10 @@
     th.tsl-table__cell.is-leaf,
     td.tsl-table__cell {
       border-bottom: $--table-border-border-light;
+
+      &:first-child, &:last-child {
+        border-radius: 0;
+      }
     }
     //
     .tsl-table__cell {
