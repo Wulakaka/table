@@ -1,21 +1,38 @@
 <template>
-  <tsl-table
-    :data="tableData"
-    stripe
-    style="width: 700px"
-    height="250"
-    theme="light"
-  >
-    <tsl-table-column fixed prop="date" label="日期" width="150">
-    </tsl-table-column>
-    <tsl-table-column prop="name" label="姓名" width="120"> </tsl-table-column>
-    <tsl-table-column prop="province" label="省份" width="120">
-    </tsl-table-column>
-    <tsl-table-column prop="city" label="市区" width="120"> </tsl-table-column>
-    <tsl-table-column prop="address" label="地址" width="300">
-    </tsl-table-column>
-    <tsl-table-column prop="zip" label="邮编" width="120"> </tsl-table-column>
-  </tsl-table>
+  <div>
+    <tsl-table
+      :data="tableData"
+      stripe
+      style="width: 700px"
+      height="250"
+      theme="light"
+    >
+      <tsl-table-column fixed prop="date" label="日期" width="150">
+      </tsl-table-column>
+      <tsl-table-column prop="name" label="姓名" width="120">
+      </tsl-table-column>
+      <tsl-table-column prop="province" label="省份" width="120">
+      </tsl-table-column>
+      <tsl-table-column prop="city" label="市区" width="120">
+      </tsl-table-column>
+      <tsl-table-column prop="address" label="地址" width="300">
+      </tsl-table-column>
+      <tsl-table-column prop="zip" label="邮编" width="120"> </tsl-table-column>
+    </tsl-table>
+    <tsl-table :data="tableData" stripe style="width: 700px" height="250">
+      <tsl-table-column fixed prop="date" label="日期" width="150">
+      </tsl-table-column>
+      <tsl-table-column prop="name" label="姓名" width="120">
+      </tsl-table-column>
+      <tsl-table-column prop="province" label="省份" width="120">
+      </tsl-table-column>
+      <tsl-table-column prop="city" label="市区" width="120">
+      </tsl-table-column>
+      <tsl-table-column prop="address" label="地址" width="300">
+      </tsl-table-column>
+      <tsl-table-column prop="zip" label="邮编" width="120"> </tsl-table-column>
+    </tsl-table>
+  </div>
 </template>
 
 <script>

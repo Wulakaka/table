@@ -1,9 +1,20 @@
 <template>
-  <tsl-table :data="tableData" style="width: 100%" stripe theme="light">
-    <tsl-table-column prop="date" label="日期" width="180"> </tsl-table-column>
-    <tsl-table-column prop="name" label="姓名" width="180"> </tsl-table-column>
-    <tsl-table-column prop="address" label="地址"> </tsl-table-column>
-  </tsl-table>
+  <div>
+    <tsl-table :data="tableData" style="width: 100%" stripe theme="light">
+      <tsl-table-column prop="date" label="日期" width="180">
+      </tsl-table-column>
+      <tsl-table-column prop="name" label="姓名" width="180">
+      </tsl-table-column>
+      <tsl-table-column prop="address" label="地址"> </tsl-table-column>
+    </tsl-table>
+    <tsl-table :data="tableData" style="width: 100%" stripe>
+      <tsl-table-column prop="date" label="日期" width="180">
+      </tsl-table-column>
+      <tsl-table-column prop="name" label="姓名" width="180">
+      </tsl-table-column>
+      <tsl-table-column prop="address" label="地址"> </tsl-table-column>
+    </tsl-table>
+  </div>
 </template>
 
 <script>
