@@ -1,17 +1,11 @@
 import TslWilltable from "../packages/TslWilltable/src";
-// import { Checkbox } from "element-ui";
 import TslTable from "../packages/table";
 import TslTableColumn from "../packages/table-column";
 import TslTooltip from "../packages/tooltip";
 import "../packages/styles/index.scss";
+import "../packages/theme-chalk/src/index.scss";
 
-const components = [
-  // Checkbox,
-  TslWilltable,
-  TslTable,
-  TslTableColumn,
-  TslTooltip,
-];
+const components = [TslWilltable, TslTable, TslTableColumn, TslTooltip];
 const install = function (Vue, opts = {}) {
   components.forEach((component) => {
     Vue.component(component.name, component);
