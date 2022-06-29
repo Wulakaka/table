@@ -1,0 +1,627 @@
+@use "mixins/mixins";
+@import "common/var";
+@import "~element-ui/packages/theme-chalk/src/common/var";
+
+@include mixins.b(table) {
+
+  @include mixins.m(light) {
+    font-family: DIN, Microsoft YaHei;
+    background-color: $--table-background-color-light;
+    color: $--table-font-color-light;
+    @import "./checkbox--light";
+
+    // 数据为空
+    //@include mixins.e(empty-block) {
+    //  min-height: 60px;
+    //  text-align: center;
+    //  width: 100%;
+    //  display: flex;
+    //  justify-content: center;
+    //  align-items: center;
+    //}
+
+    //@include mixins.e(empty-text) {
+    //  // min-height doesn't work in IE10 and IE11 https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
+    //  // set empty text line height up to contrainer min-height as workaround.
+    //  line-height: 60px;
+    //  width: 50%;
+    //  color: $--color-text-secondary;
+    //}
+    //
+    //// 展开行
+    //@include mixins.e(expand-column) {
+    //  .cell {
+    //    padding: 0;
+    //    text-align: center;
+    //  }
+    //}
+    //
+    @include mixins.e(expand-icon) {
+    //  position: relative;
+    //  cursor: pointer;
+      color: $--table-expand-icon-color-light;
+    //  font-size: 16px;
+    //  transition: transform 0.2s ease-in-out;
+    //  height: 20px;
+    //
+    //  @include mixins.m(expanded) {
+    //    transform: rotate(90deg);
+    //  }
+    //
+    //  > .el-icon {
+    //    position: absolute;
+    //    left: 50%;
+    //    top: 50%;
+    //    margin-left: -8px;
+    //    margin-top: -8px;
+    //  }
+    }
+    //
+    //@include mixins.e(expanded-cell) {
+    //  background-color: transparent;
+    //
+    //  // 纯属为了增加权重
+    //  &[class*=cell] {
+    //    padding: 20px 50px;
+    //  }
+    //
+    //  &:hover {
+    //    background-color: transparent !important;
+    //  }
+    //}
+    //
+    //@include mixins.e(placeholder) {
+    //  display: inline-block;
+    //  width: 20px;
+    //}
+    //
+    //@include mixins.e(append-wrapper) {
+    //  // 避免外边距重合 https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing
+    //  overflow: hidden;
+    //}
+    //
+    //@include mixins.m(fit) {
+    //  border-right: 0;
+    //  border-bottom: 0;
+    //
+    //  .tsl-table__cell.gutter {
+    //    border-right-width: 1px;
+    //  }
+    //}
+    //
+    //@include mixins.m(scrollable-x) {
+    //  .tsl-table__body-wrapper {
+    //    overflow-x: auto;
+    //  }
+    //}
+    //
+    //@include mixins.m(scrollable-y) {
+    //  .tsl-table__body-wrapper {
+    //    overflow-y: auto;
+    //  }
+    //}
+    //
+    thead {
+      color: $--table-header-font-color-light;
+      //font-weight: 500;
+      //
+      //&.is-group {
+      //  th.tsl-table__cell {
+      //    background: $--background-color-base;
+      //  }
+      //}
+    }
+    //
+    .tsl-table__cell {
+      background: white;
+    //  padding: 12px 0;
+    //  min-width: 0;
+    //  box-sizing: border-box;
+    //  text-overflow: ellipsis;
+    //  vertical-align: middle;
+    //  position: relative;
+    //  text-align: left;
+    //
+    //  @include when(center) {
+    //    text-align: center;
+    //  }
+    //
+    //  @include when(right) {
+    //    text-align: right;
+    //  }
+    //
+    //  &.gutter {
+    //    width: 15px;
+    //    border-right-width: 0;
+    //    border-bottom-width: 0;
+    //    padding: 0;
+    //  }
+    //
+    //  &.is-hidden {
+    //    > * {
+    //      visibility: hidden;
+    //    }
+    //  }
+    }
+    //
+    //@include mixins.m(medium) {
+    //  .tsl-table__cell {
+    //    padding: 10px 0;
+    //  }
+    //}
+    //
+    //@include mixins.m(small) {
+    //  font-size: 12px;
+    //  .tsl-table__cell {
+    //    padding: 8px 0;
+    //  }
+    //}
+    //
+    //@include mixins.m(mini) {
+    //  font-size: 12px;
+    //  .tsl-table__cell {
+    //    padding: 6px 0;
+    //  }
+    //}
+    //
+    tr {
+      background-color: $--table-body-background-color-light;
+
+      //input[type="checkbox"] {
+      //  margin: 0;
+      //}
+    }
+    //
+    th.tsl-table__cell.is-leaf,
+    td.tsl-table__cell {
+      border-bottom: $--table-border-light;
+      border-top: $--table-border-light;
+    }
+    //
+    //th.tsl-table__cell.is-sortable {
+    //  cursor: pointer;
+    //}
+    //
+    th.tsl-table__cell {
+    //  overflow: hidden;
+    //  user-select: none;
+      background-color: $--table-header-background-color-light;
+    //
+      > .cell {
+        //display: inline-block;
+        //box-sizing: border-box;
+        //position: relative;
+        //vertical-align: middle;
+        //width: 100%;
+
+        &.highlight {
+          color: $--color-primary-light;
+        }
+      }
+    //
+    //  &.required > div::before {
+    //    display: inline-block;
+    //    content: "";
+    //    width: 8px;
+    //    height: 8px;
+    //    border-radius: 50%;
+    //    background: #ff4d51;
+    //    margin-right: 5px;
+    //    vertical-align: middle;
+    //  }
+    }
+    //
+    td.tsl-table__cell {
+      &:first-child {
+        border-top-left-radius: $--table-row-radius-light;
+        border-bottom-left-radius: $--table-row-radius-light;
+      }
+      &:last-child {
+        border-top-right-radius: $--table-row-radius-light;
+        border-bottom-right-radius: $--table-row-radius-light;
+      }
+      //div {
+      //  box-sizing: border-box;
+      //}
+      //
+      //&.gutter {
+      //  width: 0;
+      //}
+    }
+    //
+    //.cell {
+    //  box-sizing: border-box;
+    //  overflow: hidden;
+    //  text-overflow: ellipsis;
+    //  white-space: normal;
+    //  word-break: break-all;
+    //  line-height: 23px;
+    //  padding-left: 10px;
+    //  padding-right: 10px;
+    //
+    //  &.el-tooltip {
+    //    white-space: nowrap;
+    //    min-width: 50px;
+    //  }
+    //}
+    //
+
+    //
+    //// 表格底部伪 border，总是有的
+    &::before {
+      //@include mixins.extend-rule(border-pseudo-light);
+      //left: 0;
+      //bottom: 0;
+      //width: 100%;
+      //height: 1px;
+      background-color: $--table-border-color-light;
+    }
+
+
+    //
+    //@include mixins.m(hidden) {
+    //  visibility: hidden;
+    //}
+    //
+    @include mixins.e((fixed, fixed-right)) {
+    //  position: absolute;
+    //  top: 0;
+    //  left: 0;
+    //  overflow-x: hidden;
+    //  overflow-y: hidden;
+      box-shadow: $--table-fixed-box-shadow-light;
+    //
+      &::before {
+    //    content: '';
+    //    position: absolute;
+    //    left: 0;
+    //    bottom: 0;
+    //    width: 100%;
+    //    height: 1px;
+        background-color: $--table-background-color-light;
+    //    z-index: 4;
+      }
+    }
+    //
+    @include mixins.e(fixed-right-patch) {
+      //position: absolute;
+      //top: -1px;
+      //right: 0;
+      //background-color: $--color-white;
+      border-bottom: $--table-border-light;
+    }
+    //
+    //@include mixins.e(fixed-right) {
+    //  top: 0;
+    //  left: auto;
+    //  right: 0;
+    //
+    //  .tsl-table__fixed-header-wrapper,
+    //  .tsl-table__fixed-body-wrapper,
+    //  .tsl-table__fixed-footer-wrapper {
+    //    left: auto;
+    //    right: 0;
+    //  }
+    //}
+    //
+    //@include mixins.e(fixed-header-wrapper) {
+    //  position: absolute;
+    //  left: 0;
+    //  top: 0;
+    //  z-index: 3;
+    //}
+    //
+    @include mixins.e(fixed-footer-wrapper) {
+      //position: absolute;
+      //left: 0;
+      //bottom: 0;
+      //z-index: 3;
+
+      & tbody td.tsl-table__cell {
+        border-top: $--table-border-light;
+        background-color: $--table-row-hover-background-color-light;
+        color: $--table-font-color-light;
+      }
+    }
+    //
+    //@include mixins.e(fixed-body-wrapper) {
+    //  position: absolute;
+    //  left: 0;
+    //  top: 37px;
+    //  overflow: hidden;
+    //  z-index: 3;
+    //}
+    //
+    //@include mixins.e((header-wrapper, body-wrapper, footer-wrapper)) {
+    //  width: 100%;
+    //}
+    //
+    @include mixins.e(footer-wrapper) {
+      //margin-top: -1px;
+      td.tsl-table__cell {
+        border-top: $--table-border-light;
+      }
+    }
+    //
+    //@include mixins.e((header, body, footer)) {
+    //  table-layout: fixed;
+    //  border-collapse: separate;
+    //}
+    //
+    @include mixins.e((header-wrapper, footer-wrapper)) {
+      //overflow: hidden;
+
+      & tbody td.tsl-table__cell {
+        background-color: $--table-row-hover-background-color-light;
+        color: $--table-font-color-light;
+      }
+    }
+    //
+    @include mixins.e(body-wrapper) {
+      //  overflow: hidden;
+      //  position: relative;
+      //
+        &::-webkit-scrollbar {
+          //width: 8px;
+          //height: 8px;
+          background-color: $--table-background-color-light;
+        }
+      //
+      //  &::-webkit-scrollbar-corner {
+      //    background-color: transparent;
+      //  }
+      //
+      //  &::-webkit-scrollbar-track {
+      //    background-color: transparent;
+      //  }
+      //
+        &::-webkit-scrollbar-thumb {
+          background: $--table-scrollbar-background-color-light;
+          //border-radius: 4px;
+        }
+      //
+      //  @include when(scrolling-none) {
+      //    ~ .tsl-table__fixed,
+      //    ~ .tsl-table__fixed-right {
+      //      box-shadow: none;
+      //    }
+      //  }
+      //
+      //  @include when(scrolling-left) {
+      //    ~ .tsl-table__fixed {
+      //      box-shadow: none;
+      //    }
+      //  }
+      //
+      //  @include when(scrolling-right) {
+      //    ~ .tsl-table__fixed-right {
+      //      box-shadow: none;
+      //    }
+      //  }
+      //
+      .tsl-table--border {
+        @include when(scrolling-right) {
+          ~ .tsl-table__fixed-right {
+            border-left: $--table-border-light;
+          }
+        }
+
+        @include when(scrolling-left) {
+          ~ .tsl-table__fixed {
+            border-right: $--table-border-light;
+          }
+        }
+      }
+    }
+    //
+    //.caret-wrapper {
+    //  display: inline-flex;
+    //  flex-direction: column;
+    //  align-items: center;
+    //  height: 34px;
+    //  width: 24px;
+    //  vertical-align: middle;
+    //  cursor: pointer;
+    //  overflow: initial;
+    //  position: relative;
+    //}
+    //
+    //.sort-caret {
+    //  width: 0;
+    //  height: 0;
+    //  border: solid 5px transparent;
+    //  position: absolute;
+    //  left: 7px;
+    //
+    //  &.ascending {
+    //    border-bottom-color: $--color-text-placeholder;
+    //    top: 5px;
+    //  }
+    //
+    //  &.descending {
+    //    border-top-color: $--color-text-placeholder;
+    //    bottom: 7px;
+    //  }
+    //}
+    //
+    .ascending .sort-caret.ascending {
+      border-bottom-color: $--table-header-font-color-light;
+    }
+    //
+    .descending .sort-caret.descending {
+      border-top-color: $--table-header-font-color-light;
+    }
+    //
+    //.hidden-columns {
+    //  visibility: hidden;
+    //  position: absolute;
+    //  z-index: -1;
+    //}
+    //
+    //
+    @include mixins.e(body) {
+      tr.hover-row {
+        &, &.tsl-table__row--striped {
+          &, &.current-row, &.is-selected {
+            > td.tsl-table__cell {
+              background-color: $--table-row-hover-background-color-light;
+            }
+          }
+        }
+      }
+
+      tr.current-row > td.tsl-table__cell {
+        background-color: $--table-current-row-background-color-light;
+      }
+
+      tr.is-selected > td.tsl-table__cell {
+        background-color: $--table-row-selected-background-color-light;
+      }
+    }
+
+    @include mixins.e(column-resize-proxy) {
+      //  position: absolute;
+      //  left: 200px;
+      //  top: 0;
+      //  bottom: 0;
+      //  width: 0;
+      border-left: $--table-border-border-light;
+      //  z-index: 10;
+    }
+    //
+    @include mixins.e(column-filter-trigger) {
+      //display: inline-block;
+      //line-height: 34px;
+      //cursor: pointer;
+      color: $--table-header-font-color-light;
+      //font-size: 17px;
+    }
+    //
+    //@include mixins.m(enable-row-transition) {
+    //  .tsl-table__body td.tsl-table__cell {
+    //    transition: background-color .25s ease;
+    //  }
+    //}
+    //
+
+    //
+    //@include mixins.m(fluid-height) {
+    //  .tsl-table__fixed,
+    //  .tsl-table__fixed-right {
+    //    bottom: 0;
+    //    overflow: hidden;
+    //  }
+    //}
+    //
+    //[class*=tsl-table__row--level] {
+    //  .tsl-table__expand-icon {
+    //    display: inline-block;
+    //    width: 20px;
+    //    line-height: 20px;
+    //    height: 20px;
+    //    text-align: center;
+    //    margin-right: 3px;
+    //  }
+    //}
+  }
+
+  // 拥有多级表头
+  @include mixins.m((group, border)) {
+
+
+    @include share-rule(border-pseudo-light) {
+      //content: '';
+      //position: absolute;
+      background-color: $--table-border-color-border-light;
+      //z-index: 1;
+    }
+
+    &::before {
+      background-color: $--table-border-color-border-light;
+    }
+  }
+
+  @include mixins.m((group, light), '') {
+    border: $--table-border-border-light;
+    // 表格右部伪 border
+    &::after {
+      @include mixins.extend-rule(border-pseudo-light);
+      //top: 0;
+      //right: 0;
+      //width: 1px;
+      //height: 100%;
+    }
+  }
+
+  @include mixins.m((border, light), '') {
+    border: $--table-border-border-light;
+    // 表格右部伪 border
+    &::after {
+      @include mixins.extend-rule(border-pseudo-light);
+      //top: 0;
+      //right: 0;
+      //width: 1px;
+      //height: 100%;
+    }
+  }
+
+  // table--border
+  @include mixins.m((border, light), '') {
+      border-right: none;
+      border-bottom: none;
+    //
+    //  &.el-loading-parent--relative {
+    //    border-color: transparent;
+    //  }
+    //
+    th.tsl-table__cell.is-leaf,
+    td.tsl-table__cell {
+      border-bottom: $--table-border-border-light;
+
+      &:first-child, &:last-child {
+        border-radius: 0;
+      }
+    }
+    //
+    .tsl-table__cell {
+      border-right: $--table-border-border-light;
+
+      //&:first-child .cell {
+      //  padding-left: 10px;
+      //}
+    }
+    //
+    th.tsl-table__cell.gutter:last-of-type {
+      border-bottom: $--table-border-border-light;
+      //border-bottom-width: 1px;
+    }
+    //
+    & th.tsl-table__cell {
+      border-bottom: $--table-border-border-light;
+    }
+  }
+
+  @include mixins.m((striped, light), '') {
+    & .tsl-table__body {
+      & tr.tsl-table__row--striped {
+        td.tsl-table__cell {
+          background: $--table-body-background-color-striped-light;
+        }
+
+        &.current-row td.tsl-table__cell {
+          background-color: $--table-current-row-background-color-light;
+        }
+
+        &.is-selected td.tsl-table__cell {
+          background-color: $--table-row-selected-background-color-light;
+        }
+      }
+    }
+  }
+
+  @include mixins.m((enable-row-hover, light), '') {
+    .tsl-table__body tr:hover > td.tsl-table__cell {
+      background-color: $--table-row-hover-background-color-light;
+    }
+  }
+}

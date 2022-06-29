@@ -215,19 +215,19 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../../theme-chalk/src/common/var";
 .ww-tbody {
   position: relative;
   font-size: 12px;
   overflow: hidden;
   user-select: none;
-  border-bottom: 1px solid #d6dfe4;
-  border-right: 1px solid #d6dfe4;
-  background: #fff;
+  border-bottom: 1px solid $--checkbox-disabled-border-color-light;
+  border-right: 1px solid $--checkbox-disabled-border-color-light;
   > div {
     position: relative;
   }
   &.empty {
-    border-left: 1px solid #d6dfe4;
+    border-left: 1px solid $--checkbox-disabled-border-color-light;
   }
   &.fixed {
     position: absolute;
@@ -256,8 +256,8 @@ export default {
     position: relative;
     display: flex;
     align-items: center;
-    border-top: 1px solid #d6dfe4;
-    border-left: 1px solid #d6dfe4;
+    border-top: 1px solid $--checkbox-disabled-border-color-light;
+    border-left: 1px solid $--checkbox-disabled-border-color-light;
     min-width: 0;
     &.selection {
       justify-content: center;

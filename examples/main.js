@@ -1,5 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
+import router from "./router";
 import TslTable from "../lib/tsl-table.umd";
 import "../lib/tsl-table.css";
 // import TslTable from "../src";
@@ -10,4 +11,5 @@ Vue.use(TslTable);
 Vue.use(ElementUI);
 new Vue({
   render: (h) => h(App),
+  router,
 }).$mount("#app");

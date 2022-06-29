@@ -827,6 +827,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../../theme-chalk/src/checkbox-willtable--light";
+
 .ww-willtable {
   position: relative;
   font-family: DIN, Microsoft YaHei;
@@ -859,7 +861,7 @@ export default {
   left: 0;
   width: 1px;
   height: 100%;
-  background-color: #d6dfe4;
+  background-color: $--checkbox-disabled-border-color-light;
   z-index: 10;
 }
 </style>

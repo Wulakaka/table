@@ -7,4 +7,5 @@ module.exports = {
       filename: "index.html",
     },
   },
+  transpileDependencies: ["element-ui"],
 };
