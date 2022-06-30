@@ -577,6 +577,7 @@
     th.tsl-table__cell.is-leaf,
     td.tsl-table__cell {
       border-bottom: $--table-border-border-light;
+      border-top: none;
 
       &:first-child, &:last-child {
         border-radius: 0;
