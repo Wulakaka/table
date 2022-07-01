@@ -35,8 +35,8 @@ $--table-body-background-color-light: $--table-background-color-light;
 
 $--table-body-background-color-striped: mix(black, $--table-background-color, 20);
 $--table-body-background-color-striped-light: #F5F5F5;
-$--table-row-radius: 2px;
-$--table-row-radius-light: 8px;
+$--table-row-radius: 3px;
+$--table-row-radius-light: 9px;
 $--table-scrollbar-background-color: change-color(#cccccc, $alpha: 0.2);
 $--table-scrollbar-background-color-light: change-color(#999999, $alpha: 0.2);
 $--table-row-selected-background-color: mix($--color-primary, $--table-background-color, 10);
