@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="page-content white">
     <TslWilltable
       ref="willtable"
       v-model="data"
@@ -91,10 +91,17 @@ export default {
       this.$refs.willtable.setData(tableData);
     },
     cellStyle({ rowIndex }) {
-      return rowIndex % 2 ? { background: "#f7f7fe" } : {};
+      return rowIndex % 2 ? { background: "#f7f7fe" } : { background: "white" };
     },
   },
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.page-content {
+  padding: 20px;
+  &.white {
+    background: #fafafa;
+  }
+}
+</style>
