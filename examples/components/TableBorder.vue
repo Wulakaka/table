@@ -1,25 +1,29 @@
 <template>
-  <div class="page-content">
-    <tsl-table
-      :data="tableData"
-      style="width: 100%"
-      stripe
-      border
-      theme="light"
-    >
-      <tsl-table-column prop="date" label="日期" width="180">
-      </tsl-table-column>
-      <tsl-table-column prop="name" label="姓名" width="180">
-      </tsl-table-column>
-      <tsl-table-column prop="address" label="地址"> </tsl-table-column>
-    </tsl-table>
-    <tsl-table :data="tableData" style="width: 100%" stripe border>
-      <tsl-table-column prop="date" label="日期" width="180">
-      </tsl-table-column>
-      <tsl-table-column prop="name" label="姓名" width="180">
-      </tsl-table-column>
-      <tsl-table-column prop="address" label="地址"> </tsl-table-column>
-    </tsl-table>
+  <div>
+    <div class="page-content white">
+      <tsl-table
+        :data="tableData"
+        style="width: 100%"
+        stripe
+        border
+        theme="light"
+      >
+        <tsl-table-column prop="date" label="日期" width="180">
+        </tsl-table-column>
+        <tsl-table-column prop="name" label="姓名" width="180">
+        </tsl-table-column>
+        <tsl-table-column prop="address" label="地址"> </tsl-table-column>
+      </tsl-table>
+    </div>
+    <div class="page-content black">
+      <tsl-table :data="tableData" style="width: 100%" stripe border>
+        <tsl-table-column prop="date" label="日期" width="180">
+        </tsl-table-column>
+        <tsl-table-column prop="name" label="姓名" width="180">
+        </tsl-table-column>
+        <tsl-table-column prop="address" label="地址"> </tsl-table-column>
+      </tsl-table>
+    </div>
   </div>
 </template>
 
@@ -56,8 +60,11 @@ export default {
 <style scoped lang="scss">
 .page-content {
   padding: 10px;
-  & > div {
-    margin: 10px;
+  &.black {
+    background: black;
+  }
+  &.white {
+    background: white;
   }
 }
 </style>
